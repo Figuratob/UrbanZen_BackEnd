@@ -1,0 +1,40 @@
+{
+    "name": "Booking",
+    "fields": [
+        {
+            "fieldName": "reservationDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "cancelDate",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "booking"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "lesson",
+            "otherEntityRelationshipName": "booking",
+            "relationshipValidateRules": "required",
+            "relationshipName": "lesson",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191004082257",
+    "entityTableName": "booking",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

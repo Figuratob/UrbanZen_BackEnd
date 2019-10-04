@@ -1,0 +1,31 @@
+{
+  "urbanZenApp": {
+    "lesson": {
+      "home": {
+        "title": "Lessons",
+        "createLabel": "Lisa uus Lesson",
+        "createOrEditLabel": "Lisa või muuda Lesson",
+        "notFound": "No Lessons found"
+      },
+      "created": "Uus Lesson on loodud identifikaatoriga {{ param }}",
+      "updated": "Lesson identifikaatoriga {{ param }} on muudetud",
+      "deleted": "Lesson identifikaatoriga {{ param }} on kustutatud",
+      "delete": {
+        "question": "Kas olete kindel, et soovite kustutada Lesson {{ id }}?"
+      },
+      "detail": {
+        "title": "Lesson"
+      },
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "name": "Name",
+      "description": "Description",
+      "street": "Street",
+      "city": "City",
+      "availableSpaces": "Available Spaces",
+      "booking": "Booking",
+      "teacher": "Teacher",
+      "lessonTemplate": "Lesson Template"
+    }
+  }
+}

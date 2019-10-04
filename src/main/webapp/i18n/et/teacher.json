@@ -1,0 +1,29 @@
+{
+  "urbanZenApp": {
+    "teacher": {
+      "home": {
+        "title": "Teachers",
+        "createLabel": "Lisa uus Teacher",
+        "createOrEditLabel": "Lisa või muuda Teacher",
+        "notFound": "No Teachers found"
+      },
+      "created": "Uus Teacher on loodud identifikaatoriga {{ param }}",
+      "updated": "Teacher identifikaatoriga {{ param }} on muudetud",
+      "deleted": "Teacher identifikaatoriga {{ param }} on kustutatud",
+      "delete": {
+        "question": "Kas olete kindel, et soovite kustutada Teacher {{ id }}?"
+      },
+      "detail": {
+        "title": "Teacher"
+      },
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "photo": "Photo",
+      "about": "About",
+      "lesson": "Lesson",
+      "lessonTemplate": "Lesson Template"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "urbanZenApp": {
+    "lessonTemplate": {
+      "home": {
+        "title": "Lesson Templates",
+        "createLabel": "Create a new Lesson Template",
+        "createOrEditLabel": "Create or edit a Lesson Template",
+        "notFound": "No Lesson Templates found"
+      },
+      "created": "A new Lesson Template is created with identifier {{ param }}",
+      "updated": "A Lesson Template is updated with identifier {{ param }}",
+      "deleted": "A Lesson Template is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Lesson Template {{ id }}?"
+      },
+      "detail": {
+        "title": "Lesson Template"
+      },
+      "dayOfWeek": "Day Of Week",
+      "startHour": "Start Hour",
+      "startMinute": "Start Minute",
+      "endHour": "End Hour",
+      "endMinute": "End Minute",
+      "name": "Name",
+      "description": "Description",
+      "street": "Street",
+      "city": "City",
+      "availableSpaces": "Available Spaces",
+      "repeatStartDate": "Repeat Start Date",
+      "repeatUntilDate": "Repeat Until Date",
+      "lesson": "Lesson",
+      "teacher": "Teacher"
+    }
+  }
+}

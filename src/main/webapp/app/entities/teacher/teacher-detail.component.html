@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="teacher">
+            <h2><span jhiTranslate="urbanZenApp.teacher.detail.title">Teacher</span> {{teacher.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="urbanZenApp.teacher.firstName">First Name</span></dt>
+                <dd>
+                    <span>{{teacher.firstName}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.teacher.lastName">Last Name</span></dt>
+                <dd>
+                    <span>{{teacher.lastName}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.teacher.email">Email</span></dt>
+                <dd>
+                    <span>{{teacher.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.teacher.phone">Phone</span></dt>
+                <dd>
+                    <span>{{teacher.phone}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.teacher.photo">Photo</span></dt>
+                <dd>
+                    <div *ngIf="teacher.photo">
+                        <a (click)="openFile(teacher.photoContentType, teacher.photo)">
+                            <img [src]="'data:' + teacher.photoContentType + ';base64,' + teacher.photo" style="max-width: 100%;" alt="teacher image"/>
+                        </a>
+                        {{teacher.photoContentType}}, {{byteSize(teacher.photo)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.teacher.about">About</span></dt>
+                <dd>
+                    <span>{{teacher.about}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/teacher', teacher.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

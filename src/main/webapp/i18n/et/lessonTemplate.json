@@ -1,0 +1,35 @@
+{
+  "urbanZenApp": {
+    "lessonTemplate": {
+      "home": {
+        "title": "Lesson Templates",
+        "createLabel": "Lisa uus Lesson Template",
+        "createOrEditLabel": "Lisa või muuda Lesson Template",
+        "notFound": "No Lesson Templates found"
+      },
+      "created": "Uus Lesson Template on loodud identifikaatoriga {{ param }}",
+      "updated": "Lesson Template identifikaatoriga {{ param }} on muudetud",
+      "deleted": "Lesson Template identifikaatoriga {{ param }} on kustutatud",
+      "delete": {
+        "question": "Kas olete kindel, et soovite kustutada Lesson Template {{ id }}?"
+      },
+      "detail": {
+        "title": "Lesson Template"
+      },
+      "dayOfWeek": "Day Of Week",
+      "startHour": "Start Hour",
+      "startMinute": "Start Minute",
+      "endHour": "End Hour",
+      "endMinute": "End Minute",
+      "name": "Name",
+      "description": "Description",
+      "street": "Street",
+      "city": "City",
+      "availableSpaces": "Available Spaces",
+      "repeatStartDate": "Repeat Start Date",
+      "repeatUntilDate": "Repeat Until Date",
+      "lesson": "Lesson",
+      "teacher": "Teacher"
+    }
+  }
+}

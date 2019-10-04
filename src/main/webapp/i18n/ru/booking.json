@@ -1,0 +1,25 @@
+{
+  "urbanZenApp": {
+    "booking": {
+      "home": {
+        "title": "Bookings",
+        "createLabel": "Создать новый Booking",
+        "createOrEditLabel": "Создать или отредактировать Booking",
+        "notFound": "No Bookings found"
+      },
+      "created": "Новый Booking создан с идентификатором {{ param }}",
+      "updated": "Booking обновлен с идентификатором {{ param }}",
+      "deleted": "Booking удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Booking {{ id }}?"
+      },
+      "detail": {
+        "title": "Booking"
+      },
+      "reservationDate": "Reservation Date",
+      "cancelDate": "Cancel Date",
+      "user": "User",
+      "lesson": "Lesson"
+    }
+  }
+}

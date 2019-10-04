@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="studio">
+            <h2><span jhiTranslate="urbanZenApp.studio.detail.title">Studio</span> {{studio.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="urbanZenApp.studio.about">About</span></dt>
+                <dd>
+                    <span>{{studio.about}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.studio.street">Street</span></dt>
+                <dd>
+                    <span>{{studio.street}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.studio.postCode">Post Code</span></dt>
+                <dd>
+                    <span>{{studio.postCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.studio.city">City</span></dt>
+                <dd>
+                    <span>{{studio.city}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.studio.email">Email</span></dt>
+                <dd>
+                    <span>{{studio.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.studio.phone">Phone</span></dt>
+                <dd>
+                    <span>{{studio.phone}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/studio', studio.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

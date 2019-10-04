@@ -46,6 +46,15 @@ public class CacheConfiguration {
             createCache(cm, ee.urbanzen.backoffice.domain.User.class.getName());
             createCache(cm, ee.urbanzen.backoffice.domain.Authority.class.getName());
             createCache(cm, ee.urbanzen.backoffice.domain.User.class.getName() + ".authorities");
+            createCache(cm, ee.urbanzen.backoffice.domain.Teacher.class.getName());
+            createCache(cm, ee.urbanzen.backoffice.domain.Teacher.class.getName() + ".lessons");
+            createCache(cm, ee.urbanzen.backoffice.domain.Teacher.class.getName() + ".lessonTemplates");
+            createCache(cm, ee.urbanzen.backoffice.domain.LessonTemplate.class.getName());
+            createCache(cm, ee.urbanzen.backoffice.domain.LessonTemplate.class.getName() + ".lessons");
+            createCache(cm, ee.urbanzen.backoffice.domain.Lesson.class.getName());
+            createCache(cm, ee.urbanzen.backoffice.domain.Lesson.class.getName() + ".bookings");
+            createCache(cm, ee.urbanzen.backoffice.domain.Booking.class.getName());
+            createCache(cm, ee.urbanzen.backoffice.domain.Studio.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

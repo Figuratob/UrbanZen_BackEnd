@@ -1,0 +1,94 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-studio-heading" jhiTranslate="urbanZenApp.studio.home.createOrEditLabel">Create or edit a Studio</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.studio.about" for="field_about">About</label>
+                    <input type="text" class="form-control" name="about" id="field_about"
+                           formControlName="about"/>
+                    <div *ngIf="editForm.get('about').invalid && (editForm.get('about').dirty || editForm.get('about').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('about').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.studio.street" for="field_street">Street</label>
+                    <input type="text" class="form-control" name="street" id="field_street"
+                           formControlName="street"/>
+                    <div *ngIf="editForm.get('street').invalid && (editForm.get('street').dirty || editForm.get('street').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('street').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.studio.postCode" for="field_postCode">Post Code</label>
+                    <input type="text" class="form-control" name="postCode" id="field_postCode"
+                           formControlName="postCode"/>
+                    <div *ngIf="editForm.get('postCode').invalid && (editForm.get('postCode').dirty || editForm.get('postCode').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('postCode').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('postCode').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 5 }">
+                        This field cannot be longer than 5 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.studio.city" for="field_city">City</label>
+                    <input type="text" class="form-control" name="city" id="field_city"
+                           formControlName="city"/>
+                    <div *ngIf="editForm.get('city').invalid && (editForm.get('city').dirty || editForm.get('city').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('city').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.studio.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                           formControlName="email"/>
+                    <div *ngIf="editForm.get('email').invalid && (editForm.get('email').dirty || editForm.get('email').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.studio.phone" for="field_phone">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="field_phone"
+                           formControlName="phone"/>
+                    <div *ngIf="editForm.get('phone').invalid && (editForm.get('phone').dirty || editForm.get('phone').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('phone').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

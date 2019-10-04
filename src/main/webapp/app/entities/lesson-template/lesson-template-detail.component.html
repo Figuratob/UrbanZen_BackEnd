@@ -1,0 +1,77 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="lessonTemplate">
+            <h2><span jhiTranslate="urbanZenApp.lessonTemplate.detail.title">Lesson Template</span> {{lessonTemplate.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="urbanZenApp.lessonTemplate.dayOfWeek">Day Of Week</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'urbanZenApp.DayOfWeek.' + lessonTemplate.dayOfWeek}}">{{lessonTemplate.dayOfWeek}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lessonTemplate.startHour">Start Hour</span></dt>
+                <dd>
+                    <span>{{lessonTemplate.startHour}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lessonTemplate.startMinute">Start Minute</span></dt>
+                <dd>
+                    <span>{{lessonTemplate.startMinute}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lessonTemplate.endHour">End Hour</span></dt>
+                <dd>
+                    <span>{{lessonTemplate.endHour}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lessonTemplate.endMinute">End Minute</span></dt>
+                <dd>
+                    <span>{{lessonTemplate.endMinute}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lessonTemplate.name">Name</span></dt>
+                <dd>
+                    <span>{{lessonTemplate.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lessonTemplate.description">Description</span></dt>
+                <dd>
+                    <span>{{lessonTemplate.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lessonTemplate.street">Street</span></dt>
+                <dd>
+                    <span>{{lessonTemplate.street}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lessonTemplate.city">City</span></dt>
+                <dd>
+                    <span>{{lessonTemplate.city}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lessonTemplate.availableSpaces">Available Spaces</span></dt>
+                <dd>
+                    <span>{{lessonTemplate.availableSpaces}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lessonTemplate.repeatStartDate">Repeat Start Date</span></dt>
+                <dd>
+                    <span>{{lessonTemplate.repeatStartDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lessonTemplate.repeatUntilDate">Repeat Until Date</span></dt>
+                <dd>
+                    <span>{{lessonTemplate.repeatUntilDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lessonTemplate.teacher">Teacher</span></dt>
+                <dd>
+                    <div *ngIf="lessonTemplate.teacher">
+                        <a [routerLink]="['/teacher', lessonTemplate.teacher?.id, 'view']">{{lessonTemplate.teacher?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/lesson-template', lessonTemplate.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

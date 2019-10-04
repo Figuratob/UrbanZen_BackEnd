@@ -1,0 +1,69 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="urbanZenApp.booking.home.title">Bookings</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-booking" [routerLink]="['/booking/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="urbanZenApp.booking.home.createLabel">
+            Create a new Booking
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="bookings?.length === 0">
+        <span jhiTranslate="urbanZenApp.booking.home.notFound">No bookings found</span>
+    </div>
+    <div class="table-responsive" *ngIf="bookings?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="urbanZenApp.booking.reservationDate">Reservation Date</span></th>
+            <th><span jhiTranslate="urbanZenApp.booking.cancelDate">Cancel Date</span></th>
+            <th><span jhiTranslate="urbanZenApp.booking.user">User</span></th>
+            <th><span jhiTranslate="urbanZenApp.booking.lesson">Lesson</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let booking of bookings ;trackBy: trackId">
+                <td><a [routerLink]="['/booking', booking.id, 'view' ]">{{booking.id}}</a></td>
+                <td>{{booking.reservationDate | date:'medium'}}</td>
+                <td>{{booking.cancelDate | date:'medium'}}</td>
+                <td>
+                    {{booking.user?.id}}
+                </td>
+                <td>
+                    <div *ngIf="booking.lesson">
+                        <a [routerLink]="['/lesson', booking.lesson?.id, 'view' ]" >{{booking.lesson?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/booking', booking.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/booking', booking.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/booking', { outlets: { popup: booking.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

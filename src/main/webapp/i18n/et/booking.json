@@ -1,0 +1,25 @@
+{
+  "urbanZenApp": {
+    "booking": {
+      "home": {
+        "title": "Bookings",
+        "createLabel": "Lisa uus Booking",
+        "createOrEditLabel": "Lisa või muuda Booking",
+        "notFound": "No Bookings found"
+      },
+      "created": "Uus Booking on loodud identifikaatoriga {{ param }}",
+      "updated": "Booking identifikaatoriga {{ param }} on muudetud",
+      "deleted": "Booking identifikaatoriga {{ param }} on kustutatud",
+      "delete": {
+        "question": "Kas olete kindel, et soovite kustutada Booking {{ id }}?"
+      },
+      "detail": {
+        "title": "Booking"
+      },
+      "reservationDate": "Reservation Date",
+      "cancelDate": "Cancel Date",
+      "user": "User",
+      "lesson": "Lesson"
+    }
+  }
+}

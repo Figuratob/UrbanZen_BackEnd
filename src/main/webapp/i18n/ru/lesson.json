@@ -1,0 +1,31 @@
+{
+  "urbanZenApp": {
+    "lesson": {
+      "home": {
+        "title": "Lessons",
+        "createLabel": "Создать новый Lesson",
+        "createOrEditLabel": "Создать или отредактировать Lesson",
+        "notFound": "No Lessons found"
+      },
+      "created": "Новый Lesson создан с идентификатором {{ param }}",
+      "updated": "Lesson обновлен с идентификатором {{ param }}",
+      "deleted": "Lesson удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Lesson {{ id }}?"
+      },
+      "detail": {
+        "title": "Lesson"
+      },
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "name": "Name",
+      "description": "Description",
+      "street": "Street",
+      "city": "City",
+      "availableSpaces": "Available Spaces",
+      "booking": "Booking",
+      "teacher": "Teacher",
+      "lessonTemplate": "Lesson Template"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "urbanZenApp": {
+    "teacher": {
+      "home": {
+        "title": "Teachers",
+        "createLabel": "Создать новый Teacher",
+        "createOrEditLabel": "Создать или отредактировать Teacher",
+        "notFound": "No Teachers found"
+      },
+      "created": "Новый Teacher создан с идентификатором {{ param }}",
+      "updated": "Teacher обновлен с идентификатором {{ param }}",
+      "deleted": "Teacher удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Teacher {{ id }}?"
+      },
+      "detail": {
+        "title": "Teacher"
+      },
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "photo": "Photo",
+      "about": "About",
+      "lesson": "Lesson",
+      "lessonTemplate": "Lesson Template"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="lesson">
+            <h2><span jhiTranslate="urbanZenApp.lesson.detail.title">Lesson</span> {{lesson.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="urbanZenApp.lesson.startDate">Start Date</span></dt>
+                <dd>
+                    <span>{{lesson.startDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lesson.endDate">End Date</span></dt>
+                <dd>
+                    <span>{{lesson.endDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lesson.name">Name</span></dt>
+                <dd>
+                    <span>{{lesson.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lesson.description">Description</span></dt>
+                <dd>
+                    <span>{{lesson.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lesson.street">Street</span></dt>
+                <dd>
+                    <span>{{lesson.street}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lesson.city">City</span></dt>
+                <dd>
+                    <span>{{lesson.city}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lesson.availableSpaces">Available Spaces</span></dt>
+                <dd>
+                    <span>{{lesson.availableSpaces}}</span>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lesson.teacher">Teacher</span></dt>
+                <dd>
+                    <div *ngIf="lesson.teacher">
+                        <a [routerLink]="['/teacher', lesson.teacher?.id, 'view']">{{lesson.teacher?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="urbanZenApp.lesson.lessonTemplate">Lesson Template</span></dt>
+                <dd>
+                    <div *ngIf="lesson.lessonTemplate">
+                        <a [routerLink]="['/lesson-template', lesson.lessonTemplate?.id, 'view']">{{lesson.lessonTemplate?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/lesson', lesson.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

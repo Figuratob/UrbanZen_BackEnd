@@ -1,0 +1,27 @@
+{
+  "urbanZenApp": {
+    "studio": {
+      "home": {
+        "title": "Studios",
+        "createLabel": "Создать новый Studio",
+        "createOrEditLabel": "Создать или отредактировать Studio",
+        "notFound": "No Studios found"
+      },
+      "created": "Новый Studio создан с идентификатором {{ param }}",
+      "updated": "Studio обновлен с идентификатором {{ param }}",
+      "deleted": "Studio удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Studio {{ id }}?"
+      },
+      "detail": {
+        "title": "Studio"
+      },
+      "about": "About",
+      "street": "Street",
+      "postCode": "Post Code",
+      "city": "City",
+      "email": "Email",
+      "phone": "Phone"
+    }
+  }
+}

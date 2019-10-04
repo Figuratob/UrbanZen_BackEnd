@@ -1,0 +1,11 @@
+id;day_of_week;start_hour;start_minute;end_hour;end_minute;name;description;street;city;available_spaces;repeat_start_date;repeat_until_date;teacher_id
+1;Tuesday;21;52;12;19;Fresh granular Direct;Profit-focused;Schumm Lane;Port Ellsworth;695;2019-10-04;2019-10-03;1
+2;Monday;2;16;8;14;Gloves sky blue Oklahoma;robust Engineer;Fritsch Vista;Jerrychester;30087;2019-10-04;2019-10-04;2
+3;Saturday;1;1;6;20;deposit Canadian Dollar Lebanon;Designer Persistent;Ruecker Ramp;East Deanna;72821;2019-10-03;2019-10-03;3
+4;Thursday;12;48;2;47;Gloves Bedfordshire Argentine Peso;Kentucky Algerian Dinar Clothing;Daniella Mission;New Autumn;17436;2019-10-03;2019-10-03;4
+5;Friday;3;40;8;44;azure;SMS Enhanced;Schumm Prairie;Luettgenport;52965;2019-10-04;2019-10-04;5
+6;Sunday;15;11;8;16;Saint Helena Pound programming;AI optical invoice;Carolyne Cliffs;Treutelfurt;60642;2019-10-03;2019-10-04;6
+7;Tuesday;0;17;3;18;Buckinghamshire Ports;Devolved driver Networked;Rodriguez Heights;New Natalie;84922;2019-10-03;2019-10-03;7
+8;Saturday;2;30;8;38;Ergonomic;Strategist target;London Tunnel;Lake Federico;50263;2019-10-03;2019-10-03;8
+9;Friday;6;34;0;46;Intelligent Frozen Sausages Villages;Human;Adrienne Islands;Wardborough;42818;2019-10-03;2019-10-03;9
+10;Friday;7;18;9;11;eco-centric Bedfordshire mesh;Configuration UIC-Franc;Boyle Parkway;New Marcusshire;35864;2019-10-04;2019-10-04;10

@@ -1,0 +1,27 @@
+{
+  "urbanZenApp": {
+    "studio": {
+      "home": {
+        "title": "Studios",
+        "createLabel": "Lisa uus Studio",
+        "createOrEditLabel": "Lisa või muuda Studio",
+        "notFound": "No Studios found"
+      },
+      "created": "Uus Studio on loodud identifikaatoriga {{ param }}",
+      "updated": "Studio identifikaatoriga {{ param }} on muudetud",
+      "deleted": "Studio identifikaatoriga {{ param }} on kustutatud",
+      "delete": {
+        "question": "Kas olete kindel, et soovite kustutada Studio {{ id }}?"
+      },
+      "detail": {
+        "title": "Studio"
+      },
+      "about": "About",
+      "street": "Street",
+      "postCode": "Post Code",
+      "city": "City",
+      "email": "Email",
+      "phone": "Phone"
+    }
+  }
+}

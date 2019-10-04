@@ -1,0 +1,80 @@
+entity User {
+	firstName String required
+	lastName String required
+	email String required 
+	phone String required
+    photo ImageBlob
+}
+entity Teacher { 
+	firstName String required
+    lastName String required
+    email String required
+    phone String required
+    photo ImageBlob
+    about String 
+    }
+ enum DayOfWeek {
+ Monday,
+ Tuesday,
+ Wednesday,
+ Thursday,
+ Friday,
+ Saturday,
+ Sunday
+ }   
+entity LessonTemplate {
+    dayOfWeek DayOfWeek required
+    startHour Integer required min(0) max(23)
+    startMinute Integer required min(0) max(59)
+    endHour Integer required min(0) max(23)
+    endMinute Integer required min(0) max(59)
+    name String required   
+    description String required maxlength(1000)
+    street String 
+    city String    
+    availableSpaces Integer required min(0)
+    repeatStartDate LocalDate required
+    repeatUntilDate LocalDate
+}
+entity Lesson {
+	startDate Instant required
+    endDate Instant required
+    name String required   
+    description String required maxlength(1000)
+    street String 
+    city String   
+    availableSpaces Integer required min(0)
+}
+entity Booking {
+	reservationDate Instant required
+    cancelDate Instant    
+  }
+entity Studio {
+	about String required
+	street String required
+	postCode String required maxlength(5)
+	city String required
+	email String required
+    phone String required
+}
+ 
+relationship ManyToOne {
+	Booking to User{booking required}
+}
+relationship OneToMany {
+	Teacher{lesson} to Lesson{teacher required}
+}
+
+relationship OneToMany {
+	LessonTemplate to Lesson
+}
+relationship OneToMany {
+	Lesson  to Booking{lesson required}
+}
+relationship OneToMany {
+	Teacher to LessonTemplate{teacher required}
+}
+
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
