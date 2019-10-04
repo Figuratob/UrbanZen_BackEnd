@@ -1,0 +1,41 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "ee.urbanzen.backoffice",
+      "nativeLanguage": "et"
+    },
+    "jhipsterVersion": "6.2.0",
+    "applicationType": "monolith",
+    "baseName": "UrbanZen",
+    "packageName": "ee.urbanzen.backoffice",
+    "packageFolder": "ee/urbanzen/backoffice",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NWI1MDQwYjU4MjU5YTc4MmZjMjlkMThlNTI3ZTE4NGQ2NzVkMjRjNTE2MzljZTA3NWU4MzQzMGZhMWQxYTA3ODJlNDk4NWEyYmNjMmQ1NzUyN2U1NTcwMzg4NTdlNGU4MWU4YWMwMzExNzIxZWQwZTRkYzUyMTBmZmRkYmNjNGQ=",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "et",
+    "languages": ["et", "en", "ru"],
+    "blueprints": []
+  }
+}
