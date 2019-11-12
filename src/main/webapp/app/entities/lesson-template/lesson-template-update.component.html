@@ -12,13 +12,13 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="urbanZenApp.lessonTemplate.dayOfWeek" for="field_dayOfWeek">Day Of Week</label>
                     <select class="form-control" name="dayOfWeek" formControlName="dayOfWeek" id="field_dayOfWeek">
-                        <option value="Monday">{{'urbanZenApp.DayOfWeek.Monday' | translate}}</option>
-                        <option value="Tuesday">{{'urbanZenApp.DayOfWeek.Tuesday' | translate}}</option>
-                        <option value="Wednesday">{{'urbanZenApp.DayOfWeek.Wednesday' | translate}}</option>
-                        <option value="Thursday">{{'urbanZenApp.DayOfWeek.Thursday' | translate}}</option>
-                        <option value="Friday">{{'urbanZenApp.DayOfWeek.Friday' | translate}}</option>
-                        <option value="Saturday">{{'urbanZenApp.DayOfWeek.Saturday' | translate}}</option>
-                        <option value="Sunday">{{'urbanZenApp.DayOfWeek.Sunday' | translate}}</option>
+                        <option value="MONDAY">{{'urbanZenApp.DayOfWeek.MONDAY' | translate}}</option>
+                        <option value="TUESDAY">{{'urbanZenApp.DayOfWeek.TUESDAY' | translate}}</option>
+                        <option value="WEDNESDAY">{{'urbanZenApp.DayOfWeek.WEDNESDAY' | translate}}</option>
+                        <option value="THURSDAY">{{'urbanZenApp.DayOfWeek.THURSDAY' | translate}}</option>
+                        <option value="FRIDAY">{{'urbanZenApp.DayOfWeek.FRIDAY' | translate}}</option>
+                        <option value="SATURDAY">{{'urbanZenApp.DayOfWeek.SATURDAY' | translate}}</option>
+                        <option value="SUNDAY">{{'urbanZenApp.DayOfWeek.SUNDAY' | translate}}</option>
                     </select>
                     <div *ngIf="editForm.get('dayOfWeek').invalid && (editForm.get('dayOfWeek').dirty || editForm.get('dayOfWeek').touched)">
                         <small class="form-text text-danger"
