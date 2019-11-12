@@ -20,6 +20,7 @@ import { UrbanZenEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
+import { NgbdModalBasicModule } from 'app/modal-basic/modal-basic.module';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
     UrbanZenAccountModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     UrbanZenEntityModule,
-    UrbanZenAppRoutingModule
+    UrbanZenAppRoutingModule,
+    NgbdModalBasicModule
   ],
   declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
   providers: [

@@ -1,12 +1,23 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="urbanZenApp.lessonTemplate.home.title">Lesson Templates</span>
+
+<!--
+        <button id="jh-create-timetable" class="btn btn-primary float-right jh-create-entity create-timetable" (click)="createTimetable()">
+           <fa-icon [icon]="'plus'"></fa-icon>
+           <span  jhiTranslate="urbanZenApp.lessonTemplate.home.createTimetable">
+            Create Timetable
+            </span>
+            </button>
+-->
+        <ngbd-modal-basic></ngbd-modal-basic>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-lesson-template" [routerLink]="['/lesson-template/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="urbanZenApp.lessonTemplate.home.createLabel">
             Create a new Lesson Template
             </span>
         </button>
+
     </h2>
     <jhi-alert></jhi-alert>
     <br/>

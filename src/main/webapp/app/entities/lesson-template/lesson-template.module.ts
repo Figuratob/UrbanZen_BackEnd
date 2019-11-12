@@ -13,11 +13,12 @@ import {
   lessonTemplateRoute,
   lessonTemplatePopupRoute
 } from './';
+import { NgbdModalBasicModule } from 'app/modal-basic/modal-basic.module';
 
 const ENTITY_STATES = [...lessonTemplateRoute, ...lessonTemplatePopupRoute];
 
 @NgModule({
-  imports: [UrbanZenSharedModule, RouterModule.forChild(ENTITY_STATES)],
+  imports: [UrbanZenSharedModule, RouterModule.forChild(ENTITY_STATES), NgbdModalBasicModule],
   declarations: [
     LessonTemplateComponent,
     LessonTemplateDetailComponent,

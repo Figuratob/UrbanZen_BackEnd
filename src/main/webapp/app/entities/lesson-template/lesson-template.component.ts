@@ -39,6 +39,30 @@ export class LessonTemplateComponent implements OnInit, OnDestroy {
       );
   }
 
+  createTimetable() {
+    this.lessonTemplateService.createTimetable().subscribe(
+      (res: any) => {
+        console.log(res);
+      },
+      (res: HttpErrorResponse) => {
+        console.log(res);
+      }
+    );
+  }
+
+  openDialog() {
+    // this.lessonTemplateService
+    //   .openDialog()
+    //   .subscribe(
+    //     (res: any) => {
+    //       console.log(res);
+    //     },
+    //     (res: HttpErrorResponse) => {
+    //       console.log(res);
+    //     }
+    //   );
+  }
+
   ngOnInit() {
     this.loadAll();
     this.accountService.identity().then(account => {
