@@ -205,6 +205,7 @@ public class Lesson implements Serializable {
         this.teacher = teacher;
     }
 
+    @JsonIgnoreProperties("lessons")
     public LessonTemplate getLessonTemplate() {
         return lessonTemplate;
     }
@@ -214,6 +215,7 @@ public class Lesson implements Serializable {
         return this;
     }
 
+    @JsonIgnoreProperties("lessons")
     public void setLessonTemplate(LessonTemplate lessonTemplate) {
         this.lessonTemplate = lessonTemplate;
     }

@@ -2,12 +2,12 @@
   "urbanZenApp": {
     "DayOfWeek": {
       "null": "",
-      "Monday": "Monday",
-      "Tuesday": "Tuesday",
-      "Wednesday": "Wednesday",
-      "Thursday": "Thursday",
-      "Friday": "Friday",
-      "Saturday": "Saturday",
+      "MONDAY": "Esmaspäev",
+      "TUESDAY": "Teisipäev",
+      "WEDNESDAY": "Kolmapäev",
+      "THURSDAY": "Neljapäev",
+      "FRIDAY": "Reede",
+      "SATURDAY": "Laupäev",
       "Sunday": "Sunday"
     }
   }

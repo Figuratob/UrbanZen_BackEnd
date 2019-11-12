@@ -3,6 +3,7 @@ package ee.urbanzen.backoffice.web.rest;
 import ee.urbanzen.backoffice.UrbanZenApp;
 import ee.urbanzen.backoffice.domain.LessonTemplate;
 import ee.urbanzen.backoffice.domain.Teacher;
+import ee.urbanzen.backoffice.repository.LessonRepository;
 import ee.urbanzen.backoffice.repository.LessonTemplateRepository;
 import ee.urbanzen.backoffice.web.rest.errors.ExceptionTranslator;
 
@@ -20,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
@@ -30,15 +32,14 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import ee.urbanzen.backoffice.domain.enumeration.DayOfWeek;
 /**
  * Integration tests for the {@link LessonTemplateResource} REST controller.
  */
 @SpringBootTest(classes = UrbanZenApp.class)
 public class LessonTemplateResourceIT {
 
-    private static final DayOfWeek DEFAULT_DAY_OF_WEEK = DayOfWeek.Monday;
-    private static final DayOfWeek UPDATED_DAY_OF_WEEK = DayOfWeek.Tuesday;
+    private static final DayOfWeek DEFAULT_DAY_OF_WEEK = DayOfWeek.MONDAY;
+    private static final DayOfWeek UPDATED_DAY_OF_WEEK = DayOfWeek.TUESDAY;
 
     private static final Integer DEFAULT_START_HOUR = 0;
     private static final Integer UPDATED_START_HOUR = 1;
@@ -84,6 +85,9 @@ public class LessonTemplateResourceIT {
     private LessonTemplateRepository lessonTemplateRepository;
 
     @Autowired
+    private LessonRepository lessonRepository;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -105,7 +109,7 @@ public class LessonTemplateResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final LessonTemplateResource lessonTemplateResource = new LessonTemplateResource(lessonTemplateRepository);
+        final LessonTemplateResource lessonTemplateResource = new LessonTemplateResource(lessonTemplateRepository, lessonRepository);
         this.restLessonTemplateMockMvc = MockMvcBuilders.standaloneSetup(lessonTemplateResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -231,7 +235,6 @@ public class LessonTemplateResourceIT {
         List<LessonTemplate> lessonTemplateList = lessonTemplateRepository.findAll();
         assertThat(lessonTemplateList).hasSize(databaseSizeBeforeCreate);
     }
-
 
     @Test
     @Transactional
@@ -419,7 +422,7 @@ public class LessonTemplateResourceIT {
             .andExpect(jsonPath("$.[*].repeatStartDate").value(hasItem(DEFAULT_REPEAT_START_DATE.toString())))
             .andExpect(jsonPath("$.[*].repeatUntilDate").value(hasItem(DEFAULT_REPEAT_UNTIL_DATE.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getLessonTemplate() throws Exception {

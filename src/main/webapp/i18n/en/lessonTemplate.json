@@ -4,6 +4,7 @@
       "home": {
         "title": "Lesson Templates",
         "createLabel": "Create a new Lesson Template",
+        "createTimetable": "Create Timetable",
         "createOrEditLabel": "Create or edit a Lesson Template",
         "notFound": "No Lesson Templates found"
       },

@@ -4,6 +4,7 @@
       "home": {
         "title": "Lesson Templates",
         "createLabel": "Lisa uus Lesson Template",
+        "createTimetable": "Koosta Tunniplaan",
         "createOrEditLabel": "Lisa või muuda Lesson Template",
         "notFound": "No Lesson Templates found"
       },

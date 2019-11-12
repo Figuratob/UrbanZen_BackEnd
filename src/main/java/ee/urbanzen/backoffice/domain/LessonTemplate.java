@@ -7,11 +7,10 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
-
-import ee.urbanzen.backoffice.domain.enumeration.DayOfWeek;
 
 /**
  * A LessonTemplate.
@@ -84,7 +83,7 @@ public class LessonTemplate implements Serializable {
     @Column(name = "repeat_until_date")
     private LocalDate repeatUntilDate;
 
-    @OneToMany(mappedBy = "lessonTemplate")
+    @OneToMany(mappedBy = "lessonTemplate", cascade = CascadeType.ALL)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Lesson> lessons = new HashSet<>();
 
@@ -92,6 +91,14 @@ public class LessonTemplate implements Serializable {
     @NotNull
     @JsonIgnoreProperties("lessonTemplates")
     private Teacher teacher;
+
+    public boolean isActiveOnGivenDate (LocalDate date) {
+
+        if (date.isBefore(this.getRepeatStartDate()) && date.isAfter(this.getRepeatUntilDate())) {
+           return false;
+        }
+        return true;
+    }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {

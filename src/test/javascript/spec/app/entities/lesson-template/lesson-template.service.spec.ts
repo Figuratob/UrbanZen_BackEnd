@@ -29,7 +29,7 @@ describe('Service Tests', () => {
 
       elemDefault = new LessonTemplate(
         0,
-        DayOfWeek.Monday,
+        DayOfWeek.MONDAY,
         0,
         0,
         0,

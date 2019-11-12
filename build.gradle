@@ -187,6 +187,9 @@ repositories {
 }
 
 dependencies {
+
+    compile group: 'joda-time', name: 'joda-time', version: '2.10.4'
+
     // import JHipster dependencies BOM
     implementation platform("io.github.jhipster:jhipster-dependencies:${jhipster_dependencies_version}" )
 
