@@ -2,13 +2,13 @@
   "urbanZenApp": {
     "DayOfWeek": {
       "null": "",
-      "Monday": "Monday",
-      "Tuesday": "Tuesday",
-      "Wednesday": "Wednesday",
-      "Thursday": "Thursday",
-      "Friday": "Friday",
-      "Saturday": "Saturday",
-      "Sunday": "Sunday"
+      "MONDAY": "Понедельник",
+      "TUESDAY": "Вторник",
+      "WEDNESDAY": "Среда",
+      "THURSDAY": "Четверг",
+      "FRIDAY": "Пятница",
+      "SATURDAY": "Суббота",
+      "SUNDAY": "Воскресенье"
     }
   }
 }
