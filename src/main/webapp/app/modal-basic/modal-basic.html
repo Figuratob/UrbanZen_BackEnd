@@ -6,89 +6,27 @@
         </button>
     </div>
     <div class="modal-body">
+        <jhi-alert></jhi-alert>
         <form>
-<!--            <div class="form-group">-->
-<!--                <label for="dateOfBirth">Date of birth</label>-->
-<!--                <div class="input-group">-->
-<!--&lt;!&ndash;                    <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">&ndash;&gt;-->
-<!--                    <div class="input-group-append">-->
-<!--                        <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" jhiTranslate="audits.filter.from">from</span>
                 </div>
-<!--                <input type="date" class="form-control" name="start" [(ngModel)]="fromDate" (ngModelChange)="transition()" required/>-->
+                <input type="date" class="form-control" name="startDate" [(ngModel)]="startDate" required/>
 
                 <div class="input-group-append">
-                    <span class="input-group-text" jhiTranslate="audits.filter.to">to</span>
+                    <span class="input-group-text"  jhiTranslate="audits.filter.to">to</span>
                 </div>
-<!--                <input type="date" class="form-control" name="end" [(ngModel)]="toDate" (ngModelChange)="transition()" required/>-->
+                <input type="date" class="form-control" name="endDate" [(ngModel)]="endDate" required/>
             </div>
-
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Create</button>
+        <button type="button" class="btn btn-outline-dark" (click)="createTimetable(startDate,endDate)">Create</button>
     </div>
 </ng-template>
-
-<!--
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
--->
-
-<button id="jh-create-timetable" class="bbtn btn-primary float-right jh-create-entity create-timetable" (click)="open(content)">
+<button id="jh-create-timetable" class="btn btn-primary ml-1 float-right jh-create-entity  create-timetable" (click)="open(content)">
     <span  jhiTranslate="urbanZenApp.lessonTemplate.home.createTimetable">
     Create Timetable
     </span>
 </button>
-
-<hr>
-
-<pre>{{closeResult}}</pre>
-
-
-
-
-
-
-
-<!--
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Select Dates</title>
-</head>
-<body>
-
-<div>
-
-    <div class="row">
-        <div class="col-md-5">
-
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" jhiTranslate="audits.filter.from">from</span>
-                </div>
-                <input type="date" class="form-control" name="start" [(ngModel)]="fromDate" (ngModelChange)="transition()" required/>
-
-                <div class="input-group-append">
-                    <span class="input-group-text" jhiTranslate="audits.filter.to">To</span>
-                </div>
-                <input type="date" class="form-control" name="end" [(ngModel)]="toDate" (ngModelChange)="transition()" required/>
-            </div>
-        </div>
-    </div>
-
-    <button id="jh-create-timetable" class="btn btn-primary float-right jh-create-entity create-timetable" (click)="createTimetable()">
-
-</body>
-</html>
-
--->

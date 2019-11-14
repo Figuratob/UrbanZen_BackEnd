@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject, Output } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngbd-modal-basic',
@@ -7,8 +10,19 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class NgbdModalBasic {
   closeResult: string;
+  @Output()
+  startDate: string;
+  @Output()
+  endDate: string;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private modalService: NgbModal,
+    protected jhiAlertService: JhiAlertService,
+    protected eventManager: JhiEventManager,
+    @Inject(Router) public router: Router
+  ) {
+    this.router = router;
+  }
 
   open(content) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
@@ -28,5 +42,24 @@ export class NgbdModalBasic {
     } else {
       return `with: ${reason}`;
     }
+  }
+  createTimetable(startDate, endDate) {
+    if (moment(startDate).isBefore(moment(endDate))) {
+      console.log('created');
+      this.eventManager.broadcast({
+        name: 'createTimetableEvent',
+        startDate: this.startDate,
+        endDate: this.endDate
+        // content: 'Deleted an lessonTemplate'
+      });
+      this.modalService.dismissAll();
+      this.router.navigate(['/lesson']);
+    } else {
+      console.log('startDate should be before endDate');
+      this.onError('urbanZenApp.lessonTemplate.errorDates');
+    }
+  }
+  protected onError(errorMessage: string) {
+    this.jhiAlertService.error(errorMessage, null, null);
   }
 }

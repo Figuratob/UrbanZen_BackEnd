@@ -15,7 +15,8 @@ import { LessonTemplateService } from './lesson-template.service';
 export class LessonTemplateComponent implements OnInit, OnDestroy {
   lessonTemplates: ILessonTemplate[];
   currentAccount: any;
-  eventSubscriber: Subscription;
+  lessonsTemplateModificationSubscriber: Subscription;
+  createTimetableSubscriber: Subscription;
 
   constructor(
     protected lessonTemplateService: LessonTemplateService,
@@ -39,40 +40,26 @@ export class LessonTemplateComponent implements OnInit, OnDestroy {
       );
   }
 
-  createTimetable() {
-    this.lessonTemplateService.createTimetable().subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (res: HttpErrorResponse) => {
-        console.log(res);
-      }
-    );
-  }
-
-  openDialog() {
-    // this.lessonTemplateService
-    //   .openDialog()
-    //   .subscribe(
-    //     (res: any) => {
-    //       console.log(res);
-    //     },
-    //     (res: HttpErrorResponse) => {
-    //       console.log(res);
-    //     }
-    //   );
-  }
-
   ngOnInit() {
     this.loadAll();
     this.accountService.identity().then(account => {
       this.currentAccount = account;
     });
+    this.createTimetableSubscriber = this.eventManager.subscribe('createTimetableEvent', res => {
+      console.log(res.startDate, '  ', res.endDate);
+      this.lessonTemplateService.createTimetable(res.startDate, res.endDate).subscribe(
+        res => {
+          console.log(res.body);
+        },
+        error => {}
+      );
+    });
     this.registerChangeInLessonTemplates();
   }
 
   ngOnDestroy() {
-    this.eventManager.destroy(this.eventSubscriber);
+    this.eventManager.destroy(this.lessonsTemplateModificationSubscriber);
+    this.eventManager.destroy(this.createTimetableSubscriber);
   }
 
   trackId(index: number, item: ILessonTemplate) {
@@ -80,7 +67,7 @@ export class LessonTemplateComponent implements OnInit, OnDestroy {
   }
 
   registerChangeInLessonTemplates() {
-    this.eventSubscriber = this.eventManager.subscribe('lessonTemplateListModification', response => this.loadAll());
+    this.lessonsTemplateModificationSubscriber = this.eventManager.subscribe('lessonTemplateListModification', response => this.loadAll());
   }
 
   protected onError(errorMessage: string) {

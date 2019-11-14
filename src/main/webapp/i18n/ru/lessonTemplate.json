@@ -29,7 +29,8 @@
       "repeatStartDate": "Repeat Start Date",
       "repeatUntilDate": "Repeat Until Date",
       "lesson": "Lesson",
-      "teacher": "Teacher"
+      "teacher": "Teacher",
+      "errorDates": "Начальная дата должна быть раньше конечной"
     }
   }
 }

@@ -30,7 +30,8 @@
       "repeatStartDate": "Repeat Start Date",
       "repeatUntilDate": "Repeat Until Date",
       "lesson": "Lesson",
-      "teacher": "Teacher"
+      "teacher": "Teacher",
+      "errorDates": "Start date should be before End date"
     }
   }
 }

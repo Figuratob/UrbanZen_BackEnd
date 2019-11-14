@@ -76,15 +76,13 @@ public class LessonTemplateResource {
      * @return
      */
 
-    @PostMapping("/timetable")
-    public ResponseEntity<String> createTimetable() throws URISyntaxException {
+    @GetMapping("/timetable")
+    public ResponseEntity<String> createTimetable(@RequestParam String startDate,
+                                                  @RequestParam String endDate) throws URISyntaxException {
         log.debug("REST request to save Timetable : {}");
 
-        DateTime timetableStartDateTime = new DateTime().withTimeAtStartOfDay().withDayOfWeek(Calendar.MONDAY);
-        DateTime timetableEndDateTime = new DateTime().withTimeAtStartOfDay().withDayOfWeek(Calendar.SUNDAY);
-
-        LocalDate timetableStartDateTimeLocalDate = LocalDate.of(timetableStartDateTime.getYear(),timetableStartDateTime.getMonthOfYear(),timetableStartDateTime.getDayOfMonth());
-        LocalDate timetableEndDateTimeLocalDate = LocalDate.of(timetableEndDateTime.getYear(),timetableEndDateTime.getMonthOfYear(),timetableEndDateTime.getDayOfMonth());
+        LocalDate timetableStartDateTimeLocalDate = LocalDate.parse(startDate);
+        LocalDate timetableEndDateTimeLocalDate = LocalDate.parse(endDate);
 
         List<LessonTemplate>lessonTemplatesByDatesWithoutLessons = lessonTemplateRepository.findAllByDatesWithoutLessons(timetableStartDateTimeLocalDate, timetableEndDateTimeLocalDate);
 

@@ -25,10 +25,9 @@ export class LessonTemplateService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
-  createTimetable(): Observable<EntityResponseType> {
-    return this.http
-      .post<any>('api/timetable', ' ', { observe: 'response' })
-      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  createTimetable(startDate: any, endDate: any): Observable<HttpResponse<any>> {
+    const options = createRequestOption({ startDate: startDate, endDate: endDate });
+    return this.http.get<any>('api/timetable', { params: options, observe: 'response' });
   }
   update(lessonTemplate: ILessonTemplate): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(lessonTemplate);
