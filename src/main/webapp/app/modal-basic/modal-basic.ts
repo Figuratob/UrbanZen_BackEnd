@@ -5,10 +5,10 @@ import * as moment from 'moment';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'ngbd-modal-basic',
+  selector: 'jhi-ngbd-modal-basic',
   templateUrl: './modal-basic.html'
 })
-export class NgbdModalBasic {
+export class NgbdModalBasicComponent {
   closeResult: string;
   @Output()
   startDate: string;
@@ -50,7 +50,7 @@ export class NgbdModalBasic {
         name: 'createTimetableEvent',
         startDate: this.startDate,
         endDate: this.endDate
-        // content: 'Deleted an lessonTemplate'
+        // content: 'Deleted a lessonTemplate'
       });
       this.modalService.dismissAll();
       this.router.navigate(['/lesson']);

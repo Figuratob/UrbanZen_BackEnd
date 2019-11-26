@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { NgbdModalBasic } from 'app/modal-basic/modal-basic';
+import { NgbdModalBasicComponent } from 'app/modal-basic/modal-basic';
 import { UrbanZenSharedCommonModule, UrbanZenSharedLibsModule } from 'app/shared';
 
 @NgModule({
   imports: [UrbanZenSharedLibsModule, UrbanZenSharedCommonModule],
-  declarations: [NgbdModalBasic],
+  declarations: [NgbdModalBasicComponent],
   entryComponents: [],
   providers: [],
-  exports: [NgbdModalBasic]
+  exports: [NgbdModalBasicComponent]
 })
 export class NgbdModalBasicModule {}

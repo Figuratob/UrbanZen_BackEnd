@@ -26,7 +26,7 @@ export class LessonTemplateService {
   }
 
   createTimetable(startDate: any, endDate: any): Observable<HttpResponse<any>> {
-    const options = createRequestOption({ startDate: startDate, endDate: endDate });
+    const options = createRequestOption({ startDate: 'startDate', endDate: 'endDate' });
     return this.http.get<any>('api/timetable', { params: options, observe: 'response' });
   }
   update(lessonTemplate: ILessonTemplate): Observable<EntityResponseType> {
