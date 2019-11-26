@@ -3,9 +3,10 @@
         <span jhiTranslate="urbanZenApp.lessonTemplate.home.title">Lesson Templates</span>
 
         <jhi-ngbd-modal-basic></jhi-ngbd-modal-basic>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-lesson-template" [routerLink]="['/lesson-template/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-lesson-template"
+                [routerLink]="['/lesson-template/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="urbanZenApp.lessonTemplate.home.createLabel">
+            <span jhiTranslate="urbanZenApp.lessonTemplate.home.createLabel">
             Create a new Lesson Template
             </span>
         </button>
@@ -20,21 +21,21 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="urbanZenApp.lessonTemplate.dayOfWeek">Day Of Week</span></th>
-            <th><span jhiTranslate="urbanZenApp.lessonTemplate.startHour">Start Hour</span></th>
-            <th><span jhiTranslate="urbanZenApp.lessonTemplate.startMinute">Start Minute</span></th>
-            <th><span jhiTranslate="urbanZenApp.lessonTemplate.endHour">End Hour</span></th>
-            <th><span jhiTranslate="urbanZenApp.lessonTemplate.endMinute">End Minute</span></th>
-            <th><span jhiTranslate="urbanZenApp.lessonTemplate.name">Name</span></th>
-            <th><span jhiTranslate="urbanZenApp.lessonTemplate.description">Description</span></th>
-            <th><span jhiTranslate="urbanZenApp.lessonTemplate.street">Street</span></th>
-            <th><span jhiTranslate="urbanZenApp.lessonTemplate.city">City</span></th>
-            <th><span jhiTranslate="urbanZenApp.lessonTemplate.availableSpaces">Available Spaces</span></th>
-            <th><span jhiTranslate="urbanZenApp.lessonTemplate.repeatStartDate">Repeat Start Date</span></th>
-            <th><span jhiTranslate="urbanZenApp.lessonTemplate.repeatUntilDate">Repeat Until Date</span></th>
-            <th><span jhiTranslate="urbanZenApp.lessonTemplate.teacher">Teacher</span></th>
-            <th></th>
+                <th><span jhiTranslate="global.field.id">ID</span></th>
+                <th><span jhiTranslate="urbanZenApp.lessonTemplate.dayOfWeek">Day Of Week</span></th>
+                <th><span jhiTranslate="urbanZenApp.lessonTemplate.startHour">Start Hour</span></th>
+                <th><span jhiTranslate="urbanZenApp.lessonTemplate.startMinute">Start Minute</span></th>
+                <th><span jhiTranslate="urbanZenApp.lessonTemplate.endHour">End Hour</span></th>
+                <th><span jhiTranslate="urbanZenApp.lessonTemplate.endMinute">End Minute</span></th>
+                <th><span jhiTranslate="urbanZenApp.lessonTemplate.name">Name</span></th>
+                <th><span jhiTranslate="urbanZenApp.lessonTemplate.description">Description</span></th>
+                <th><span jhiTranslate="urbanZenApp.lessonTemplate.street">Street</span></th>
+                <th><span jhiTranslate="urbanZenApp.lessonTemplate.city">City</span></th>
+                <th><span jhiTranslate="urbanZenApp.lessonTemplate.availableSpaces">Available Spaces</span></th>
+                <th><span jhiTranslate="urbanZenApp.lessonTemplate.repeatStartDate">Repeat Start Date</span></th>
+                <th><span jhiTranslate="urbanZenApp.lessonTemplate.repeatUntilDate">Repeat Until Date</span></th>
+                <th><span jhiTranslate="urbanZenApp.lessonTemplate.teacher">Teacher</span></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -54,7 +55,7 @@
                 <td>{{lessonTemplate.repeatUntilDate | date:'mediumDate'}}</td>
                 <td>
                     <div *ngIf="lessonTemplate.teacher">
-                        <a [routerLink]="['/teacher', lessonTemplate.teacher?.id, 'view' ]" >{{lessonTemplate.teacher?.id}}</a>
+                        <a [routerLink]="['/teacher', lessonTemplate.teacher?.id, 'view' ]">{{lessonTemplate.teacher?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

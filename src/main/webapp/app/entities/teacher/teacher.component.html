@@ -1,7 +1,7 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="urbanZenApp.teacher.home.title">Teachers</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-teacher" [routerLink]="['/teacher/new']">
+        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-teacher" [routerLink]="['/teacher/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="urbanZenApp.teacher.home.createLabel">
             Create a new Teacher
@@ -42,7 +42,7 @@
                 </td>
                 <td>{{teacher.about}}</td>
                 <td class="text-right">
-                    <div class="btn-group">
+                    <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="btn-group">
                         <button type="submit"
                                 [routerLink]="['/teacher', teacher.id, 'view' ]"
                                 class="btn btn-info btn-sm">

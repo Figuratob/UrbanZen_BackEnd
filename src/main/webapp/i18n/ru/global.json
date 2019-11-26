@@ -103,7 +103,8 @@
       "edit": "Изменить",
       "open": "Открыть",
       "save": "Сохранить",
-      "view": "Просмотр"
+      "view": "Просмотр",
+      "book": "Забронируй"
     },
     "detail": {
       "field": "Поле",
@@ -134,7 +135,11 @@
     "userexists": "Имя пользователя уже используется!",
     "emailexists": "Эл. почта уже используется!!",
     "idexists": "Новый {{entityName}} не может иметь данный ID",
-    "idnull": "Неверный ID"
+    "idnull": "Неверный ID",
+    "userempty": "User is empty",
+    "adminbookedlesson": "Admin cannot be a visitor",
+    "usernotfount": "User not found",
+    "lessonnotfound": "Lesson not found"
   },
   "footer": "Это ваш футтер"
 }

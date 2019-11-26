@@ -4,6 +4,8 @@ import ee.urbanzen.backoffice.UrbanZenApp;
 import ee.urbanzen.backoffice.domain.Booking;
 import ee.urbanzen.backoffice.domain.Lesson;
 import ee.urbanzen.backoffice.repository.BookingRepository;
+import ee.urbanzen.backoffice.repository.LessonRepository;
+import ee.urbanzen.backoffice.service.UserService;
 import ee.urbanzen.backoffice.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -48,6 +50,12 @@ public class BookingResourceIT {
     private BookingRepository bookingRepository;
 
     @Autowired
+    private LessonRepository lessonRepository;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -69,7 +77,7 @@ public class BookingResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final BookingResource bookingResource = new BookingResource(bookingRepository);
+        final BookingResource bookingResource = new BookingResource(bookingRepository, lessonRepository, userService);
         this.restBookingMockMvc = MockMvcBuilders.standaloneSetup(bookingResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -80,7 +88,7 @@ public class BookingResourceIT {
 
     /**
      * Create an entity for this test.
-     *
+     * <p>
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -100,9 +108,10 @@ public class BookingResourceIT {
         booking.setLesson(lesson);
         return booking;
     }
+
     /**
      * Create an updated entity for this test.
-     *
+     * <p>
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -199,7 +208,7 @@ public class BookingResourceIT {
             .andExpect(jsonPath("$.[*].reservationDate").value(hasItem(DEFAULT_RESERVATION_DATE.toString())))
             .andExpect(jsonPath("$.[*].cancelDate").value(hasItem(DEFAULT_CANCEL_DATE.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getBooking() throws Exception {

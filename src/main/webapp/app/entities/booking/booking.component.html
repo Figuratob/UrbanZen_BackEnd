@@ -1,9 +1,10 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="urbanZenApp.booking.home.title">Bookings</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-booking" [routerLink]="['/booking/new']">
+        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" id="jh-create-entity"
+                class="btn btn-primary float-right jh-create-entity create-booking" [routerLink]="['/booking/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="urbanZenApp.booking.home.createLabel">
+            <span jhiTranslate="urbanZenApp.booking.home.createLabel">
             Create a new Booking
             </span>
         </button>
@@ -17,12 +18,12 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="urbanZenApp.booking.reservationDate">Reservation Date</span></th>
-            <th><span jhiTranslate="urbanZenApp.booking.cancelDate">Cancel Date</span></th>
-            <th><span jhiTranslate="urbanZenApp.booking.user">User</span></th>
-            <th><span jhiTranslate="urbanZenApp.booking.lesson">Lesson</span></th>
-            <th></th>
+                <th><span jhiTranslate="global.field.id">ID</span></th>
+                <th><span jhiTranslate="urbanZenApp.booking.reservationDate">Reservation Date</span></th>
+                <th><span jhiTranslate="urbanZenApp.booking.cancelDate">Cancel Date</span></th>
+                <th><span jhiTranslate="urbanZenApp.booking.user">User</span></th>
+                <th><span jhiTranslate="urbanZenApp.booking.lesson">Lesson</span></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -35,7 +36,7 @@
                 </td>
                 <td>
                     <div *ngIf="booking.lesson">
-                        <a [routerLink]="['/lesson', booking.lesson?.id, 'view' ]" >{{booking.lesson?.id}}</a>
+                        <a [routerLink]="['/lesson', booking.lesson?.id, 'view' ]">{{booking.lesson?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

@@ -1,7 +1,14 @@
 package ee.urbanzen.backoffice.web.rest;
 
+import ee.urbanzen.backoffice.domain.Authority;
 import ee.urbanzen.backoffice.domain.Booking;
+import ee.urbanzen.backoffice.domain.Lesson;
+import ee.urbanzen.backoffice.domain.User;
 import ee.urbanzen.backoffice.repository.BookingRepository;
+import ee.urbanzen.backoffice.repository.LessonRepository;
+import ee.urbanzen.backoffice.security.AuthoritiesConstants;
+import ee.urbanzen.backoffice.security.SecurityUtils;
+import ee.urbanzen.backoffice.service.UserService;
 import ee.urbanzen.backoffice.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -16,8 +23,10 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * REST controller for managing {@link ee.urbanzen.backoffice.domain.Booking}.
@@ -34,9 +43,39 @@ public class BookingResource {
     private String applicationName;
 
     private final BookingRepository bookingRepository;
+    private final LessonRepository lessonRepository;
+    private final UserService userService;
 
-    public BookingResource(BookingRepository bookingRepository) {
+    public BookingResource(BookingRepository bookingRepository, LessonRepository lessonRepository, UserService userService) {
         this.bookingRepository = bookingRepository;
+        this.lessonRepository = lessonRepository;
+        this.userService = userService;
+    }
+
+    @PostMapping("/bookings/new")
+    public ResponseEntity<Booking> createBooking(@RequestBody Long lessonId) throws URISyntaxException {
+        log.debug("here the lesson id is " + lessonId);
+
+        if (lessonId == null) {
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        }
+
+        User user = userService
+            .getUserWithAuthorities()
+            .orElseThrow(() -> new BadRequestAlertException("User not found", ENTITY_NAME, "usernotfound"));
+
+        Lesson lesson = lessonRepository
+            .findById(lessonId)
+            .orElseThrow(() -> new BadRequestAlertException("Lesson not found", ENTITY_NAME, "lessonnotfound"));
+
+        Booking booking = new Booking();
+        booking.setLesson(lesson);
+        booking.setUser(user);
+        booking.setReservationDate(Instant.now());
+        Booking result = bookingRepository.save(booking);
+        return ResponseEntity.created(new URI("/api/bookings/new" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
+            .body(result);
     }
 
     /**
@@ -50,8 +89,39 @@ public class BookingResource {
     public ResponseEntity<Booking> createBooking(@Valid @RequestBody Booking booking) throws URISyntaxException {
         log.debug("REST request to save Booking : {}", booking);
         if (booking.getId() != null) {
-            throw new BadRequestAlertException("A new booking cannot already have an ID", ENTITY_NAME, "idexists");
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
+
+        if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+
+            if (booking.getUser() == null) {
+                throw new BadRequestAlertException("User is empty", ENTITY_NAME, "userempty");
+            }
+            Optional<User> user = userService.getUserWithAuthoritiesByLogin(booking.getUser().getLogin());
+            if (user.isPresent()) {
+                Set<Authority> authorities = user.get().getAuthorities();
+                boolean isAdmin = false;
+                for (Authority authority : authorities) {
+                    if (authority.getName().equals(AuthoritiesConstants.ADMIN)) {
+                        isAdmin = true;
+                        break;
+                    }
+                }
+                if (isAdmin) {
+                    throw new BadRequestAlertException("Admin cannot be a visitor", ENTITY_NAME, "adminbookedlesson");
+                }
+            }
+            Booking result = bookingRepository.save(booking);
+            return ResponseEntity.ok()
+                .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, booking.getId().toString()))
+                .body(result);
+        }
+        Optional<User> isUser = userService.getUserWithAuthorities();
+        if (isUser.isEmpty()) {
+            throw new BadRequestAlertException("User not found", ENTITY_NAME, "usernotfound");
+        }
+        User user = isUser.get();
+        booking.setUser(user);
         Booking result = bookingRepository.save(booking);
         return ResponseEntity.created(new URI("/api/bookings/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -82,7 +152,6 @@ public class BookingResource {
     /**
      * {@code GET  /bookings} : get all the bookings.
      *
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of bookings in body.
      */
     @GetMapping("/bookings")

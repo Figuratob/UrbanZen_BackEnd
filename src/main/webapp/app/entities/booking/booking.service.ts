@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
-import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { map } from 'rxjs/operators';
 
 import { SERVER_API_URL } from 'app/app.constants';
@@ -14,14 +13,23 @@ type EntityArrayResponseType = HttpResponse<IBooking[]>;
 
 @Injectable({ providedIn: 'root' })
 export class BookingService {
-  public resourceUrl = SERVER_API_URL + 'api/bookings';
+  public resourceUrl = SERVER_API_URL + 'api/bookings/';
 
   constructor(protected http: HttpClient) {}
 
   create(booking: IBooking): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(booking);
     return this.http
-      .post<IBooking>(this.resourceUrl, copy, { observe: 'response' })
+      .post<IBooking>(SERVER_API_URL + 'api/bookings', copy, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  createBook(lessonId: number): Observable<EntityResponseType> {
+    const lesson = {
+      lessonId: lessonId
+    };
+    return this.http
+      .post<IBooking>(SERVER_API_URL + 'api/bookings/new', lessonId, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 

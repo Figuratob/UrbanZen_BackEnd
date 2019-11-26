@@ -25,21 +25,21 @@
                         </small>
                     </div>
                 </div>
-                <div class="form-group">
+                <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="form-group">
                     <label class="form-control-label" jhiTranslate="urbanZenApp.booking.cancelDate" for="field_cancelDate">Cancel Date</label>
                     <div class="d-flex">
                         <input id="field_cancelDate" type="datetime-local" class="form-control" name="cancelDate" formControlName="cancelDate" placeholder="YYYY-MM-DD HH:mm"/>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="form-group">
                     <label class="form-control-label" jhiTranslate="urbanZenApp.booking.user" for="field_user">User</label>
                     <select class="form-control" id="field_user" name="user" formControlName="user">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="userOption.id === editForm.get('user').value?.id ? editForm.get('user').value : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
                     </select>
                 </div>
-                <div class="form-group">
+                <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="form-group">
                     <label class="form-control-label" jhiTranslate="urbanZenApp.booking.lesson" for="field_lesson">Lesson</label>
                     <select class="form-control" id="field_lesson" name="lesson" formControlName="lesson">
                         <option *ngIf="!editForm.get('lesson').value" [ngValue]="null" selected></option>

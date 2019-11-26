@@ -1,9 +1,10 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="urbanZenApp.lesson.home.title">Lessons</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-lesson" [routerLink]="['/lesson/new']">
+        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" id="jh-create-entity"
+                class="btn btn-primary float-right jh-create-entity create-lesson" [routerLink]="['/lesson/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="urbanZenApp.lesson.home.createLabel">
+            <span jhiTranslate="urbanZenApp.lesson.home.createLabel">
             Create a new Lesson
             </span>
         </button>
@@ -17,17 +18,17 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="urbanZenApp.lesson.startDate">Start Date</span></th>
-            <th><span jhiTranslate="urbanZenApp.lesson.endDate">End Date</span></th>
-            <th><span jhiTranslate="urbanZenApp.lesson.name">Name</span></th>
-            <th><span jhiTranslate="urbanZenApp.lesson.description">Description</span></th>
-            <th><span jhiTranslate="urbanZenApp.lesson.street">Street</span></th>
-            <th><span jhiTranslate="urbanZenApp.lesson.city">City</span></th>
-            <th><span jhiTranslate="urbanZenApp.lesson.availableSpaces">Available Spaces</span></th>
-            <th><span jhiTranslate="urbanZenApp.lesson.teacher">Teacher</span></th>
-            <th><span jhiTranslate="urbanZenApp.lesson.lessonTemplate">Lesson Template</span></th>
-            <th></th>
+                <th><span jhiTranslate="global.field.id">ID</span></th>
+                <th><span jhiTranslate="urbanZenApp.lesson.startDate">Start Date</span></th>
+                <th><span jhiTranslate="urbanZenApp.lesson.endDate">End Date</span></th>
+                <th><span jhiTranslate="urbanZenApp.lesson.name">Name</span></th>
+                <th><span jhiTranslate="urbanZenApp.lesson.description">Description</span></th>
+                <th><span jhiTranslate="urbanZenApp.lesson.street">Street</span></th>
+                <th><span jhiTranslate="urbanZenApp.lesson.city">City</span></th>
+                <th><span jhiTranslate="urbanZenApp.lesson.availableSpaces">Available Spaces</span></th>
+                <th><span jhiTranslate="urbanZenApp.lesson.teacher">Teacher</span></th>
+                <th><span jhiTranslate="urbanZenApp.lesson.lessonTemplate">Lesson Template</span></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -42,12 +43,12 @@
                 <td>{{lesson.availableSpaces}}</td>
                 <td>
                     <div *ngIf="lesson.teacher">
-                        <a [routerLink]="['/teacher', lesson.teacher?.id, 'view' ]" >{{lesson.teacher?.id}}</a>
+                        <a [routerLink]="['/teacher', lesson.teacher?.id, 'view' ]">{{lesson.teacher?.id}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="lesson.lessonTemplate">
-                        <a [routerLink]="['/lesson-template', lesson.lessonTemplate?.id, 'view' ]" >{{lesson.lessonTemplate?.id}}</a>
+                        <a [routerLink]="['/lesson-template', lesson.lessonTemplate?.id, 'view' ]">{{lesson.lessonTemplate?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">
@@ -59,12 +60,19 @@
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
+                                [routerLink]="['/lesson', lesson.id, 'view' ]"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span *jhiHasAnyAuthority="'ROLE_USER'" class="d-none d-md-inline"
+                                  jhiTranslate="entity.action.book">Book</span>
+                        </button>
+                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit"
                                 [routerLink]="['/lesson', lesson.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit"
                                 [routerLink]="['/lesson', { outlets: { popup: lesson.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
@@ -72,6 +80,7 @@
                             <fa-icon [icon]="'times'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
+
                     </div>
                 </td>
             </tr>
