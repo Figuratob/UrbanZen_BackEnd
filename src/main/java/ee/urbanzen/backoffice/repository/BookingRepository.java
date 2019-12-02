@@ -2,6 +2,7 @@ package ee.urbanzen.backoffice.repository;
 
 import ee.urbanzen.backoffice.domain.Booking;
 import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
     @Query("select booking from Booking booking where booking.user.login = ?#{principal.username}")
     List<Booking> findByUserIsCurrentUser();
 
+    @Query("select booking from Booking booking where booking.user.id = :id")
+    List<Booking> findAllByUserId(@Param("id")Long id);
 }
