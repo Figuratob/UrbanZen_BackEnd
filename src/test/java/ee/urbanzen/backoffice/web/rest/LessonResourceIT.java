@@ -3,6 +3,7 @@ package ee.urbanzen.backoffice.web.rest;
 import ee.urbanzen.backoffice.UrbanZenApp;
 import ee.urbanzen.backoffice.domain.Lesson;
 import ee.urbanzen.backoffice.domain.Teacher;
+import ee.urbanzen.backoffice.repository.BookingRepository;
 import ee.urbanzen.backoffice.repository.LessonRepository;
 import ee.urbanzen.backoffice.web.rest.errors.ExceptionTranslator;
 
@@ -307,7 +308,7 @@ public class LessonResourceIT {
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY.toString())))
             .andExpect(jsonPath("$.[*].availableSpaces").value(hasItem(DEFAULT_AVAILABLE_SPACES)));
     }
-    
+
     @Test
     @Transactional
     public void getLesson() throws Exception {

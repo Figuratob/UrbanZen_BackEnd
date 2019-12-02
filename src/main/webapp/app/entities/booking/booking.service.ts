@@ -33,6 +33,22 @@ export class BookingService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
+  updateUserBooking(lessonId: number, bookingId: number): Observable<EntityResponseType> {
+    const lesson = {
+      lessonId: lessonId
+    };
+    const booking = {
+      bookingId: bookingId
+    };
+    const data = {
+      lessonId: lessonId,
+      bookingId: bookingId
+    };
+    return this.http
+      .put<IBooking>(SERVER_API_URL + 'api/bookings/new', data, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
   update(booking: IBooking): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(booking);
     return this.http
@@ -55,6 +71,12 @@ export class BookingService {
 
   delete(id: number): Observable<HttpResponse<any>> {
     return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  cancel(id: number): Observable<EntityResponseType> {
+    return this.http
+      .put<IBooking>(SERVER_API_URL + 'api/bookings/' + id + '/cancel', null, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
   protected convertDateFromClient(booking: IBooking): IBooking {

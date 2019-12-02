@@ -5,6 +5,7 @@
         "title": "Bookings",
         "createLabel": "Create a new Booking",
         "createOrEditLabel": "Create or edit a Booking",
+        "editLabel": "Edit a Booking",
         "notFound": "No Bookings found"
       },
       "created": "A new Booking is created with identifier {{ param }}",

@@ -139,7 +139,9 @@
     "userempty": "User is empty",
     "adminbookedlesson": "Admin cannot be a visitor",
     "usernotfount": "User not found",
-    "lessonnotfound": "Lesson not found"
+    "lessonnotfound": "Lesson not found",
+    "bookingnotfound": "Booking not found",
+    "notAuthorized": "You are not authorized to make changes to this booking"
   },
   "footer": "Это ваш футтер"
 }

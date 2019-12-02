@@ -5,6 +5,7 @@
         "title": "Bookings",
         "createLabel": "Создать новый Booking",
         "createOrEditLabel": "Создать или отредактировать Booking",
+        "editLabel": "Edit a Booking",
         "notFound": "No Bookings found"
       },
       "created": "Новый Booking создан с идентификатором {{ param }}",

@@ -5,6 +5,7 @@ import ee.urbanzen.backoffice.domain.Booking;
 import ee.urbanzen.backoffice.domain.Lesson;
 import ee.urbanzen.backoffice.repository.BookingRepository;
 import ee.urbanzen.backoffice.repository.LessonRepository;
+import ee.urbanzen.backoffice.service.BookingService;
 import ee.urbanzen.backoffice.service.UserService;
 import ee.urbanzen.backoffice.web.rest.errors.ExceptionTranslator;
 
@@ -56,6 +57,9 @@ public class BookingResourceIT {
     private UserService userService;
 
     @Autowired
+    private BookingService bookingService;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -77,7 +81,7 @@ public class BookingResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final BookingResource bookingResource = new BookingResource(bookingRepository, lessonRepository, userService);
+        final BookingResource bookingResource = new BookingResource(userService, bookingService);
         this.restBookingMockMvc = MockMvcBuilders.standaloneSetup(bookingResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

@@ -23,7 +23,7 @@ export class BookingUpdateComponent implements OnInit {
   users: IUser[];
 
   lessons: ILesson[];
-
+  lesson: ILesson;
   editForm = this.fb.group({
     id: [],
     reservationDate: [null, [Validators.required]],
@@ -84,6 +84,14 @@ export class BookingUpdateComponent implements OnInit {
     } else {
       this.subscribeToSaveResponse(this.bookingService.create(booking));
     }
+  }
+
+  saveBooking() {
+    this.isSaving = true;
+    const lesson = this.editForm.get(['lesson']).value;
+    const lessonId = lesson['id'];
+    const bookingId = this.editForm.get(['id']).value;
+    this.subscribeToSaveResponse(this.bookingService.updateUserBooking(lessonId, bookingId));
   }
 
   private createFromForm(): IBooking {

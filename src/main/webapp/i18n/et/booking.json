@@ -5,6 +5,7 @@
         "title": "Bookings",
         "createLabel": "Lisa uus Booking",
         "createOrEditLabel": "Lisa või muuda Booking",
+        "editLabel": "Edit a Booking",
         "notFound": "No Bookings found"
       },
       "created": "Uus Booking on loodud identifikaatoriga {{ param }}",

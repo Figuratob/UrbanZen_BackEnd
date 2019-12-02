@@ -20,6 +20,16 @@ export class BookingDeleteDialogComponent {
     this.activeModal.dismiss('cancel');
   }
 
+  confirmCancel(bookingId: number) {
+    this.bookingService.cancel(bookingId).subscribe(response => {
+      this.eventManager.broadcast({
+        name: 'bookingListModification',
+        content: 'Deleted an booking'
+      });
+      this.activeModal.dismiss(true);
+    });
+  }
+
   confirmDelete(id: number) {
     this.bookingService.delete(id).subscribe(response => {
       this.eventManager.broadcast({

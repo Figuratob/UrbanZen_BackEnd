@@ -221,6 +221,21 @@ public class UserService {
             .map(UserDTO::new);
     }
 
+    public boolean isUserAdmin(User user) {
+        User userFound = this
+            .getUserWithAuthoritiesByLogin(user.getLogin())
+            .orElseThrow(() -> new IllegalArgumentException("user is not found in data base") );
+        Set<Authority> authorities = userFound.getAuthorities();
+        boolean isAdmin = false;
+        for (Authority authority : authorities) {
+            if (authority.getName().equals(AuthoritiesConstants.ADMIN)) {
+                isAdmin = true;
+                break;
+            }
+        }
+        return isAdmin;
+    }
+
     public void deleteUser(String login) {
         userRepository.findOneByLogin(login).ifPresent(user -> {
             userRepository.delete(user);
