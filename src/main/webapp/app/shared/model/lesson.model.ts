@@ -12,6 +12,7 @@ export interface ILesson {
   street?: string;
   city?: string;
   availableSpaces?: number;
+  remainSpaces?: number;
   bookings?: IBooking[];
   teacher?: ITeacher;
   lessonTemplate?: ILessonTemplate;
@@ -27,6 +28,7 @@ export class Lesson implements ILesson {
     public street?: string,
     public city?: string,
     public availableSpaces?: number,
+    public remainSpaces?: number,
     public bookings?: IBooking[],
     public teacher?: ITeacher,
     public lessonTemplate?: ILessonTemplate

@@ -1,5 +1,6 @@
 package ee.urbanzen.backoffice.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -16,7 +17,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "lesson")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Lesson implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,8 +55,8 @@ public class Lesson implements Serializable {
     @Column(name = "available_spaces", nullable = false)
     private Integer availableSpaces;
 
-    @OneToMany(mappedBy = "lesson")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @OneToMany(mappedBy = "lesson", fetch =  FetchType.EAGER)
+//    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<Booking> bookings = new HashSet<>();
 
     @ManyToOne(optional = false)
@@ -165,6 +166,25 @@ public class Lesson implements Serializable {
 
     public void setAvailableSpaces(Integer availableSpaces) {
         this.availableSpaces = availableSpaces;
+    }
+
+    @JsonProperty("remainSpaces")
+    public long getRemainSpaces() {
+
+        return Math.max(
+            this.availableSpaces - this.getBookings()
+                    .stream()
+                    .filter(booking -> booking.getCancelDate() == null)
+                    .count(),
+            0);
+
+//        int remainSpaces = 0;
+//        for (Booking booking : this.getBookings()) {
+//            if (booking.getCancelDate() != null) {
+//                remainSpaces++;
+//            }
+//        }
+//        return remainSpaces;
     }
 
     public Set<Booking> getBookings() {
