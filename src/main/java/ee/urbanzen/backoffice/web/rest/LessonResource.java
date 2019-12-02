@@ -1,5 +1,6 @@
 package ee.urbanzen.backoffice.web.rest;
 
+import ee.urbanzen.backoffice.domain.Booking;
 import ee.urbanzen.backoffice.domain.Lesson;
 import ee.urbanzen.backoffice.repository.LessonRepository;
 import ee.urbanzen.backoffice.web.rest.errors.BadRequestAlertException;
@@ -102,6 +103,21 @@ public class LessonResource {
         log.debug("REST request to get Lesson : {}", id);
         Optional<Lesson> lesson = lessonRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(lesson);
+    }
+
+    @GetMapping("/lessons/spaces/{id}")
+    public int getAvailableSpaces(@PathVariable Long id) {
+        log.debug("REST request to get available spaces for lesson id  : {}", id);
+        Lesson lesson = lessonRepository
+            .findById(id)
+            .orElseThrow(() -> new BadRequestAlertException("Lesson not found", ENTITY_NAME, "lessonnotfound"));
+        int availableSpaces = 0;
+        for (Booking booking : lesson.getBookings()) {
+            if (booking.getCancelDate() != null) {
+                availableSpaces++;
+            }
+        }
+        return availableSpaces;
     }
 
     /**
