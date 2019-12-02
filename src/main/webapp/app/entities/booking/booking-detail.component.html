@@ -13,8 +13,8 @@
                 <dd>
                     <span>{{booking.cancelDate}}</span>
                 </dd>
-                <dt ><span jhiTranslate="urbanZenApp.booking.user">User</span></dt>
-                <dd>
+                <dt *jhiHasAnyAuthority="'ROLE_ADMIN'"><span jhiTranslate="urbanZenApp.booking.user">User</span></dt>
+                <dd *jhiHasAnyAuthority="'ROLE_ADMIN'">
                     {{booking.user?.id}}
                 </dd>
                 <dt><span jhiTranslate="urbanZenApp.booking.lesson">Lesson</span></dt>
@@ -29,12 +29,6 @@
                     (click)="previousState()"
                     class="btn btn-info">
                 <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-            </button>
-
-            <button type="button"
-                    [routerLink]="['/booking', booking.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
         </div>
     </div>
