@@ -87,6 +87,21 @@ public class BookingResource {
             .body(result);
     }
 
+    @PostMapping("/bookings/new")
+    public ResponseEntity<Booking> createBooking(@RequestBody Long lessonId) throws URISyntaxException {
+        log.debug("here the lesson id is " + lessonId);
+        if (lessonId == null) {
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        }
+        User user = userService
+            .getUserWithAuthorities()
+            .orElseThrow(() -> new BadRequestAlertException("User not found", ENTITY_NAME, "usernotfound"));
+        Booking result = bookingService.createAndSaveBookingByLessonAndUser(lessonId, user);
+        return ResponseEntity.created(new URI("/api/bookings/new" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
+            .body(result);
+    }
+
     /**
      * {@code PUT  /bookings} : Updates an existing booking.
      *
