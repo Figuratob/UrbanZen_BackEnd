@@ -22,7 +22,8 @@
       "description": "Description",
       "street": "Street",
       "city": "City",
-      "availableSpaces": "Available Spaces",
+      "availableSpaces": "Max Available Spaces",
+      "remainAvailableSpaces": "Remain Available Spaces",
       "booking": "Booking",
       "teacher": "Teacher",
       "lessonTemplate": "Lesson Template"
