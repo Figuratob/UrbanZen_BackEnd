@@ -25,7 +25,8 @@
                 <th><span jhiTranslate="urbanZenApp.lesson.description">Description</span></th>
                 <th><span jhiTranslate="urbanZenApp.lesson.street">Street</span></th>
                 <th><span jhiTranslate="urbanZenApp.lesson.city">City</span></th>
-                <th><span jhiTranslate="urbanZenApp.lesson.availableSpaces">Available Spaces</span></th>
+                <th><span jhiTranslate="urbanZenApp.lesson.availableSpaces"> Max Available Spaces</span></th>
+                <th><span jhiTranslate="urbanZenApp.lesson.remainAvailableSpaces">Remain Available Spaces</span></th>
                 <th><span jhiTranslate="urbanZenApp.lesson.teacher">Teacher</span></th>
                 <th><span jhiTranslate="urbanZenApp.lesson.lessonTemplate">Lesson Template</span></th>
                 <th></th>
@@ -41,6 +42,7 @@
                 <td>{{lesson.street}}</td>
                 <td>{{lesson.city}}</td>
                 <td>{{lesson.availableSpaces}}</td>
+                <td>{{lesson.remainSpaces}}</td>
                 <td>
                     <div *ngIf="lesson.teacher">
                         <a [routerLink]="['/teacher', lesson.teacher?.id, 'view' ]">{{lesson.teacher?.id}}</a>
