@@ -35,6 +35,8 @@ public class UserDTO {
     @Size(min = 5, max = 254)
     private String email;
 
+    private String phone;
+
     @Size(max = 256)
     private String imageUrl;
 
@@ -63,6 +65,7 @@ public class UserDTO {
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.email = user.getEmail();
+        this.phone = user.getPhone();
         this.activated = user.getActivated();
         this.imageUrl = user.getImageUrl();
         this.langKey = user.getLangKey();
@@ -114,6 +117,10 @@ public class UserDTO {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getPhone() {return phone;}
+
+    public void setPhone(String phone) {this.phone = phone;}
 
     public String getImageUrl() {
         return imageUrl;

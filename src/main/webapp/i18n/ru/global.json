@@ -48,7 +48,9 @@
       "confirmpassword.label": "Подтверждение нового пароля",
       "confirmpassword.placeholder": "Подтвердите новый пароль",
       "email.label": "Email",
-      "email.placeholder": "Ваш email"
+      "email.placeholder": "Ваш email",
+      "phone.label": "Phone",
+      "phone.placeholder": "Your phone"
     },
     "messages": {
       "info": {
@@ -82,6 +84,12 @@
           "invalid": "Email не верен.",
           "minlength": "Длина email должна быть хотя-бы 5 символов",
           "maxlength": "Email не может быть длиннее чем 50 символов"
+        },
+        "phone": {
+          "required": "Your phone is required.",
+          "invalid": "Your phone is invalid.",
+          "minlength": "Your phone is required to be at least 5 characters.",
+          "maxlength": "Your phone cannot be longer than 50 characters."
         }
       }
     },
@@ -136,12 +144,14 @@
     "emailexists": "Эл. почта уже используется!!",
     "idexists": "Новый {{entityName}} не может иметь данный ID",
     "idnull": "Неверный ID",
-    "userempty": "User is empty",
-    "adminbookedlesson": "Admin cannot be a visitor",
-    "usernotfount": "User not found",
-    "lessonnotfound": "Lesson not found",
-    "bookingnotfound": "Booking not found",
-    "notAuthorized": "You are not authorized to make changes to this booking"
+    "userempty": "Такого пользователя нет",
+    "adminbookedlesson": "Администратор не может зарегистрироваться на урок, войдите как пользователь",
+    "usernotfount": "Запрашиваемый пользователь не найден",
+    "lessonnotfound": "Урок не найден",
+    "bookingnotfound": "Бронирование не найдено",
+    "notAuthorized": "Вы не авторизованы, чтобы изменять это бронирование",
+    "bookingforthesamelesson": "Вы уже зарегистрированы на этот урок",
+    "nomoreavailablespaces": "There are no more available spaces for this lesson"
   },
   "footer": "Это ваш футтер"
 }

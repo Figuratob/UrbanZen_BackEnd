@@ -23,5 +23,6 @@
     <include file="config/liquibase/changelog/20191004082255_added_entity_constraints_LessonTemplate.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191004082256_added_entity_constraints_Lesson.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191004082257_added_entity_constraints_Booking.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200116094500_added_column_phone_to_user_entity.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

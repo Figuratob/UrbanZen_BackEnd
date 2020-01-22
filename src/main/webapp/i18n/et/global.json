@@ -48,7 +48,9 @@
       "confirmpassword.label": "Uus salasõna uuesti",
       "confirmpassword.placeholder": "Uus salasõna uuesti",
       "email.label": "E-posti aadress",
-      "email.placeholder": "Teie e-posti aadress"
+      "email.placeholder": "Teie e-posti aadress",
+      "phone.label": "Phone",
+      "phone.placeholder": "Your phone"
     },
     "messages": {
       "info": {
@@ -82,6 +84,12 @@
           "invalid": "Ebakorrektne e-posti aadress.",
           "minlength": "E-posti aadressi pikkus peab olema vähemalt 5 sümbolit.",
           "maxlength": "E-posti aadressi pikkus ei tohi olla üle 50 sümboli."
+        },
+        "phone": {
+          "required": "Your phone is required.",
+          "invalid": "Your phone is invalid.",
+          "minlength": "Your phone is required to be at least 5 characters.",
+          "maxlength": "Your phone cannot be longer than 50 characters."
         }
       }
     },
@@ -135,13 +143,15 @@
     "userexists": "Kasutajanimi on juba kasutuses!",
     "emailexists": "E-posti aadress on juba kasutuses!",
     "idexists": "Uue {{ entityName }} ID välja väärtus peab olema tühi",
-    "idnull": "Invalid ID",
-    "userempty": "User is empty",
-    "adminbookedlesson": "Admin cannot be a visitor",
-    "usernotfount": "User not found",
-    "lessonnotfound": "Lesson not found",
-    "bookingnotfound": "Booking not found",
-    "notAuthorized": "You are not authorized to make changes to this booking"
+    "idnull": "Vale ID",
+    "userempty": "Sellist kasutajat ei ole",
+    "adminbookedlesson": "Administraator ei saa broneerida tundi",
+    "usernotfount": "Selline kasutaja ei ole leitud",
+    "lessonnotfound": "Tund ei ole leitud",
+    "bookingnotfound": "Broneering ei ole leitud",
+    "notAuthorized": "Teie ei ole autoriseeritud, et teha muudatusi selles broneeringus",
+    "bookingforthesamelesson": "Broneering sellele tunnile on juba tehtud",
+    "nomoreavailablespaces": "There are no more available spaces for this lesson"
   },
   "footer": "See on teie jalus"
 }

@@ -18,6 +18,7 @@
     "firstName": "Eesnimi",
     "lastName": "Perekonnanimi",
     "email": "E-post",
+    "phone": "Telefon",
     "activated": "Aktiveeritud",
     "deactivated": "Deaktiveeritud",
     "profiles": "Profiilid",

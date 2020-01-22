@@ -48,7 +48,9 @@
       "confirmpassword.label": "New password confirmation",
       "confirmpassword.placeholder": "Confirm the new password",
       "email.label": "Email",
-      "email.placeholder": "Your email"
+      "email.placeholder": "Your email",
+      "phone.label": "Phone",
+      "phone.placeholder": "Your phone"
     },
     "messages": {
       "info": {
@@ -82,67 +84,75 @@
           "invalid": "Your email is invalid.",
           "minlength": "Your email is required to be at least 5 characters.",
           "maxlength": "Your email cannot be longer than 50 characters."
+        },
+        "phone": {
+          "required": "Your phone is required.",
+          "invalid": "Your phone is invalid.",
+          "minlength": "Your phone is required to be at least 5 characters.",
+          "maxlength": "Your phone cannot be longer than 50 characters."
         }
+      },
+      "field": {
+        "id": "ID"
+      },
+      "ribbon": {
+        "dev": "Development"
+      },
+      "item-count": "Showing {{first}} - {{second}} of {{total}} items."
+    },
+    "entity": {
+      "action": {
+        "addblob": "Add blob",
+        "addimage": "Add image",
+        "back": "Back",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
+        "open": "Open",
+        "save": "Save",
+        "view": "View",
+        "book": "Book"
+      },
+      "detail": {
+        "field": "Field",
+        "value": "Value"
+      },
+      "delete": {
+        "title": "Confirm delete operation"
+      },
+      "validation": {
+        "required": "This field is required.",
+        "minlength": "This field is required to be at least {{ min }} characters.",
+        "maxlength": "This field cannot be longer than {{ max }} characters.",
+        "min": "This field should be at least {{ min }}.",
+        "max": "This field cannot be more than {{ max }}.",
+        "minbytes": "This field should be at least {{ min }} bytes.",
+        "maxbytes": "This field cannot be more than {{ max }} bytes.",
+        "pattern": "This field should follow pattern for {{ pattern }}.",
+        "number": "This field should be a number.",
+        "datetimelocal": "This field should be a date and time.",
+        "patternLogin": "This field can only contain letters, digits and e-mail addresses."
       }
     },
-    "field": {
-      "id": "ID"
+    "error": {
+      "internalServerError": "Internal server error",
+      "server.not.reachable": "Server not reachable",
+      "url.not.found": "Not found",
+      "NotNull": "Field {{ fieldName }} cannot be empty!",
+      "Size": "Field {{ fieldName }} does not meet min/max size requirements!",
+      "userexists": "Login name already used!",
+      "emailexists": "Email is already in use!",
+      "idexists": "A new {{ entityName }} cannot already have an ID",
+      "idnull": "Invalid ID",
+      "userempty": "User is empty",
+      "adminbookedlesson": "Admin cannot be a visitor",
+      "usernotfount": "User not found",
+      "lessonnotfound": "Lesson not found",
+      "bookingnotfound": "Booking not found",
+      "notAuthorized": "You are not authorized to make changes to this booking",
+      "bookingforthesamelesson": "Booking for this lesson is already exists",
+      "nomoreavailablespaces": "There are no more available spaces for this lesson"
     },
-    "ribbon": {
-      "dev": "Development"
-    },
-    "item-count": "Showing {{first}} - {{second}} of {{total}} items."
-  },
-  "entity": {
-    "action": {
-      "addblob": "Add blob",
-      "addimage": "Add image",
-      "back": "Back",
-      "cancel": "Cancel",
-      "delete": "Delete",
-      "edit": "Edit",
-      "open": "Open",
-      "save": "Save",
-      "view": "View",
-      "book": "Book"
-    },
-    "detail": {
-      "field": "Field",
-      "value": "Value"
-    },
-    "delete": {
-      "title": "Confirm delete operation"
-    },
-    "validation": {
-      "required": "This field is required.",
-      "minlength": "This field is required to be at least {{ min }} characters.",
-      "maxlength": "This field cannot be longer than {{ max }} characters.",
-      "min": "This field should be at least {{ min }}.",
-      "max": "This field cannot be more than {{ max }}.",
-      "minbytes": "This field should be at least {{ min }} bytes.",
-      "maxbytes": "This field cannot be more than {{ max }} bytes.",
-      "pattern": "This field should follow pattern for {{ pattern }}.",
-      "number": "This field should be a number.",
-      "datetimelocal": "This field should be a date and time.",
-      "patternLogin": "This field can only contain letters, digits and e-mail addresses."
-    }
-  },
-  "error": {
-    "internalServerError": "Internal server error",
-    "server.not.reachable": "Server not reachable",
-    "url.not.found": "Not found",
-    "NotNull": "Field {{ fieldName }} cannot be empty!",
-    "Size": "Field {{ fieldName }} does not meet min/max size requirements!",
-    "userexists": "Login name already used!",
-    "emailexists": "Email is already in use!",
-    "idexists": "A new {{ entityName }} cannot already have an ID",
-    "idnull": "Invalid ID",
-    "userempty": "User is empty",
-    "adminbookedlesson": "Admin cannot be a visitor",
-    "usernotfount": "User not found",
-    "lessonnotfound": "Lesson not found",
-    "bookingnotfound": "Booking not found",
-    "notAuthorized": "You are not authorized to make changes to this booking"
-  },
-  "footer": "This is your footer"
+    "footer": "This is your footer"
+  }
 }

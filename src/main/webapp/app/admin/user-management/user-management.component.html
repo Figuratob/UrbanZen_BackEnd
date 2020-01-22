@@ -13,6 +13,7 @@
                 <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="login"><span jhiTranslate="userManagement.login">Login</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="email"><span jhiTranslate="userManagement.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="phone"><span jhiTranslate="userManagement.phone">Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th></th>
                 <th jhiSortBy="langKey"> <span jhiTranslate="userManagement.langKey">Lang Key</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th><span jhiTranslate="userManagement.profiles">Profiles</span></th>
@@ -27,6 +28,7 @@
                 <td><a [routerLink]="['./', user.login, 'view']">{{user.id}}</a></td>
                 <td>{{user.login}}</td>
                 <td>{{user.email}}</td>
+                <td>{{user.phone}}</td>
                 <td>
                     <button class="btn btn-danger btn-sm" (click)="setActive(user, true)" *ngIf="!user.activated"
                             jhiTranslate="userManagement.deactivated">Deactivated</button>
