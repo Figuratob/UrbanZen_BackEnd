@@ -3,7 +3,9 @@ package ee.urbanzen.backoffice.web.rest;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ee.urbanzen.backoffice.domain.Booking;
+import ee.urbanzen.backoffice.domain.Lesson;
 import ee.urbanzen.backoffice.domain.User;
+import ee.urbanzen.backoffice.repository.LessonRepository;
 import ee.urbanzen.backoffice.security.AuthoritiesConstants;
 import ee.urbanzen.backoffice.security.SecurityUtils;
 import ee.urbanzen.backoffice.service.BookingService;
@@ -44,13 +46,13 @@ public class BookingResource {
     private final UserService userService;
 
     private final BookingService bookingService;
+    private final LessonRepository lessonRepository;
 
-    public BookingResource(UserService userService, BookingService bookingService) {
+    public BookingResource(UserService userService, BookingService bookingService, LessonRepository lessonRepository) {
         this.userService = userService;
         this.bookingService = bookingService;
+        this.lessonRepository = lessonRepository;
     }
-
-
 
     /**
      * {@code POST  /bookings} : Create a new booking.
@@ -96,6 +98,27 @@ public class BookingResource {
         User user = userService
             .getUserWithAuthorities()
             .orElseThrow(() -> new BadRequestAlertException("User not found", ENTITY_NAME, "usernotfound"));
+
+        Long userId = user.getId();
+//        Booking booking = (bookingService.findBookingByLessonIdAndUserId(lessonId, userId));
+
+        Booking booking = (bookingService.findBookingByLessonIdUserIdAndWithoutCancelDate(lessonId, userId));
+
+//        if ((booking != null) && (booking.getCancelDate() == null)) {
+
+         if (booking != null) {
+            throw new BadRequestAlertException("Booking for this lesson is already exists", ENTITY_NAME, "bookingforthesamelesson");
+        }
+
+        Lesson lesson = lessonRepository
+            .findById(lessonId)
+            .orElseThrow(() -> new BadRequestAlertException("Lesson not found", ENTITY_NAME, "lessonnotfound"));
+
+        Integer lessonAvailableSpaces = lesson.getAvailableSpaces();
+        if ((bookingService.findAllByLessonIdWithoutCancelDate(lessonId).size()) >= lessonAvailableSpaces) {
+            throw new BadRequestAlertException("There are no more available spaces for this lesson", ENTITY_NAME, "nomoreavailablespaces");
+        }
+
         Booking result = bookingService.createAndSaveBookingByLessonAndUser(lessonId, user);
         return ResponseEntity.created(new URI("/api/bookings/new" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -154,10 +177,10 @@ public class BookingResource {
 
         Booking booking = bookingService
             .findById(bookingId)
-            .orElseThrow(()-> new BadRequestAlertException("Booking not found", ENTITY_NAME, "bookingnotfound"));
+            .orElseThrow(() -> new BadRequestAlertException("Booking not found", ENTITY_NAME, "bookingnotfound"));
 
         if (!booking.getUser().getId().equals(user.getId())) {
-            throw new BadRequestAlertException("You are not authorized to make changes to this booking",ENTITY_NAME,"notAuthorized");
+            throw new BadRequestAlertException("You are not authorized to make changes to this booking", ENTITY_NAME, "notAuthorized");
         }
 
         Booking result = bookingService.saveCancelDateIntoBooking(bookingId);
@@ -174,17 +197,23 @@ public class BookingResource {
     @GetMapping("/bookings")
     public List<Booking> getAllBookings() {
         log.debug("REST request to get all Bookings for admin or for user by userId");
-
         User user = userService
             .getUserWithAuthorities()
             .orElseThrow(() -> new BadRequestAlertException("User not found", ENTITY_NAME, "usernotfound"));
-
-        if (userService.isUserAdmin(user)){
-
+        if (userService.isUserAdmin(user)) {
             return bookingService.findAll();
         }
+        return bookingService.findAllByUserIdWithoutCancelDate(user.getId());
+    }
 
-        return bookingService.findAllByUserId(user.getId());
+    @GetMapping("/userBookings")
+    public List<Booking> getUserBookings() {
+        log.debug("REST request to get all Bookings for admin or for user by userId");
+        User user = userService
+            .getUserWithAuthorities()
+            .orElseThrow(() -> new BadRequestAlertException("User not found", ENTITY_NAME, "usernotfound"));
+        List<Booking> bookings = bookingService.findAllByUserId(user.getId());
+        return bookings;
     }
 
     /**

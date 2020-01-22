@@ -81,7 +81,7 @@ public class BookingResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final BookingResource bookingResource = new BookingResource(userService, bookingService);
+        final BookingResource bookingResource = new BookingResource(userService, bookingService, lessonRepository);
         this.restBookingMockMvc = MockMvcBuilders.standaloneSetup(bookingResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

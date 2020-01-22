@@ -74,13 +74,35 @@ public class BookingService {
     }
 
     public List<Booking> findAllByUserId(Long id) {
-
         return bookingRepository.findAllByUserId(id);
+    }
+
+    public List<Booking> findAllByUserIdWithoutCancelDate(Long id) {
+        return bookingRepository.findAllByUserIdWithoutCancelDate(id);
     }
 
     public void deleteById(Long id) {
         bookingRepository.deleteById(id);
     }
 
+    public List<Booking> findAllByLessonId(Long lessonId) {
+        return bookingRepository.findAllByLessonId(lessonId);
+    }
 
+    public List<Booking> findAllByLessonIdWithoutCancelDate(Long lessonId) {
+        return bookingRepository.findAllByLessonIdWithoutCancelDate(lessonId);
+    }
+
+    public List<Booking> findAllByLessonIdWithCancelDate(Long lessonId) {
+        return bookingRepository.findAllByLessonIdWithCancelDate(lessonId);
+    }
+
+    public List<Booking> findBookingByLessonIdAndUserId (Long lessonId, Long userId) {
+        return bookingRepository.findBookingsByLessonIdAndUserId(lessonId, userId);
+    }
+
+
+    public Booking findBookingByLessonIdUserIdAndWithoutCancelDate(Long lessonId, Long userId) {
+        return bookingRepository.findBookingByLessonIdUserIdAndWithoutCancelDate(lessonId, userId);
+    }
 }

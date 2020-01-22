@@ -19,4 +19,25 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
 
     @Query("select booking from Booking booking where booking.user.id = :id")
     List<Booking> findAllByUserId(@Param("id")Long id);
+
+    @Query("select booking from Booking booking where booking.user.id = :id and booking.cancelDate = null")
+    List<Booking> findAllByUserIdWithoutCancelDate(@Param ("id")Long id);
+
+    @Query("select booking from Booking booking where booking.lesson.id = :lessonId")
+    List<Booking> findAllByLessonId(@Param("lessonId")Long lessonId);
+
+    @Query("select booking from Booking booking where (booking.lesson.id = :lessonId and booking.cancelDate = null)")
+    List<Booking> findAllByLessonIdWithoutCancelDate(@Param("lessonId")Long lessonId);
+
+    @Query("select booking from Booking booking where (booking.lesson.id = :lessonId and booking.cancelDate is not null)")
+    List<Booking> findAllByLessonIdWithCancelDate(@Param("lessonId")Long lessonId);
+
+    @Query("select booking from Booking booking where ((booking.lesson.id = :lessonId) and (booking.user.id = :userId))")
+    List<Booking> findBookingsByLessonIdAndUserId(@Param("lessonId")Long lessonId,
+                                           @Param("userId")Long userId);
+
+    @Query("select booking from Booking booking where (booking.lesson.id = :lessonId and booking.user.id = :userId and " +
+        "booking.cancelDate is null)")
+    Booking findBookingByLessonIdUserIdAndWithoutCancelDate(@Param("lessonId")Long lessonId,
+                                                            @Param("userId")Long userId);
 }
