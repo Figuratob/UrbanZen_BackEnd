@@ -3,8 +3,6 @@ package ee.urbanzen.backoffice.config;
 import ee.urbanzen.backoffice.security.*;
 import ee.urbanzen.backoffice.security.jwt.*;
 
-import org.springframework.beans.factory.BeanInitializationException;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
@@ -84,6 +82,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/activate").permitAll()
             .antMatchers("/api/account/reset-password/init").permitAll()
             .antMatchers("/api/account/reset-password/finish").permitAll()
+            .antMatchers("/api/getTimetable").permitAll()
+            .antMatchers("/api/getTimetableByDates").permitAll()
+            .antMatchers("/api/bookings/new").permitAll()
+            .antMatchers("/api/teachers").permitAll()
             .antMatchers("/api/**").authenticated()
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/info").permitAll()
