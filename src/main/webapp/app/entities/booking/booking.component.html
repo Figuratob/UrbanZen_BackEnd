@@ -1,13 +1,6 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="urbanZenApp.booking.home.title">Bookings</span>
-        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" id="jh-create-entity"
-                class="btn btn-primary float-right jh-create-entity create-booking" [routerLink]="['/booking/new']">
-            <fa-icon [icon]="'plus'"></fa-icon>
-            <span jhiTranslate="urbanZenApp.booking.home.createLabel">
-            Create a new Booking
-            </span>
-        </button>
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
