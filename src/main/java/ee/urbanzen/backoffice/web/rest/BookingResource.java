@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -208,11 +209,12 @@ public class BookingResource {
 
     @GetMapping("/userBookings")
     public List<Booking> getUserBookings() {
-        log.debug("REST request to get all Bookings for admin or for user by userId");
+        log.debug("REST request to get all Future User Bookings by userId");
         User user = userService
             .getUserWithAuthorities()
             .orElseThrow(() -> new BadRequestAlertException("User not found", ENTITY_NAME, "usernotfound"));
-        List<Booking> bookings = bookingService.findAllByUserId(user.getId());
+        Instant now = Instant.now();
+        List<Booking> bookings = bookingService.findAllByUserIdWithoutCancelDateAndLessonStartTimeIsAfterNow(user.getId(), now);
         return bookings;
     }
 

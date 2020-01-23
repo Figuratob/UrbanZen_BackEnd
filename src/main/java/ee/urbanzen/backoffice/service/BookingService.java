@@ -81,6 +81,9 @@ public class BookingService {
         return bookingRepository.findAllByUserIdWithoutCancelDate(id);
     }
 
+    public List<Booking> findAllByUserIdWithoutCancelDateAndLessonStartTimeIsAfterNow (Long id, Instant now){
+        return bookingRepository.findAllByUserIdWithoutCancelDateAndLessonStartTimeIsAfterNow(id, now);
+    }
     public void deleteById(Long id) {
         bookingRepository.deleteById(id);
     }
