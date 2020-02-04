@@ -5,6 +5,7 @@ import ee.urbanzen.backoffice.domain.LessonTemplate;
 import ee.urbanzen.backoffice.domain.Teacher;
 import ee.urbanzen.backoffice.repository.LessonTemplateRepository;
 import ee.urbanzen.backoffice.repository.TeacherRepository;
+import ee.urbanzen.backoffice.service.LessonTemplateService;
 import ee.urbanzen.backoffice.web.rest.LessonTemplateResource;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -255,7 +256,7 @@ public class LetterTemplateTest {
         System.out.println(timetableStartDate.getDayOfWeek());
 
 
-        List<Lesson> newLessons = LessonTemplateResource.generateLessonsFromTemplates(timetableStartDate, timetableEndDate, getTestData());
+        List<Lesson> newLessons = LessonTemplateService.generateLessonsFromTemplates(timetableStartDate, timetableEndDate, getTestData());
         assertNotNull(newLessons);
         System.out.println(newLessons.size());
 
@@ -399,7 +400,7 @@ public class LetterTemplateTest {
         System.out.println(timetableStartDate);
         System.out.println(timetableStartDate.getDayOfWeek());
 
-        List<Lesson> newLessons = LessonTemplateResource.generateLessonsFromTemplatesByDates(timetableStartDate, timetableEndDate, getTestDataWithoutLessons());
+        List<Lesson> newLessons = LessonTemplateService.generateLessonsFromTemplatesByDates(timetableStartDate, timetableEndDate, getTestDataWithoutLessons());
         assertNotNull(newLessons);
         assertFalse(newLessons.isEmpty());
         System.out.println(newLessons.size());
@@ -507,7 +508,7 @@ public class LetterTemplateTest {
 
     @Test
     void test1GenerateLessonsFromTemplatesByDates() {
-        List<Lesson> newLessons = LessonTemplateResource.generateLessonsFromTemplatesByDates(timetableStartDate, timetableEndDate, getTestDataWithoutLessons());
+        List<Lesson> newLessons = LessonTemplateService.generateLessonsFromTemplatesByDates(timetableStartDate, timetableEndDate, getTestDataWithoutLessons());
         assertNotNull(newLessons);
         System.out.println(newLessons.size());
         System.out.println(newLessons.get(3));
@@ -516,7 +517,7 @@ public class LetterTemplateTest {
 
     @Test
     void test2GenerateLessonsFromTemplatesByDatesForTwoWeeks() {
-        List<Lesson> newLessons = LessonTemplateResource.generateLessonsFromTemplatesByDates(timetableStartDate, timetableEndDateTimetableForTwoWeeks, getTestDataWithoutLessons());
+        List<Lesson> newLessons = LessonTemplateService.generateLessonsFromTemplatesByDates(timetableStartDate, timetableEndDateTimetableForTwoWeeks, getTestDataWithoutLessons());
         assertNotNull(newLessons);
         System.out.println(newLessons.size());
         assertThat(newLessons.size()).isEqualTo(12);
@@ -525,7 +526,7 @@ public class LetterTemplateTest {
     @Test
     void test1GenerateLessonsFromTemplatesForDay() {
 
-        List<Lesson> newLessons = LessonTemplateResource.generateLessonsFromTemplatesForDay(timetableStartDateIsOnDateOfLesson, getTestData());
+        List<Lesson> newLessons = LessonTemplateService.generateLessonsFromTemplatesForDay(timetableStartDateIsOnDateOfLesson, getTestData());
         assertNotNull(newLessons);
         assertFalse(newLessons.isEmpty());
         System.out.println(newLessons.size());
@@ -535,7 +536,7 @@ public class LetterTemplateTest {
     @Test
     void test2GenerateLessonsFromTemplatesForDay() {
 
-        List<Lesson> newLessons = LessonTemplateResource.generateLessonsFromTemplatesForDay(timetableStartDateIsBeforeDateOfLesson, getTestData());
+        List<Lesson> newLessons = LessonTemplateService.generateLessonsFromTemplatesForDay(timetableStartDateIsBeforeDateOfLesson, getTestData());
         assertNotNull(newLessons);
         assertFalse(newLessons.isEmpty());
     }
@@ -543,7 +544,7 @@ public class LetterTemplateTest {
     @Test
     void test3GenerateLessonsFromTemplatesForDay() {
 
-        List<Lesson> newLessons = LessonTemplateResource.generateLessonsFromTemplatesForDay(timetableStartDateIsAfterDateOfLesson, getTestData());
+        List<Lesson> newLessons = LessonTemplateService.generateLessonsFromTemplatesForDay(timetableStartDateIsAfterDateOfLesson, getTestData());
         assertNotNull(newLessons);
         assertFalse(newLessons.isEmpty());
     }
