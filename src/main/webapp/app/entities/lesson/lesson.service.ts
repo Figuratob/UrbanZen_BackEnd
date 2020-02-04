@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { ILesson } from 'app/shared/model/lesson.model';
+import { Moment } from 'moment';
 
 type EntityResponseType = HttpResponse<ILesson>;
 type EntityArrayResponseType = HttpResponse<ILesson[]>;
@@ -41,6 +42,19 @@ export class LessonService {
     const options = createRequestOption(req);
     return this.http
       .get<ILesson[]>(this.resourceUrl, { params: options, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
+
+  getData(firstDayOfWeek: Moment, lastDayOfWeek: Moment): Observable<EntityArrayResponseType> {
+    const firstDayOfWeekFormatted = firstDayOfWeek.format('YYYY-MM-DD');
+    const lastDayOfWeekFormatted = lastDayOfWeek.format('YYYY-MM-DD');
+
+    const params = {
+      firstDayOfWeek: firstDayOfWeekFormatted,
+      lastDayOfWeek: lastDayOfWeekFormatted
+    };
+    return this.http
+      .get<ILesson[]>(SERVER_API_URL + 'api/getLessonsByDates', { params, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 

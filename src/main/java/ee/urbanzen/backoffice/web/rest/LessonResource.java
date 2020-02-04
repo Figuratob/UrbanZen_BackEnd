@@ -94,6 +94,14 @@ public class LessonResource {
         return lessonService.findAll();
     }
 
+    @GetMapping("/getLessonsByDates")
+    public List<Lesson> getLessonsByDates(
+        @RequestParam(value = "firstDayOfWeek") LocalDate firstDayOfWeek,
+        @RequestParam(value = "lastDayOfWeek") LocalDate lastDayOfWeek) {
+        log.debug("REST request to get all Lessons By Dates");
+        return lessonService.getLessonsByDates(firstDayOfWeek, lastDayOfWeek);
+    }
+
     /**
      * {@code GET  /lessons} : get lessons by dates.
      *

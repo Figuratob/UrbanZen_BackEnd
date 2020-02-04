@@ -1,6 +1,7 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="urbanZenApp.lesson.home.title">Lessons</span>
+
         <button *jhiHasAnyAuthority="'ROLE_ADMIN'" id="jh-create-entity"
                 class="btn btn-primary float-right jh-create-entity create-lesson" [routerLink]="['/lesson/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
@@ -11,6 +12,21 @@
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
+
+    <ul class="pagination">
+
+        <li class="page-item">
+
+            <button mat-raised-button (click)="previousWeek()"><fa-icon [icon]="'angle-left'"></fa-icon></button>
+        </li>
+
+        <button mat-raised-button >Current Week: {{firstDayOfWeek.format('DD.MM.YYYY')}}-{{lastDayOfWeek.format('DD.MM.YYYY')}}</button>
+
+        <li class="page-item">
+            <button mat-raised-button (click)="nextWeek()"><fa-icon [icon]="'angle-right'"></fa-icon></button>
+        </li>
+    </ul>
+
     <div class="alert alert-warning" *ngIf="lessons?.length === 0">
         <span jhiTranslate="urbanZenApp.lesson.home.notFound">No lessons found</span>
     </div>
