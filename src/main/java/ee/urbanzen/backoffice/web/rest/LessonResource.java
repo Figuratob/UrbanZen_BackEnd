@@ -2,7 +2,7 @@ package ee.urbanzen.backoffice.web.rest;
 
 import ee.urbanzen.backoffice.domain.Booking;
 import ee.urbanzen.backoffice.domain.Lesson;
-import ee.urbanzen.backoffice.repository.LessonRepository;
+import ee.urbanzen.backoffice.service.LessonService;
 import ee.urbanzen.backoffice.service.dto.TimetableDTO;
 import ee.urbanzen.backoffice.web.rest.errors.BadRequestAlertException;
 
@@ -22,7 +22,6 @@ import java.time.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * REST controller for managing {@link ee.urbanzen.backoffice.domain.Lesson}.
@@ -38,10 +37,10 @@ public class LessonResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    private final LessonRepository lessonRepository;
+    private final LessonService lessonService;
 
-    public LessonResource(LessonRepository lessonRepository) {
-        this.lessonRepository = lessonRepository;
+    public LessonResource(LessonService lessonService) {
+        this.lessonService = lessonService;
     }
 
     /**
@@ -57,7 +56,7 @@ public class LessonResource {
         if (lesson.getId() != null) {
             throw new BadRequestAlertException("A new lesson cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Lesson result = lessonRepository.save(lesson);
+        Lesson result = lessonService.save(lesson);
         return ResponseEntity.created(new URI("/api/lessons/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -78,7 +77,7 @@ public class LessonResource {
         if (lesson.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        Lesson result = lessonRepository.save(lesson);
+        Lesson result = lessonService.save(lesson);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, lesson.getId().toString()))
             .body(result);
@@ -92,7 +91,7 @@ public class LessonResource {
     @GetMapping("/lessons")
     public List<Lesson> getAllLessons() {
         log.debug("REST request to get all Lessons");
-        return lessonRepository.findAll();
+        return lessonService.findAll();
     }
 
     /**
@@ -121,8 +120,8 @@ public class LessonResource {
 
 
         List<TimetableDTO> timetables = new ArrayList<>();
-        List<LocalDate> days = getDatesBetween(firstDayOfWeek, lastDayOfWeek);
-        List<Lesson> lessons = getLessonsByDates(firstDayOfWeek, lastDayOfWeek);
+        List<LocalDate> days = LessonService.getDatesBetween(firstDayOfWeek, lastDayOfWeek);
+        List<Lesson> lessons = lessonService.getLessonsByDates(firstDayOfWeek, lastDayOfWeek);
 
         for (LocalDate day : days) {
             TimetableDTO timetableDTO = new TimetableDTO();
@@ -139,17 +138,6 @@ public class LessonResource {
         return timetables;
     }
 
-    private List<Lesson> getLessonsByDates(LocalDate firstDayOfWeek, LocalDate lastDayOfWeek) {
-        Instant firstDayOfWeekInstant = firstDayOfWeek.atStartOfDay(ZoneId.systemDefault()).toInstant();
-        Instant lastDayOfWeekInstant = lastDayOfWeek.atStartOfDay(ZoneId.systemDefault()).toInstant();
-        return lessonRepository.findAllByDates(firstDayOfWeekInstant, lastDayOfWeekInstant);
-    }
-
-    private static List<LocalDate> getDatesBetween(LocalDate firstDayOfWeek, LocalDate lastDayOfWeek) {
-        return firstDayOfWeek.datesUntil(lastDayOfWeek.plusDays(1))
-            .collect(Collectors.toList());
-    }
-
     /**
      * {@code GET  /lessons/:id} : get the "id" lesson.
      *
@@ -159,14 +147,14 @@ public class LessonResource {
     @GetMapping("/lessons/{id}")
     public ResponseEntity<Lesson> getLesson(@PathVariable Long id) {
         log.debug("REST request to get Lesson : {}", id);
-        Optional<Lesson> lesson = lessonRepository.findById(id);
+        Optional<Lesson> lesson = lessonService.findById(id);
         return ResponseUtil.wrapOrNotFound(lesson);
     }
 
     @GetMapping("/lessons/spaces/{id}")
     public int getAvailableSpaces(@PathVariable Long id) {
         log.debug("REST request to get available spaces for lesson id  : {}", id);
-        Lesson lesson = lessonRepository
+        Lesson lesson = lessonService
             .findById(id)
             .orElseThrow(() -> new BadRequestAlertException("Lesson not found", ENTITY_NAME, "lessonnotfound"));
         int availableSpaces = 0;
@@ -187,7 +175,7 @@ public class LessonResource {
     @DeleteMapping("/lessons/{id}")
     public ResponseEntity<Void> deleteLesson(@PathVariable Long id) {
         log.debug("REST request to delete Lesson : {}", id);
-        lessonRepository.deleteById(id);
+        lessonService.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }
