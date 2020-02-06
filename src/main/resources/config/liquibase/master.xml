@@ -45,7 +45,37 @@
              relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200204173900_added_column_name_eng_to_LessonTemplate.xml"
              relativeToChangelogFile="false"/>
-
-
+    <include file="config/liquibase/changelog/20200206112700_added_column_name_eng_to_Lesson.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200206113400_added_column_name_rus_to_Lesson.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200206113600_added_column_description_eng_to_Lesson.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200206114200_added_column_description_rus_to_Lesson.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200206114300_added_column_street_eng_to_Lesson.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200206120200_added_column_street_rus_to_Lesson.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200206120400_added_column_city_eng_to_Lesson.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200206120500_added_column_city_rus_to_Lesson.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200206120900_added_column_city_eng_to_LessonTemplate.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200206121000_added_column_city_rus_to_LessonTemplate.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200206122600_added_column_first_name_eng_to_Teacher.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200206122900_added_column_first_name_rus_to_Teacher.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200206123100_added_column_last_name_eng_to_Teacher.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200206123200_added_column_last_name_rus_to_Teacher.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200206123300_added_column_about_eng_to_Teacher.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200206123400_added_column_about_rus_to_Teacher.xml"
+             relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

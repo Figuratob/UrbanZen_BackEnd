@@ -96,6 +96,12 @@ public class LessonTemplate implements Serializable {
     @Column(name = "city")
     private String city;
 
+    @Column(name = "city_eng")
+    private String cityEng;
+
+    @Column(name = "city_rus")
+    private String cityRus;
+
     @NotNull
     @Min(value = 0)
     @Column(name = "available_spaces", nullable = false)
@@ -249,6 +255,22 @@ public class LessonTemplate implements Serializable {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getCityRus() {
+        return cityRus;
+    }
+
+    public void setCityRus(String cityRus) {
+        this.cityRus = cityRus;
+    }
+
+    public String getCityEng() {
+        return cityEng;
+    }
+
+    public void setCityEng(String cityEng) {
+        this.cityEng = cityEng;
     }
 
     public Integer getAvailableSpaces() {

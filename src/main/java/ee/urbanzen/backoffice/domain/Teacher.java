@@ -29,8 +29,24 @@ public class Teacher implements Serializable {
     private String firstName;
 
     @NotNull
+    @Column(name = "first_name_eng", nullable = false)
+    private String firstNameEng;
+
+    @NotNull
+    @Column(name = "first_name_rus", nullable = false)
+    private String firstNameRus;
+
+    @NotNull
     @Column(name = "last_name", nullable = false)
     private String lastName;
+
+    @NotNull
+    @Column(name = "last_name_eng", nullable = false)
+    private String lastNameEng;
+
+    @NotNull
+    @Column(name = "last_name_rus", nullable = false)
+    private String lastNameRus;
 
     @NotNull
     @Column(name = "email", nullable = false)
@@ -49,6 +65,12 @@ public class Teacher implements Serializable {
 
     @Column(name = "about")
     private String about;
+
+    @Column(name = "about_eng")
+    private String aboutEng;
+
+    @Column(name = "about_rus")
+    private String aboutRus;
 
     @OneToMany(mappedBy = "teacher")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -91,6 +113,54 @@ public class Teacher implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getAboutRus() {
+        return aboutRus;
+    }
+
+    public void setAboutRus(String aboutRus) {
+        this.aboutRus = aboutRus;
+    }
+
+    public String getAboutEng() {
+        return aboutEng;
+    }
+
+    public void setAboutEng(String aboutEng) {
+        this.aboutEng = aboutEng;
+    }
+
+    public String getLastNameRus() {
+        return lastNameRus;
+    }
+
+    public void setLastNameRus(String lastNameRus) {
+        this.lastNameRus = lastNameRus;
+    }
+
+    public String getLastNameEng() {
+        return lastNameEng;
+    }
+
+    public void setLastNameEng(String lastNameEng) {
+        this.lastNameEng = lastNameEng;
+    }
+
+    public String getFirstNameRus() {
+        return firstNameRus;
+    }
+
+    public void setFirstNameRus(String firstNameRus) {
+        this.firstNameRus = firstNameRus;
+    }
+
+    public String getFirstNameEng() {
+        return firstNameEng;
+    }
+
+    public void setFirstNameEng(String firstNameEng) {
+        this.firstNameEng = firstNameEng;
     }
 
     public String getEmail() {

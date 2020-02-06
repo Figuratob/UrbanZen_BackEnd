@@ -40,15 +40,43 @@ public class Lesson implements Serializable {
     private String name;
 
     @NotNull
+    @Column(name = "name_eng", nullable = false)
+    private String nameEng;
+
+    @NotNull
+    @Column(name = "name_rus", nullable = false)
+    private String nameRus;
+
+    @NotNull
     @Size(max = 1000)
     @Column(name = "description", length = 1000, nullable = false)
     private String description;
 
+    @Size(max = 1000)
+    @Column(name = "description_eng", length = 1000, nullable = false)
+    private String descriptionEng;
+
+    @Size(max = 1000)
+    @Column(name = "description_rus", length = 1000, nullable = false)
+    private String descriptionRus;
+
     @Column(name = "street")
     private String street;
 
+    @Column(name = "street_eng")
+    private String streetEng;
+
+    @Column(name = "street_rus")
+    private String streetRus;
+
     @Column(name = "city")
     private String city;
+
+    @Column(name = "city_eng")
+    private String cityEng;
+
+    @Column(name = "city_rus")
+    private String cityRus;
 
     @NotNull
     @Min(value = 0)
@@ -116,6 +144,22 @@ public class Lesson implements Serializable {
         this.name = name;
     }
 
+    public String getNameEng() {
+        return nameEng;
+    }
+
+    public void setNameEng(String nameEng) {
+        this.nameEng = nameEng;
+    }
+
+    public String getNameRus() {
+        return nameRus;
+    }
+
+    public void setNameRus(String nameRus) {
+        this.nameRus = nameRus;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -127,6 +171,22 @@ public class Lesson implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getDescriptionRus() {
+        return descriptionRus;
+    }
+
+    public void setDescriptionRus(String descriptionRus) {
+        this.descriptionRus = descriptionRus;
+    }
+
+    public String getDescriptionEng() {
+        return descriptionEng;
+    }
+
+    public void setDescriptionEng(String descriptionEng) {
+        this.descriptionEng = descriptionEng;
     }
 
     public String getStreet() {
@@ -142,6 +202,22 @@ public class Lesson implements Serializable {
         this.street = street;
     }
 
+    public String getStreetEng() {
+        return streetEng;
+    }
+
+    public void setStreetEng(String streetEng) {
+        this.streetEng = streetEng;
+    }
+
+    public String getStreetRus() {
+        return streetRus;
+    }
+
+    public void setStreetRus(String streetRus) {
+        this.streetRus = streetRus;
+    }
+
     public String getCity() {
         return city;
     }
@@ -153,6 +229,22 @@ public class Lesson implements Serializable {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getCityEng() {
+        return cityEng;
+    }
+
+    public void setCityEng(String cityEng) {
+        this.cityEng = cityEng;
+    }
+
+    public String getCityRus() {
+        return cityRus;
+    }
+
+    public void setCityRus(String cityRus) {
+        this.cityRus = cityRus;
     }
 
     public Integer getAvailableSpaces() {
