@@ -56,17 +56,42 @@ public class LessonTemplate implements Serializable {
     @Column(name = "end_minute", nullable = false)
     private Integer endMinute;
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
     @NotNull
     @Column(name = "name", nullable = false)
     private String name;
+
+    @NotNull
+    @Column(name = "name_eng", nullable = false)
+    private String nameEng;
+
+    @NotNull
+    @Column(name = "name_rus", nullable = false)
+    private String nameRus;
 
     @NotNull
     @Size(max = 1000)
     @Column(name = "description", length = 1000, nullable = false)
     private String description;
 
+    @Size(max = 1000)
+    @Column(name = "description_eng", length = 1000, nullable = false)
+    private String descriptionEng;
+
+    @Size(max = 1000)
+    @Column(name = "description_rus", length = 1000, nullable = false)
+    private String descriptionRus;
+
     @Column(name = "street")
     private String street;
+
+    @Column(name = "street_eng")
+    private String streetEng;
+
+    @Column(name = "street_rus")
+    private String streetRus;
 
     @Column(name = "city")
     private String city;
@@ -263,6 +288,54 @@ public class LessonTemplate implements Serializable {
 
     public void setRepeatUntilDate(LocalDate repeatUntilDate) {
         this.repeatUntilDate = repeatUntilDate;
+    }
+
+    public String getDescriptionEng() {
+        return descriptionEng;
+    }
+
+    public void setDescriptionEng(String descriptionEng) {
+        this.descriptionEng = descriptionEng;
+    }
+
+    public String getDescriptionRus() {
+        return descriptionRus;
+    }
+
+    public void setDescriptionRus(String descriptionRus) {
+        this.descriptionRus = descriptionRus;
+    }
+
+    public String getStreetEng() {
+        return streetEng;
+    }
+
+    public void setStreetEng(String streetEng) {
+        this.streetEng = streetEng;
+    }
+
+    public String getStreetRus() {
+        return streetRus;
+    }
+
+    public void setStreetRus(String streetRus) {
+        this.streetRus = streetRus;
+    }
+
+    public String getNameEng() {
+        return nameEng;
+    }
+
+    public void setNameEng(String nameEng) {
+        this.nameEng = nameEng;
+    }
+
+    public String getNameRus() {
+        return nameRus;
+    }
+
+    public void setNameRus(String nameRus) {
+        this.nameRus = nameRus;
     }
 
     public Set<Lesson> getLessons() {

@@ -15,14 +15,37 @@
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191004082254_added_entity_Teacher.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20191004082255_added_entity_LessonTemplate.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191004082255_added_entity_LessonTemplate.xml"
+             relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191004082256_added_entity_Lesson.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191004082257_added_entity_Booking.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191004082258_added_entity_Studio.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="config/liquibase/changelog/20191004082255_added_entity_constraints_LessonTemplate.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20191004082256_added_entity_constraints_Lesson.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20191004082257_added_entity_constraints_Booking.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200116094500_added_column_phone_to_user_entity.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191004082255_added_entity_constraints_LessonTemplate.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191004082256_added_entity_constraints_Lesson.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191004082257_added_entity_constraints_Booking.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200116094500_added_column_phone_to_user_entity.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200204162400_added_column_name_eng_to_LessonTemplate.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200204164300_added_column_name_rus_to_LessonTemplate.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200204172500_added_column_description_eng_to_LessonTemplate.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200204172800_added_column_description_rus_to_LessonTemplate.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200204173000_added_column_street_eng_to_LessonTemplate.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200204173000_added_column_street_rus_to_LessonTemplate.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200204173600_delete_column_name_eng_from_user.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200204173900_added_column_name_eng_to_LessonTemplate.xml"
+             relativeToChangelogFile="false"/>
+
+
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
