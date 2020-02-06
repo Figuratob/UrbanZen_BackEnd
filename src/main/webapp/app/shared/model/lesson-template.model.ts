@@ -20,8 +20,14 @@ export interface ILessonTemplate {
   endHour?: number;
   endMinute?: number;
   name?: string;
+  nameEng?: string;
+  nameRus?: string;
   description?: string;
+  descriptionEng?: string;
+  descriptionRus?: string;
   street?: string;
+  streetEng?: string;
+  streetRus?: string;
   city?: string;
   availableSpaces?: number;
   repeatStartDate?: Moment;
@@ -39,8 +45,14 @@ export class LessonTemplate implements ILessonTemplate {
     public endHour?: number,
     public endMinute?: number,
     public name?: string,
+    public nameEng?: string,
+    public nameRus?: string,
     public description?: string,
+    public descriptionEng?: string,
+    public descriptionRus?: string,
     public street?: string,
+    public streetEng?: string,
+    public streetRus?: string,
     public city?: string,
     public availableSpaces?: number,
     public repeatStartDate?: Moment,

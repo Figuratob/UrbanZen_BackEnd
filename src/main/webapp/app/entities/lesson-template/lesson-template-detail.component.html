@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
     <div class="col-8">
-        <div *ngIf="lessonTemplate">
+        <div *ngIf="lessonTemplate" [ngSwitch]="language" >
             <h2><span jhiTranslate="urbanZenApp.lessonTemplate.detail.title">Lesson Template</span> {{lessonTemplate.id}}</h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
@@ -26,16 +26,22 @@
                     <span>{{lessonTemplate.endMinute}}</span>
                 </dd>
                 <dt><span jhiTranslate="urbanZenApp.lessonTemplate.name">Name</span></dt>
-                <dd>
-                    <span>{{lessonTemplate.name}}</span>
+                <dd >
+                    <span *ngSwitchCase="'en'">{{lessonTemplate.nameEng}}</span>
+                    <span *ngSwitchCase="'ru'">{{lessonTemplate.nameRus}}</span>
+                    <span *ngSwitchDefault>{{lessonTemplate.name}}</span>
                 </dd>
                 <dt><span jhiTranslate="urbanZenApp.lessonTemplate.description">Description</span></dt>
                 <dd>
-                    <span>{{lessonTemplate.description}}</span>
+                    <span *ngSwitchCase="'en'">{{lessonTemplate.descriptionEng}}</span>
+                    <span *ngSwitchCase="'ru'">{{lessonTemplate.descriptionRus}}</span>
+                    <span *ngSwitchDefault>{{lessonTemplate.description}}</span>
                 </dd>
                 <dt><span jhiTranslate="urbanZenApp.lessonTemplate.street">Street</span></dt>
                 <dd>
-                    <span>{{lessonTemplate.street}}</span>
+                    <span *ngSwitchCase="'en'">{{lessonTemplate.streetEng}}</span>
+                    <span *ngSwitchCase="'ru'">{{lessonTemplate.streetRus}}</span>
+                    <span *ngSwitchDefault>{{lessonTemplate.street}}</span>
                 </dd>
                 <dt><span jhiTranslate="urbanZenApp.lessonTemplate.city">City</span></dt>
                 <dd>

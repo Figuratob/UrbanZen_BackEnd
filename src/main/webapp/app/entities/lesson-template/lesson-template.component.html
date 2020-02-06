@@ -39,16 +39,28 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let lessonTemplate of lessonTemplates ;trackBy: trackId">
+            <tr *ngFor="let lessonTemplate of lessonTemplates ;trackBy: trackId" [ngSwitch]="language">
                 <td><a [routerLink]="['/lesson-template', lessonTemplate.id, 'view' ]">{{lessonTemplate.id}}</a></td>
                 <td jhiTranslate="{{'urbanZenApp.DayOfWeek.' + lessonTemplate.dayOfWeek}}">{{lessonTemplate.dayOfWeek}}</td>
                 <td>{{lessonTemplate.startHour}}</td>
                 <td>{{lessonTemplate.startMinute}}</td>
                 <td>{{lessonTemplate.endHour}}</td>
                 <td>{{lessonTemplate.endMinute}}</td>
-                <td>{{lessonTemplate.name}}</td>
-                <td>{{lessonTemplate.description}}</td>
-                <td>{{lessonTemplate.street}}</td>
+                <td>
+                    <div *ngSwitchCase="'en'">{{lessonTemplate.nameEng}}</div>
+                    <div *ngSwitchCase="'ru'">{{lessonTemplate.nameRus}}</div>
+                    <div *ngSwitchDefault>{{lessonTemplate.name}}</div>
+                </td>
+                <td>
+                    <div *ngSwitchCase="'en'">{{lessonTemplate.descriptionEng}}</div>
+                    <div *ngSwitchCase="'ru'">{{lessonTemplate.descriptionRus}}</div>
+                    <div *ngSwitchDefault>{{lessonTemplate.description}}</div>
+                </td>
+                <td>
+                    <div *ngSwitchCase="'en'">{{lessonTemplate.streetEng}}</div>
+                    <div *ngSwitchCase="'ru'">{{lessonTemplate.streetRus}}</div>
+                    <div *ngSwitchDefault>{{lessonTemplate.street}}</div>
+                </td>
                 <td>{{lessonTemplate.city}}</td>
                 <td>{{lessonTemplate.availableSpaces}}</td>
                 <td>{{lessonTemplate.repeatStartDate | date:'mediumDate'}}</td>

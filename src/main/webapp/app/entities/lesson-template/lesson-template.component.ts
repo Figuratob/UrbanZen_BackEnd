@@ -3,9 +3,9 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
-
+import { JhiLanguageService } from 'ng-jhipster';
 import { ILessonTemplate } from 'app/shared/model/lesson-template.model';
-import { AccountService } from 'app/core';
+import { AccountService, JhiLanguageHelper } from 'app/core';
 import { LessonTemplateService } from './lesson-template.service';
 
 @Component({
@@ -17,12 +17,15 @@ export class LessonTemplateComponent implements OnInit, OnDestroy {
   currentAccount: any;
   lessonsTemplateModificationSubscriber: Subscription;
   createTimetableSubscriber: Subscription;
+  language: any;
 
   constructor(
     protected lessonTemplateService: LessonTemplateService,
     protected jhiAlertService: JhiAlertService,
     protected eventManager: JhiEventManager,
-    protected accountService: AccountService
+    protected accountService: AccountService,
+    protected languageHelper: JhiLanguageHelper,
+    protected languageService: JhiLanguageService
   ) {}
 
   loadAll() {
@@ -41,6 +44,9 @@ export class LessonTemplateComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.languageHelper.language.subscribe(lang => {
+      this.language = lang;
+    });
     this.loadAll();
     this.accountService.identity().then(account => {
       this.currentAccount = account;

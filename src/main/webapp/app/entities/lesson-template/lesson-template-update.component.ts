@@ -19,8 +19,7 @@ export class LessonTemplateUpdateComponent implements OnInit {
   isSaving: boolean;
 
   teachers: ITeacher[];
-  repeatStartDateDp: any;
-  repeatUntilDateDp: any;
+  language: any;
 
   editForm = this.fb.group({
     id: [],
@@ -30,8 +29,14 @@ export class LessonTemplateUpdateComponent implements OnInit {
     endHour: [null, [Validators.required, Validators.min(0), Validators.max(23)]],
     endMinute: [null, [Validators.required, Validators.min(0), Validators.max(59)]],
     name: [null, [Validators.required]],
+    nameEng: [null, [Validators.required]],
+    nameRus: [null, [Validators.required]],
     description: [null, [Validators.required, Validators.maxLength(1000)]],
+    descriptionEng: [null, [Validators.required, Validators.maxLength(1000)]],
+    descriptionRus: [null, [Validators.required, Validators.maxLength(1000)]],
     street: [],
+    streetEng: [],
+    streetRus: [],
     city: [],
     availableSpaces: [null, [Validators.required, Validators.min(0)]],
     repeatStartDate: [null, [Validators.required]],
@@ -70,8 +75,14 @@ export class LessonTemplateUpdateComponent implements OnInit {
       endHour: lessonTemplate.endHour,
       endMinute: lessonTemplate.endMinute,
       name: lessonTemplate.name,
+      nameEng: lessonTemplate.nameEng,
+      nameRus: lessonTemplate.nameRus,
       description: lessonTemplate.description,
+      descriptionEng: lessonTemplate.descriptionEng,
+      descriptionRus: lessonTemplate.descriptionRus,
       street: lessonTemplate.street,
+      streetEng: lessonTemplate.streetEng,
+      streetRus: lessonTemplate.streetRus,
       city: lessonTemplate.city,
       availableSpaces: lessonTemplate.availableSpaces,
       repeatStartDate: lessonTemplate.repeatStartDate,
@@ -104,8 +115,14 @@ export class LessonTemplateUpdateComponent implements OnInit {
       endHour: this.editForm.get(['endHour']).value,
       endMinute: this.editForm.get(['endMinute']).value,
       name: this.editForm.get(['name']).value,
+      nameEng: this.editForm.get(['nameEng']).value,
+      nameRus: this.editForm.get(['nameRus']).value,
       description: this.editForm.get(['description']).value,
+      descriptionEng: this.editForm.get(['descriptionEng']).value,
+      descriptionRus: this.editForm.get(['descriptionRus']).value,
       street: this.editForm.get(['street']).value,
+      streetEng: this.editForm.get(['streetEng']).value,
+      streetRus: this.editForm.get(['streetRus']).value,
       city: this.editForm.get(['city']).value,
       availableSpaces: this.editForm.get(['availableSpaces']).value,
       repeatStartDate: this.editForm.get(['repeatStartDate']).value,
