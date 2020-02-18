@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
     <div class="col-8">
-        <div *ngIf="lesson">
+        <div *ngIf="lesson" [ngSwitch]="language">
             <h2><span jhiTranslate="urbanZenApp.lesson.detail.title">Lesson</span> {{lesson.id}}</h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
@@ -15,19 +15,27 @@
                 </dd>
                 <dt><span jhiTranslate="urbanZenApp.lesson.name">Name</span></dt>
                 <dd>
-                    <span>{{lesson.name}}</span>
+                    <span *ngSwitchCase="'en'">{{lesson.nameEng}}</span>
+                    <span *ngSwitchCase="'ru'">{{lesson.nameRus}}</span>
+                    <span *ngSwitchDefault>{{lesson.name}}</span>
                 </dd>
                 <dt><span jhiTranslate="urbanZenApp.lesson.description">Description</span></dt>
                 <dd>
-                    <span>{{lesson.description}}</span>
+                    <span *ngSwitchCase="'en'">{{lesson.descriptionEng}}</span>
+                    <span *ngSwitchCase="'ru'">{{lesson.descriptionRus}}</span>
+                    <span *ngSwitchDefault>{{lesson.description}}</span>
                 </dd>
                 <dt><span jhiTranslate="urbanZenApp.lesson.street">Street</span></dt>
                 <dd>
-                    <span>{{lesson.street}}</span>
+                    <span *ngSwitchCase="'en'">{{lesson.streetEng}}</span>
+                    <span *ngSwitchCase="'ru'">{{lesson.streetRus}}</span>
+                    <span *ngSwitchDefault>{{lesson.street}}</span>
                 </dd>
                 <dt><span jhiTranslate="urbanZenApp.lesson.city">City</span></dt>
                 <dd>
-                    <span>{{lesson.city}}</span>
+                    <span *ngSwitchCase="'en'">{{lesson.cityEng}}</span>
+                    <span *ngSwitchCase="'ru'">{{lesson.cityRus}}</span>
+                    <span *ngSwitchDefault>{{lesson.city}}</span>
                 </dd>
                 <dt><span jhiTranslate="urbanZenApp.lesson.availableSpaces">Available Spaces</span></dt>
                 <dd>

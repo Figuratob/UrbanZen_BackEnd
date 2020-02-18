@@ -49,14 +49,30 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let lesson of lessons ;trackBy: trackId">
+            <tr *ngFor="let lesson of lessons ;trackBy: trackId" [ngSwitch]="language">
                 <td><a [routerLink]="['/lesson', lesson.id, 'view' ]">{{lesson.id}}</a></td>
-                <td>{{lesson.startDate | date:'medium'}}</td>
-                <td>{{lesson.endDate | date:'medium'}}</td>
-                <td>{{lesson.name}}</td>
-                <td>{{lesson.description}}</td>
-                <td>{{lesson.street}}</td>
-                <td>{{lesson.city}}</td>
+                <td>{{lesson.startDate.format('DD.MM.YYYY HH:mm')}}</td>
+                <td>{{lesson.endDate.format('DD.MM.YYYY HH:mm')}}</td>
+                <td>
+                    <div *ngSwitchCase="'en'">{{lesson.nameEng}}</div>
+                    <div *ngSwitchCase="'ru'">{{lesson.nameRus}}</div>
+                    <div *ngSwitchDefault>{{lesson.name}}</div>
+                </td>
+                <td>
+                    <div *ngSwitchCase="'en'">{{lesson.descriptionEng}}</div>
+                    <div *ngSwitchCase="'ru'">{{lesson.descriptionRus}}</div>
+                    <div *ngSwitchDefault>{{lesson.description}}</div>
+                </td>
+                <td>
+                    <div *ngSwitchCase="'en'">{{lesson.streetEng}}</div>
+                    <div *ngSwitchCase="'ru'">{{lesson.streetRus}}</div>
+                    <div *ngSwitchDefault>{{lesson.description}}</div>
+                </td>
+                <td>
+                    <div *ngSwitchCase="'en'">{{lesson.cityEng}}</div>
+                    <div *ngSwitchCase="'ru'">{{lesson.cityRus}}</div>
+                    <div *ngSwitchDefault>{{lesson.city}}</div>
+                </td>
                 <td>{{lesson.availableSpaces}}</td>
                 <td>{{lesson.remainSpaces}}</td>
                 <td>

@@ -2,31 +2,45 @@
   "urbanZenApp": {
     "lesson": {
       "home": {
-        "title": "Lessons",
-        "createLabel": "Создать новый Lesson",
-        "createOrEditLabel": "Создать или отредактировать Lesson",
-        "notFound": "No Lessons found"
+        "title": "Уроки",
+        "createLabel": "Создать новый Урок",
+        "createOrEditLabel": "Создать или отредактировать Урок",
+        "notFound": "Уроки не найдены"
       },
       "created": "Новый Lesson создан с идентификатором {{ param }}",
-      "updated": "Lesson обновлен с идентификатором {{ param }}",
-      "deleted": "Lesson удален с идентификатором {{ param }}",
+      "updated": "Урок обновлен с идентификатором {{ param }}",
+      "deleted": "Урок удален с идентификатором {{ param }}",
       "delete": {
-        "question": "Вы уверены что хотите удалить Lesson {{ id }}?"
+        "question": "Вы уверены что хотите удалить Урок {{ id }}?"
       },
       "detail": {
-        "title": "Lesson"
+        "title": "Урок"
       },
-      "startDate": "Start Date",
-      "endDate": "End Date",
-      "name": "Name",
-      "description": "Description",
-      "street": "Street",
-      "city": "City",
-      "availableSpaces": "Max Available Spaces",
-      "remainAvailableSpaces": "Remain Available Spaces",
-      "booking": "Booking",
-      "teacher": "Teacher",
-      "lessonTemplate": "Lesson Template"
+      "startDate": "Дата начала",
+      "endDate": "Дата окончания",
+      "name": "Название",
+      "nameEst": "Название на эстонском",
+      "nameEng": "Название на английском",
+      "nameRus": "Название на русском",
+      "description": "Описание",
+      "descriptionEst": "Описание на эстонском",
+      "descriptionEng": "Описание на английском",
+      "descriptionRus": "Описание на русском",
+      "street": "Улица",
+      "streetEst": "Улица на эстонском",
+      "streetEng": "Улица на английском",
+      "streetRus": "Улица на русском",
+      "city": "Город",
+      "cityEst": "Город на эстонском",
+      "cityEng": "Город на английском",
+      "cityRus": "Город на русском",
+      "availableSpaces": "Всего мест",
+      "repeatStartDate": "Дата начала повтора",
+      "repeatUntilDate": "Дата конца повтора",
+      "remainAvailableSpaces": "Свободно",
+      "booking": "Регистрация",
+      "teacher": "Учитель",
+      "lessonTemplate": "Шаблон урока"
     }
   }
 }

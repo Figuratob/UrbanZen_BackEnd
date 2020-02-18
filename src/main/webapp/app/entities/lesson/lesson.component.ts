@@ -5,7 +5,7 @@ import { filter, map } from 'rxjs/operators';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { ILesson } from 'app/shared/model/lesson.model';
-import { AccountService } from 'app/core';
+import { AccountService, JhiLanguageHelper } from 'app/core';
 import { LessonService } from './lesson.service';
 import { Moment } from 'moment';
 import * as moment from 'moment';
@@ -20,12 +20,14 @@ export class LessonComponent implements OnInit, OnDestroy {
   eventSubscriber: Subscription;
   firstDayOfWeek: Moment;
   lastDayOfWeek: Moment;
+  language: any;
 
   constructor(
     protected lessonService: LessonService,
     protected jhiAlertService: JhiAlertService,
     protected eventManager: JhiEventManager,
-    protected accountService: AccountService
+    protected accountService: AccountService,
+    protected languageHelper: JhiLanguageHelper
   ) {}
 
   // ngOnInit() {
@@ -37,6 +39,9 @@ export class LessonComponent implements OnInit, OnDestroy {
   // }
 
   ngOnInit() {
+    this.languageHelper.language.subscribe(lang => {
+      this.language = lang;
+    });
     const now = moment();
     const thisMonday = moment(now).startOf('isoWeek');
     const thisSunday = moment(now).endOf('isoWeek');

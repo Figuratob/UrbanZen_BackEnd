@@ -8,9 +8,17 @@ export interface ILesson {
   startDate?: Moment;
   endDate?: Moment;
   name?: string;
+  nameEng?: string;
+  nameRus?: string;
   description?: string;
+  descriptionEng?: string;
+  descriptionRus?: string;
   street?: string;
+  streetEng?: string;
+  streetRus?: string;
   city?: string;
+  cityEng?: string;
+  cityRus?: string;
   availableSpaces?: number;
   remainSpaces?: number;
   bookings?: IBooking[];
@@ -24,9 +32,17 @@ export class Lesson implements ILesson {
     public startDate?: Moment,
     public endDate?: Moment,
     public name?: string,
+    public nameEng?: string,
+    public nameRus?: string,
     public description?: string,
+    public descriptionEng?: string,
+    public descriptionRus?: string,
     public street?: string,
+    public streetEng?: string,
+    public streetRus?: string,
     public city?: string,
+    public cityEng?: string,
+    public cityRus?: string,
     public availableSpaces?: number,
     public remainSpaces?: number,
     public bookings?: IBooking[],

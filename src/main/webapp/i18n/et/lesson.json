@@ -2,10 +2,10 @@
   "urbanZenApp": {
     "lesson": {
       "home": {
-        "title": "Lessons",
+        "title": "Tunnid",
         "createLabel": "Lisa uus Lesson",
         "createOrEditLabel": "Lisa või muuda Lesson",
-        "notFound": "No Lessons found"
+        "notFound": "Lessons ei ole leitud"
       },
       "created": "Uus Lesson on loodud identifikaatoriga {{ param }}",
       "updated": "Lesson identifikaatoriga {{ param }} on muudetud",
@@ -14,19 +14,31 @@
         "question": "Kas olete kindel, et soovite kustutada Lesson {{ id }}?"
       },
       "detail": {
-        "title": "Lesson"
+        "title": "Tund"
       },
-      "startDate": "Start Date",
-      "endDate": "End Date",
-      "name": "Name",
-      "description": "Description",
-      "street": "Street",
-      "city": "City",
-      "availableSpaces": "Max Available Spaces",
-      "remainAvailableSpaces": "Remain Available Spaces",
-      "booking": "Booking",
-      "teacher": "Teacher",
-      "lessonTemplate": "Lesson Template"
+      "startDate": "Alguse päev",
+      "endDate": "Lõpu päev",
+      "name": "Nimi",
+      "nameEst": "Nimi Eesti keeles",
+      "nameEng": "Nimi Inglise keeles",
+      "nameRus": "Nimi Vene keeles",
+      "description": "Kirjeldus",
+      "descriptionEst": "Kirjeldus Eesti keeles",
+      "descriptionEng": "Kirjeldus Inglise keeles",
+      "descriptionRus": "Kirjeldus Vene keeles",
+      "street": "Tänav",
+      "streetEst": "Tänav Eesti keeles",
+      "streetEng": "Tänav Inglise keeles",
+      "streetRus": "Tänav Vene keeles",
+      "city": "Linn",
+      "cityEst": "Linn Eesti keeles",
+      "cityEng": "Linn Inglise keeles",
+      "cityRus": "Linn Vene keeles",
+      "availableSpaces": "Kohti kokku",
+      "remainAvailableSpaces": "Vabu kohti",
+      "booking": "Broneering",
+      "teacher": "Õpetaja",
+      "lessonTemplate": "Tunni mall"
     }
   }
 }

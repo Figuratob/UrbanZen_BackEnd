@@ -6,7 +6,7 @@ import { DATE_TIME_FORMAT } from 'app/shared';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
-import { IUser } from 'app/core';
+import { IUser, JhiLanguageHelper } from 'app/core';
 import { BookingService } from 'app/entities/booking/booking.service';
 
 @Component({
@@ -17,10 +17,18 @@ export class LessonDetailComponent implements OnInit {
   isSaving: boolean;
   users: IUser[];
   lesson: ILesson;
+  language: any;
 
-  constructor(protected activatedRoute: ActivatedRoute, protected bookingService: BookingService) {}
+  constructor(
+    protected activatedRoute: ActivatedRoute,
+    protected bookingService: BookingService,
+    protected languageHelper: JhiLanguageHelper
+  ) {}
 
   ngOnInit() {
+    this.languageHelper.language.subscribe(lang => {
+      this.language = lang;
+    });
     this.activatedRoute.data.subscribe(({ lesson }) => {
       this.lesson = lesson;
     });

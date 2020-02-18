@@ -27,7 +27,25 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new Lesson(0, currentDate, currentDate, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0);
+      elemDefault = new Lesson(
+        0,
+        currentDate,
+        currentDate,
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAAA',
+        'AAAAAA',
+        'AAAAAA',
+        'AAAAAA',
+        'AAAAA',
+        'AAAAAAA',
+        'AAAAAA',
+        0,
+        0
+      );
     });
 
     describe('Service methods', () => {
