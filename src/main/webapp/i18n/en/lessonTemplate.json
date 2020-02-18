@@ -2,11 +2,11 @@
   "urbanZenApp": {
     "lessonTemplate": {
       "home": {
-        "title": "Lesson Templates",
+        "title": "Templates of Lessons",
         "createLabel": "Create a new Lesson Template",
         "createTimetable": "Create Timetable",
         "createOrEditLabel": "Create or edit a Lesson Template",
-        "notFound": "No Lesson Templates found"
+        "notFound": "No Lessons Templates found"
       },
       "created": "A new Lesson Template is created with identifier {{ param }}",
       "updated": "A Lesson Template is updated with identifier {{ param }}",
@@ -35,6 +35,9 @@
       "streetEng": "Street in English",
       "streetRus": "Street in Russian",
       "city": "City",
+      "cityEst": "City in Estonian",
+      "cityEng": "City in English",
+      "cityRus": "City in Russian",
       "availableSpaces": "Available Spaces",
       "repeatStartDate": "Repeat Start Date",
       "repeatUntilDate": "Repeat Until Date",

@@ -45,7 +45,9 @@
                 </dd>
                 <dt><span jhiTranslate="urbanZenApp.lessonTemplate.city">City</span></dt>
                 <dd>
-                    <span>{{lessonTemplate.city}}</span>
+                    <span *ngSwitchCase="'en'">{{lessonTemplate.cityEng}}</span>
+                    <span *ngSwitchCase="'ru'">{{lessonTemplate.cityRus}}</span>
+                    <span *ngSwitchDefault>{{lessonTemplate.city}}</span>
                 </dd>
                 <dt><span jhiTranslate="urbanZenApp.lessonTemplate.availableSpaces">Available Spaces</span></dt>
                 <dd>

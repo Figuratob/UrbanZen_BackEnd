@@ -2,20 +2,20 @@
   "urbanZenApp": {
     "lessonTemplate": {
       "home": {
-        "title": "Lesson Templates",
-        "createLabel": "Lisa uus Lesson Template",
+        "title": "Tunnide mallid",
+        "createLabel": "Lisa uus Tunni mall",
         "createTimetable": "Koosta Tunniplaan",
-        "createOrEditLabel": "Lisa või muuda Lesson Template",
-        "notFound": "Lesson Templates ei ole leitud"
+        "createOrEditLabel": "Lisa või muuda Tunni mall",
+        "notFound": "Tunnide mallid ei ole leitud"
       },
-      "created": "Uus Lesson Template on loodud identifikaatoriga {{ param }}",
-      "updated": "Lesson Template identifikaatoriga {{ param }} on muudetud",
-      "deleted": "Lesson Template identifikaatoriga {{ param }} on kustutatud",
+      "created": "Uus Tunni mall on loodud identifikaatoriga {{ param }}",
+      "updated": "Tunni mall identifikaatoriga {{ param }} on muudetud",
+      "deleted": "Tunni mall identifikaatoriga {{ param }} on kustutatud",
       "delete": {
-        "question": "Kas olete kindel, et soovite kustutada Lesson Template {{ id }}?"
+        "question": "Kas olete kindel, et soovite kustutada Tunni mall {{ id }}?"
       },
       "detail": {
-        "title": "Lesson Template"
+        "title": "Tunni mall"
       },
       "dayOfWeek": "Nädalapäev",
       "startHour": "Alguse tund",
@@ -35,6 +35,9 @@
       "streetEng": "Tänav Inglise keeles",
       "streetRus": "Tänav Vene keeles",
       "city": "Linn",
+      "cityEst": "Linn Eesti keeles",
+      "cityEng": "Linn Inglise keeles",
+      "cityRus": "Linn Vene keeles",
       "availableSpaces": "Kogu kohti",
       "repeatStartDate": "Kordamise algus",
       "repeatUntilDate": "Kordamise lõpp",

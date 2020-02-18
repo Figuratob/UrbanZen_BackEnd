@@ -61,10 +61,15 @@
                     <div *ngSwitchCase="'ru'">{{lessonTemplate.streetRus}}</div>
                     <div *ngSwitchDefault>{{lessonTemplate.street}}</div>
                 </td>
-                <td>{{lessonTemplate.city}}</td>
+                <td>
+                    <div *ngSwitchCase="'en'">{{lessonTemplate.cityEng}}</div>
+                    <div *ngSwitchCase="'ru'">{{lessonTemplate.cityRus}}</div>
+                    <div *ngSwitchDefault>{{lessonTemplate.city}}</div>
+                </td>
+
                 <td>{{lessonTemplate.availableSpaces}}</td>
-                <td>{{lessonTemplate.repeatStartDate | date:'mediumDate'}}</td>
-                <td>{{lessonTemplate.repeatUntilDate | date:'mediumDate'}}</td>
+                <td>{{lessonTemplate.repeatStartDate.format('DD.MM.YYYY')}}</td>
+                <td>{{lessonTemplate.repeatUntilDate.format('DD.MM.YYYY')}}</td>
                 <td>
                     <div *ngIf="lessonTemplate.teacher">
                         <a [routerLink]="['/teacher', lessonTemplate.teacher?.id, 'view' ]">{{lessonTemplate.teacher?.id}}</a>

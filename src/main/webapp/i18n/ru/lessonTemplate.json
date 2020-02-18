@@ -2,20 +2,20 @@
   "urbanZenApp": {
     "lessonTemplate": {
       "home": {
-        "title": "Lesson Templates",
-        "createLabel": "Создать новый Lesson Template",
-        "createTimetable": "Создать Timetable",
-        "createOrEditLabel": "Создать или отредактировать Lesson Template",
-        "notFound": "Lesson Templates не найдены"
+        "title": "Шаблоны уроков",
+        "createLabel": "Создать новый Шаблон урока",
+        "createTimetable": "Создать Расписание",
+        "createOrEditLabel": "Создать или отредактировать Шаблон урока",
+        "notFound": "Шаблоны уроков не найдены"
       },
-      "created": "Новый Lesson Template создан с идентификатором {{ param }}",
-      "updated": "Lesson Template обновлен с идентификатором {{ param }}",
-      "deleted": "Lesson Template удален с идентификатором {{ param }}",
+      "created": "Новый Шаблон урока создан с идентификатором {{ param }}",
+      "updated": "Шаблон урока обновлен с идентификатором {{ param }}",
+      "deleted": "Шаблон урока удален с идентификатором {{ param }}",
       "delete": {
-        "question": "Вы уверены что хотите удалить Lesson Template {{ id }}?"
+        "question": "Вы уверены что хотите удалить Шаблон урока {{ id }}?"
       },
       "detail": {
-        "title": "Lesson Template"
+        "title": "Шаблон урока"
       },
       "dayOfWeek": "День недели",
       "startHour": "Час начала",
@@ -35,6 +35,9 @@
       "streetEng": "Улица на английском",
       "streetRus": "Улица на русском",
       "city": "Город",
+      "cityEst": "Город на эстонском",
+      "cityEng": "Город на английском",
+      "cityRus": "Город на русском",
       "availableSpaces": "Всего мест",
       "repeatStartDate": "Дата начала повтора",
       "repeatUntilDate": "Дата конца повтора",

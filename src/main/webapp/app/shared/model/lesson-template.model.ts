@@ -29,6 +29,8 @@ export interface ILessonTemplate {
   streetEng?: string;
   streetRus?: string;
   city?: string;
+  cityEng?: string;
+  cityRus?: string;
   availableSpaces?: number;
   repeatStartDate?: Moment;
   repeatUntilDate?: Moment;
@@ -54,6 +56,8 @@ export class LessonTemplate implements ILessonTemplate {
     public streetEng?: string,
     public streetRus?: string,
     public city?: string,
+    public cityEng?: string,
+    public cityRus?: string,
     public availableSpaces?: number,
     public repeatStartDate?: Moment,
     public repeatUntilDate?: Moment,

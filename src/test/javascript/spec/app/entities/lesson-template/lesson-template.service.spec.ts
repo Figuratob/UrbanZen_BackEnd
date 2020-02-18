@@ -44,6 +44,8 @@ describe('Service Tests', () => {
         'AAAAAAA',
         'AAAAAAA',
         'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAA',
         0,
         currentDate,
         currentDate
