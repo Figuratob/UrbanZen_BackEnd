@@ -17,12 +17,18 @@ export class TeacherUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     firstName: [null, [Validators.required]],
+    firstNameEng: [null, [Validators.required]],
+    firstNameRus: [null, [Validators.required]],
     lastName: [null, [Validators.required]],
+    lastNameEng: [null, [Validators.required]],
+    lastNameRus: [null, [Validators.required]],
     email: [null, [Validators.required]],
     phone: [null, [Validators.required]],
     photo: [],
     photoContentType: [],
-    about: []
+    about: [],
+    aboutEng: [],
+    aboutRus: []
   });
 
   constructor(
@@ -45,12 +51,18 @@ export class TeacherUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: teacher.id,
       firstName: teacher.firstName,
+      firstNameEng: teacher.firstNameEng,
+      firstNameRus: teacher.firstNameRus,
       lastName: teacher.lastName,
+      lastNameEng: teacher.lastNameEng,
+      lastNameRus: teacher.lastNameRus,
       email: teacher.email,
       phone: teacher.phone,
       photo: teacher.photo,
       photoContentType: teacher.photoContentType,
-      about: teacher.about
+      about: teacher.about,
+      aboutEng: teacher.aboutEng,
+      aboutRus: teacher.aboutRus
     });
   }
 
@@ -115,12 +127,18 @@ export class TeacherUpdateComponent implements OnInit {
       ...new Teacher(),
       id: this.editForm.get(['id']).value,
       firstName: this.editForm.get(['firstName']).value,
+      firstNameEng: this.editForm.get(['firstNameEng']).value,
+      firstNameRus: this.editForm.get(['firstNameRus']).value,
       lastName: this.editForm.get(['lastName']).value,
+      lastNameEng: this.editForm.get(['lastNameEng']).value,
+      lastNameRus: this.editForm.get(['lastNameRus']).value,
       email: this.editForm.get(['email']).value,
       phone: this.editForm.get(['phone']).value,
       photoContentType: this.editForm.get(['photoContentType']).value,
       photo: this.editForm.get(['photo']).value,
-      about: this.editForm.get(['about']).value
+      about: this.editForm.get(['about']).value,
+      aboutEng: this.editForm.get(['aboutEng']).value,
+      aboutRus: this.editForm.get(['aboutRus']).value
     };
   }
 

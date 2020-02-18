@@ -2,28 +2,37 @@
   "urbanZenApp": {
     "teacher": {
       "home": {
-        "title": "Teachers",
-        "createLabel": "Создать новый Teacher",
-        "createOrEditLabel": "Создать или отредактировать Teacher",
-        "notFound": "No Teachers found"
+        "title": "Учителя",
+        "createLabel": "Создать нового Учителя",
+        "createOrEditLabel": "Создать или отредактировать Учителя",
+        "notFound": "Учителя не найдены"
       },
-      "created": "Новый Teacher создан с идентификатором {{ param }}",
-      "updated": "Teacher обновлен с идентификатором {{ param }}",
-      "deleted": "Teacher удален с идентификатором {{ param }}",
+      "created": "Новый Учитель создан с идентификатором {{ param }}",
+      "updated": "Учитель обновлен с идентификатором {{ param }}",
+      "deleted": "Учитель удален с идентификатором {{ param }}",
       "delete": {
-        "question": "Вы уверены что хотите удалить Teacher {{ id }}?"
+        "question": "Вы уверены что хотите удалить Учителя {{ id }}?"
       },
       "detail": {
-        "title": "Teacher"
+        "title": "Учитель"
       },
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "email": "Email",
-      "phone": "Phone",
-      "photo": "Photo",
-      "about": "About",
-      "lesson": "Lesson",
-      "lessonTemplate": "Lesson Template"
+      "firstName": "Имя",
+      "firstNameEst": "Имя на эстонском",
+      "firstNameEng": "Имя на английском",
+      "firstNameRus": "Имя на русском",
+      "lastName": "Фамилия",
+      "lastNameEst": "Фамилия на эстонском",
+      "lastNameEng": "Фамилия на английском",
+      "lastNameRus": "Фамилия на русском",
+      "email": "Э-почта",
+      "phone": "Телефон",
+      "photo": "Фотография",
+      "about": "Об учителе",
+      "aboutEst": "Об учителе на эстонском",
+      "aboutEng": "Об учителе на английском",
+      "aboutRus": "Об учителе на русском",
+      "lesson": "Урок",
+      "lessonTemplate": "Шаблон урока"
     }
   }
 }

@@ -2,28 +2,37 @@
   "urbanZenApp": {
     "teacher": {
       "home": {
-        "title": "Teachers",
-        "createLabel": "Lisa uus Teacher",
-        "createOrEditLabel": "Lisa või muuda Teacher",
-        "notFound": "No Teachers found"
+        "title": "Õpetajad",
+        "createLabel": "Lisa uus Õpetaja",
+        "createOrEditLabel": "Lisa või muuda Õpetaja",
+        "notFound": "Õpetajad ei ole leitud"
       },
-      "created": "Uus Teacher on loodud identifikaatoriga {{ param }}",
-      "updated": "Teacher identifikaatoriga {{ param }} on muudetud",
-      "deleted": "Teacher identifikaatoriga {{ param }} on kustutatud",
+      "created": "Uus Õpetaja on loodud identifikaatoriga {{ param }}",
+      "updated": "Õpetaja identifikaatoriga {{ param }} on muudetud",
+      "deleted": "Õpetaja identifikaatoriga {{ param }} on kustutatud",
       "delete": {
-        "question": "Kas olete kindel, et soovite kustutada Teacher {{ id }}?"
+        "question": "Kas olete kindel, et soovite kustutada Õpetaja {{ id }}?"
       },
       "detail": {
-        "title": "Teacher"
+        "title": "Õpetaja"
       },
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "email": "Email",
-      "phone": "Phone",
-      "photo": "Photo",
-      "about": "About",
-      "lesson": "Lesson",
-      "lessonTemplate": "Lesson Template"
+      "firstName": "Eesnimi",
+      "firstNameEst": "Eesnimi Eesti keeles",
+      "firstNameEng": "Eesnimi Inglise keeles",
+      "firstNameRus": "Eesnimi Vene keeles",
+      "lastName": "Perekonnanimi",
+      "lastNameEst": "Perekonnanimi Eesti keeles",
+      "lastNameEng": "Perekonnanimi Inglise keeles",
+      "lastNameRus": "Perekonnanimi Vene keeles",
+      "email": "E-post",
+      "phone": "Telefon",
+      "photo": "Pilt",
+      "about": "Õpetaja kirjeldus",
+      "aboutEst": "Õpetaja kirjeldus Eesti keeles",
+      "aboutEng": "Õpetaja kirjeldus Inglise keeles",
+      "aboutRus": "Õpetaja kirjeldus Vene keeles",
+      "lesson": "Tund",
+      "lessonTemplate": "Tundi mall"
     }
   }
 }

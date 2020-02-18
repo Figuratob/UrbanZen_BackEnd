@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { JhiDataUtils } from 'ng-jhipster';
 
 import { ITeacher } from 'app/shared/model/teacher.model';
+import { JhiLanguageHelper } from 'app/core';
 
 @Component({
   selector: 'jhi-teacher-detail',
@@ -10,10 +11,14 @@ import { ITeacher } from 'app/shared/model/teacher.model';
 })
 export class TeacherDetailComponent implements OnInit {
   teacher: ITeacher;
+  language: any;
 
-  constructor(protected dataUtils: JhiDataUtils, protected activatedRoute: ActivatedRoute) {}
+  constructor(protected dataUtils: JhiDataUtils, protected activatedRoute: ActivatedRoute, protected languageHelper: JhiLanguageHelper) {}
 
   ngOnInit() {
+    this.languageHelper.language.subscribe(lang => {
+      this.language = lang;
+    });
     this.activatedRoute.data.subscribe(({ teacher }) => {
       this.teacher = teacher;
     });

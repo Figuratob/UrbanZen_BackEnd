@@ -1,17 +1,21 @@
 <div class="row justify-content-center">
     <div class="col-8">
-        <div *ngIf="teacher">
+        <div *ngIf="teacher" [ngSwitch]="language">
             <h2><span jhiTranslate="urbanZenApp.teacher.detail.title">Teacher</span> {{teacher.id}}</h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="urbanZenApp.teacher.firstName">First Name</span></dt>
                 <dd>
-                    <span>{{teacher.firstName}}</span>
+                    <span *ngSwitchCase="'en'">{{teacher.firstNameEng}}</span>
+                    <span *ngSwitchCase="'ru'">{{teacher.firstNameRus}}</span>
+                    <span *ngSwitchDefault>{{teacher.firstName}}</span>
                 </dd>
                 <dt><span jhiTranslate="urbanZenApp.teacher.lastName">Last Name</span></dt>
                 <dd>
-                    <span>{{teacher.lastName}}</span>
+                    <span *ngSwitchCase="'en'">{{teacher.lastNameEng}}</span>
+                    <span *ngSwitchCase="'ru'">{{teacher.lastNameRus}}</span>
+                    <span *ngSwitchDefault>{{teacher.lastName}}</span>
                 </dd>
                 <dt><span jhiTranslate="urbanZenApp.teacher.email">Email</span></dt>
                 <dd>
@@ -27,12 +31,14 @@
                         <a (click)="openFile(teacher.photoContentType, teacher.photo)">
                             <img [src]="'data:' + teacher.photoContentType + ';base64,' + teacher.photo" style="max-width: 100%;" alt="teacher image"/>
                         </a>
-                        {{teacher.photoContentType}}, {{byteSize(teacher.photo)}}
+<!--                        {{teacher.photoContentType}}, {{byteSize(teacher.photo)}}-->
                     </div>
                 </dd>
                 <dt><span jhiTranslate="urbanZenApp.teacher.about">About</span></dt>
                 <dd>
-                    <span>{{teacher.about}}</span>
+                    <span *ngSwitchCase="'en'">{{teacher.aboutEng}}</span>
+                    <span *ngSwitchCase="'ru'">{{teacher.aboutRus}}</span>
+                    <span *ngSwitchDefault>{{teacher.about}}</span>
                 </dd>
             </dl>
 

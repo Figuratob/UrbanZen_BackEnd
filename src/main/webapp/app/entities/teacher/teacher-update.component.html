@@ -9,8 +9,9 @@
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"
                         readonly />
                 </div>
+
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="urbanZenApp.teacher.firstName" for="field_firstName">First Name</label>
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.teacher.firstNameEst" for="field_firstName">First NameEst</label>
                     <input type="text" class="form-control" name="firstName" id="field_firstName"
                            formControlName="firstName"/>
                     <div *ngIf="editForm.get('firstName').invalid && (editForm.get('firstName').dirty || editForm.get('firstName').touched)">
@@ -20,8 +21,33 @@
                         </small>
                     </div>
                 </div>
+
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="urbanZenApp.teacher.lastName" for="field_lastName">Last Name</label>
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.teacher.firstNameEng" for="field_firstNameEng">First NameEng</label>
+                    <input type="text" class="form-control" name="firstNameEng" id="field_firstNameEng"
+                           formControlName="firstNameEng"/>
+                    <div *ngIf="editForm.get('firstNameEng').invalid && (editForm.get('firstNameEng').dirty || editForm.get('firstNameEng').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('firstNameEng').errors.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.teacher.firstNameRus" for="field_firstNameRus">First NameRus</label>
+                    <input type="text" class="form-control" name="firstNameRus" id="field_firstNameRus"
+                           formControlName="firstNameRus"/>
+                    <div *ngIf="editForm.get('firstNameRus').invalid && (editForm.get('firstNameRus').dirty || editForm.get('firstNameRus').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('firstNameRus').errors.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.teacher.lastNameEst" for="field_lastName">Last NameEst</label>
                     <input type="text" class="form-control" name="lastName" id="field_lastName"
                            formControlName="lastName"/>
                     <div *ngIf="editForm.get('lastName').invalid && (editForm.get('lastName').dirty || editForm.get('lastName').touched)">
@@ -31,6 +57,31 @@
                         </small>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.teacher.lastNameEng" for="field_lastNameEng">Last NameEng</label>
+                    <input type="text" class="form-control" name="lastNameEng" id="field_lastNameEng"
+                           formControlName="lastNameEng"/>
+                    <div *ngIf="editForm.get('lastNameEng').invalid && (editForm.get('lastNameEng').dirty || editForm.get('lastNameEng').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('lastNameEng').errors.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.teacher.lastNameRus" for="field_lastNameRus">Last NameRus</label>
+                    <input type="text" class="form-control" name="lastNameRus" id="field_lastNameRus"
+                           formControlName="lastNameRus"/>
+                    <div *ngIf="editForm.get('lastNameRus').invalid && (editForm.get('lastNameRus').dirty || editForm.get('lastNameRus').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('lastNameRus').errors.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="urbanZenApp.teacher.email" for="field_email">Email</label>
                     <input type="text" class="form-control" name="email" id="field_email"
@@ -71,11 +122,20 @@
                            formControlName="photoContentType" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="urbanZenApp.teacher.about" for="field_about">About</label>
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.teacher.aboutEst" for="field_about">AboutEst</label>
                     <input type="text" class="form-control" name="about" id="field_about"
                            formControlName="about"/>
                 </div>
-
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.teacher.aboutEng" for="field_aboutEng">AboutEng</label>
+                    <input type="text" class="form-control" name="aboutEng" id="field_aboutEng"
+                           formControlName="aboutEng"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.teacher.aboutRus" for="field_aboutRus">AboutRus</label>
+                    <input type="text" class="form-control" name="aboutRus" id="field_aboutRus"
+                           formControlName="aboutRus"/>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

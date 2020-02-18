@@ -17,11 +17,20 @@
         "title": "Teacher"
       },
       "firstName": "First Name",
+      "firstNameEst": "First Name in Estonian",
+      "firstNameEng": "First Name in English",
+      "firstNameRus": "First Name in Russian",
       "lastName": "Last Name",
+      "lastNameEst": "Last Name in Estonian",
+      "lastNameEng": "Last Name in English",
+      "lastNameRus": "Last Name in Russian",
       "email": "Email",
       "phone": "Phone",
       "photo": "Photo",
       "about": "About",
+      "aboutEst": "About in Estonian",
+      "aboutEng": "About in English",
+      "aboutRus": "About in Russian",
       "lesson": "Lesson",
       "lessonTemplate": "Lesson Template"
     }

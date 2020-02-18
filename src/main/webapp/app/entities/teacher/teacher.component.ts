@@ -5,7 +5,7 @@ import { filter, map } from 'rxjs/operators';
 import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
 import { ITeacher } from 'app/shared/model/teacher.model';
-import { AccountService } from 'app/core';
+import { AccountService, JhiLanguageHelper } from 'app/core';
 import { TeacherService } from './teacher.service';
 
 @Component({
@@ -16,13 +16,15 @@ export class TeacherComponent implements OnInit, OnDestroy {
   teachers: ITeacher[];
   currentAccount: any;
   eventSubscriber: Subscription;
+  language: any;
 
   constructor(
     protected teacherService: TeacherService,
     protected jhiAlertService: JhiAlertService,
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
-    protected accountService: AccountService
+    protected accountService: AccountService,
+    protected languageHelper: JhiLanguageHelper
   ) {}
 
   loadAll() {
@@ -41,6 +43,9 @@ export class TeacherComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.languageHelper.language.subscribe(lang => {
+      this.language = lang;
+    });
     this.loadAll();
     this.accountService.identity().then(account => {
       this.currentAccount = account;

@@ -28,19 +28,32 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let teacher of teachers ;trackBy: trackId">
+            <tr *ngFor="let teacher of teachers ;trackBy: trackId" [ngSwitch]="language">
                 <td><a [routerLink]="['/teacher', teacher.id, 'view' ]">{{teacher.id}}</a></td>
-                <td>{{teacher.firstName}}</td>
-                <td>{{teacher.lastName}}</td>
+                <td>
+                    <div *ngSwitchCase="'en'">{{teacher.firstNameEng}}</div>
+                    <div *ngSwitchCase="'ru'">{{teacher.firstNameRus}}</div>
+                    <div *ngSwitchDefault>{{teacher.firstName}}</div>
+                </td>
+                <td>
+                    <div *ngSwitchCase="'en'">{{teacher.lastNameEng}}</div>
+                    <div *ngSwitchCase="'ru'">{{teacher.lastNameRus}}</div>
+                    <div *ngSwitchDefault>{{teacher.lastName}}</div>
+                </td>
                 <td>{{teacher.email}}</td>
                 <td>{{teacher.phone}}</td>
                 <td>
                     <a *ngIf="teacher.photo" (click)="openFile(teacher.photoContentType, teacher.photo)">
-                        <img [src]="'data:' + teacher.photoContentType + ';base64,' + teacher.photo" style="max-height: 30px;" alt="teacher image"/>
+                        <img [src]="'data:' + teacher.photoContentType + ';base64,' + teacher.photo" style="max-height: 30px;"
+                             alt="teacher image"/>
                     </a>
-                    <span *ngIf="teacher.photo">{{teacher.photoContentType}}, {{byteSize(teacher.photo)}}</span>
+<!--                    <span *ngIf="teacher.photo">{{teacher.photoContentType}}, {{byteSize(teacher.photo)}}</span>-->
                 </td>
-                <td>{{teacher.about}}</td>
+                <td>
+                    <div *ngSwitchCase="'en'">{{teacher.aboutEng}}</div>
+                    <div *ngSwitchCase="'ru'">{{teacher.aboutRus}}</div>
+                    <div *ngSwitchDefault>{{teacher.about}}</div>
+                </td>
                 <td class="text-right">
                     <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="btn-group">
                         <button type="submit"
