@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { JhiLanguageService } from 'ng-jhipster';
 
 import { AccountService, JhiLanguageHelper } from 'app/core';
-import { Account } from 'app/core/user/account.model';
 
 @Component({
   selector: 'jhi-settings',
