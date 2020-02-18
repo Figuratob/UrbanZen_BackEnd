@@ -26,7 +26,7 @@ export class BookingService {
 
   createBook(lessonId: number): Observable<EntityResponseType> {
     const lesson = {
-      lessonId: lessonId
+      lessonId
     };
     return this.http
       .post<IBooking>(SERVER_API_URL + 'api/bookings/new', lessonId, { observe: 'response' })
@@ -35,14 +35,14 @@ export class BookingService {
 
   updateUserBooking(lessonId: number, bookingId: number): Observable<EntityResponseType> {
     const lesson = {
-      lessonId: lessonId
+      lessonId
     };
     const booking = {
-      bookingId: bookingId
+      bookingId
     };
     const data = {
-      lessonId: lessonId,
-      bookingId: bookingId
+      lessonId,
+      bookingId
     };
     return this.http
       .put<IBooking>(SERVER_API_URL + 'api/bookings/new', data, { observe: 'response' })

@@ -22,7 +22,7 @@
             <tbody>
             <tr *ngFor="let booking of bookings ;trackBy: trackId">
                 <td><a [routerLink]="['/booking', booking.id, 'view' ]">{{booking.id}}</a></td>
-                <td>{{booking.reservationDate | date:'medium'}}</td>
+                <td>{{booking.reservationDate.format('DD.MM.YYYY HH:mm')}}</td>
                 <td>{{booking.cancelDate | date:'medium'}}</td>
                 <td>
                     {{booking.user?.id}}
