@@ -6,12 +6,12 @@
       "home": "Avaleht",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
-        "main": "Olemid",
-        "teacher": "Teacher",
-        "lessonTemplate": "Lesson Template",
-        "lesson": "Lesson",
-        "booking": "Booking",
-        "studio": "Studio",
+        "main": "Menu",
+        "teacher": "Õpetajad",
+        "lessonTemplate": "Tunnide Mallid",
+        "lesson": "Tunnid",
+        "booking": "Broneeringud",
+        "studio": "Stuudio",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

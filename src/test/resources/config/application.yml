@@ -53,6 +53,7 @@ spring:
     contexts: test
   mail:
     host: localhost
+    port: 2525
   main:
     allow-bean-definition-overriding: true
   messages:

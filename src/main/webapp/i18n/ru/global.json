@@ -6,12 +6,12 @@
       "home": "Главная",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
-        "main": "Сущности",
-        "teacher": "Teacher",
-        "lessonTemplate": "Lesson Template",
-        "lesson": "Lesson",
-        "booking": "Booking",
-        "studio": "Studio",
+        "main": "Меню",
+        "teacher": "Учителя",
+        "lessonTemplate": "Шаблоны уроков",
+        "lesson": "Уроки",
+        "booking": "Бронирования",
+        "studio": "Студия",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -6,11 +6,11 @@
       "home": "Home",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
-        "main": "Entities",
-        "teacher": "Teacher",
-        "lessonTemplate": "Lesson Template",
-        "lesson": "Lesson",
-        "booking": "Booking",
+        "main": "Menu",
+        "teacher": "Teachers",
+        "lessonTemplate": "Lessons Templates",
+        "lesson": "Lessons",
+        "booking": "Bookings",
         "studio": "Studio",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
@@ -86,10 +86,10 @@
           "maxlength": "Your email cannot be longer than 50 characters."
         },
         "phone": {
-          "required": "Your phone is required.",
-          "invalid": "Your phone is invalid.",
-          "minlength": "Your phone is required to be at least 5 characters.",
-          "maxlength": "Your phone cannot be longer than 50 characters."
+          "required": "Your phone number is required.",
+          "invalid": "Your phone number is invalid.",
+          "minlength": "Your phone number is required to be at least 5 characters.",
+          "maxlength": "Your phone number cannot be longer than 50 characters."
         }
       }
     },
