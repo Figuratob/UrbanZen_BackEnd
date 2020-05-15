@@ -25,7 +25,7 @@ spring:
     name: UrbanZen
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:mem:UrbanZen;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MULTI_THREADED=FALSE
+    url: jdbc:h2:mem:UrbanZen;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=true;MULTI_THREADED=TRUE
     name:
     username:
     password:
