@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{email.lessonTemplateCancellation.title}">UrbanZen schedule change</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon" th:href="@{|${baseUrl}/favicon.ico|}" />
+</head>
+<body>
+<p th:text="#{email.greeting(${user.getEmail()})}">
+    Dear,
+</p>
+
+<p th:text="#{email.lessonTemplateCancellation.text1}">
+    We are sorry for inconvenience, our schedule is changed and following lessons
+    you are booked for are cancelled.
+</p>
+<table>
+    <tr>
+        <td th:text="#{email.reset.lesson}">Lesson</td>
+        <td th:text="#{email.reset.date}">Date</td>
+    </tr>
+    <tr th:each="entry : ${entries}">
+        <td th:text="${entry.lessonName}" ></td>
+        <td th:text="${#dates.format(entry.lessonDate, 'dd-MMM-yyyy HH:mm')}" ></td>
+    </tr>
+</table>
+
+<p th:text="#{email.lessonCancellation.text2}">
+    Please look at the schedule:
+</p>
+<p>
+    <a th:with="url=(@{|${baseUrl}|})" th:href="${url}"
+       th:text="${url}">Schedule link</a>
+</p>
+<p>
+    <span th:text="#{email.regards}">Regards, </span>
+    <br/>
+    <em th:text="#{email.signature}">UrbanZen.</em>
+</p>
+</body>
+</html>

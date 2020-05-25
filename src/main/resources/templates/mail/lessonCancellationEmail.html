@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{email.lessonCancellation.title}">UrbanZen lesson cancellation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon" th:href="@{|${baseUrl}/favicon.ico|}" />
+</head>
+<body>
+<p th:text="#{email.greeting(${user.getFirstName()})}">
+    Dear,
+</p>
+
+<p th:text="#{email.lessonCancellation.text1(${lessonName},
+    ${#dates.format(lessonDate, 'dd-MMM-yyyy HH:mm')})}">
+
+    We are sorry for inconvenience, but lesson is cancelled.
+</p>
+<p th:text="#{email.lessonCancellation.text2}">
+    Please look at the schedule:
+</p>
+<p>
+       <a th:with="url=(@{|${baseUrl}|})" th:href="${url}"
+       th:text="${url}">Schedule link</a>
+</p>
+<p>
+    <span th:text="#{email.regards}">Regards, </span>
+    <br/>
+    <em th:text="#{email.signature}">UrbanZen.</em>
+</p>
+</body>
+</html>

@@ -1,10 +1,14 @@
 package ee.urbanzen.backoffice.service;
 
+import ee.urbanzen.backoffice.domain.Lesson;
 import ee.urbanzen.backoffice.domain.User;
 
+import ee.urbanzen.backoffice.domain.Entry;
 import io.github.jhipster.config.JHipsterProperties;
 
 import java.nio.charset.StandardCharsets;
+import java.sql.Date;
+import java.util.List;
 import java.util.Locale;
 import javax.mail.internet.MimeMessage;
 
@@ -25,12 +29,19 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
  */
 @Service
 public class MailService {
-
     private final Logger log = LoggerFactory.getLogger(MailService.class);
 
     private static final String USER = "user";
 
     private static final String BASE_URL = "baseUrl";
+
+    private static final String LESSON = "lesson";
+
+    private static final String LESSON_NAME = "lessonName";
+
+    private static final String LESSON_DATE = "lessonDate";
+
+    private static final String ENTRIES = "entries";
 
     private final JHipsterProperties jHipsterProperties;
 
@@ -40,8 +51,10 @@ public class MailService {
 
     private final SpringTemplateEngine templateEngine;
 
-    public MailService(JHipsterProperties jHipsterProperties, JavaMailSender javaMailSender,
-            MessageSource messageSource, SpringTemplateEngine templateEngine) {
+    public MailService(JHipsterProperties jHipsterProperties,
+                       JavaMailSender javaMailSender,
+                       MessageSource messageSource,
+                       SpringTemplateEngine templateEngine) {
 
         this.jHipsterProperties = jHipsterProperties;
         this.javaMailSender = javaMailSender;
@@ -85,20 +98,118 @@ public class MailService {
     }
 
     @Async
+    public void sendEmailFromTemplateLessonCancellation(User user, Lesson lesson, String templateName,
+                                                        String titleKey) {
+        Locale locale = Locale.forLanguageTag(user.getLangKey());
+        Context context = new Context(locale);
+        context.setVariable(USER, user);
+        context.setVariable(LESSON, lesson);
+
+        if (user.getLangKey().equals("en")) {
+            context.setVariable(LESSON_NAME, lesson.getNameEng());
+        }
+        else if (user.getLangKey().equals("ru")) {
+            context.setVariable(LESSON_NAME, lesson.getNameRus());
+        }
+        else {
+            context.setVariable(LESSON_NAME, lesson.getName());
+        }
+
+        java.util.Date lessonDate = Date.from(lesson.getStartDate());
+        context.setVariable(LESSON_DATE, lessonDate);
+
+        context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+        String content = templateEngine.process(templateName, context);
+        String subject = messageSource.getMessage(titleKey, null, locale);
+        sendEmail(user.getEmail(), subject, content, false, true);
+    }
+    private void sendEmailFromTemplateLessonTemplateCancellation(
+        User user, List<Entry> entries, String templateName, String titleKey) {
+        try {
+            Locale locale = Locale.forLanguageTag(user.getLangKey());
+            Context context = new Context(locale);
+            context.setVariable(USER, user);
+            context.setVariable(ENTRIES, entries);
+            context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+            String content = templateEngine.process(templateName, context);
+            String subject = messageSource.getMessage(titleKey, null, locale);
+            sendEmail(user.getEmail(), subject, content, false, true);
+        } catch (Exception ignored) {
+            log.warn("Exception while sending email ", ignored);
+        }
+    }
+
+    @Async
     public void sendActivationEmail(User user) {
         log.debug("Sending activation email to '{}'", user.getEmail());
-        sendEmailFromTemplate(user, "mail/activationEmail", "email.activation.title");
+        try {
+            sendEmailFromTemplate(user, "mail/activationEmail", "email.activation.title");
+        } catch (Exception ignored) {
+            log.warn("Exception while sending email ", ignored);
+        }
+    }
+
+    @Async
+    public void sendLessonCancellationEmail(User user, Lesson lesson) {
+        log.debug(
+            "Sending info email to '{}' about lesson '{}','{}','{}','{}','{}', cancellation ",
+            user.getEmail(),
+            lesson.getName(),
+            lesson.getNameEng(),
+            lesson.getNameRus(),
+            lesson.getStartDate(),
+            lesson.getTeacher());
+        try {
+            sendEmailFromTemplateLessonCancellation(
+                user,
+                lesson,
+                "mail/lessonCancellationEmail",
+                "email.lessonCancellation.title");
+        } catch (Exception ignored) {
+            log.warn("Exception while sending email ", ignored);
+        }
     }
 
     @Async
     public void sendCreationEmail(User user) {
-        log.debug("Sending creation email to '{}'", user.getEmail());
-        sendEmailFromTemplate(user, "mail/creationEmail", "email.activation.title");
+        log.debug(
+            "Sending creation email to '{}'",
+            user.getEmail());
+        try {
+            sendEmailFromTemplate(
+                user,
+                "mail/creationEmail",
+                "email.activation.title");
+        } catch (Exception ignored) {
+            log.warn("Exception while sending email ", ignored);
+        }
     }
 
     @Async
     public void sendPasswordResetMail(User user) {
-        log.debug("Sending password reset email to '{}'", user.getEmail());
-        sendEmailFromTemplate(user, "mail/passwordResetEmail", "email.reset.title");
+        log.debug(
+            "Sending password reset email to '{}'",
+            user.getEmail());
+        try {
+            sendEmailFromTemplate(
+                user,
+                "mail/passwordResetEmail",
+                "email.reset.title");
+        } catch (Exception ignored) {
+            log.warn("Exception while sending email ", ignored);
+        }
+    }
+
+    public void sendLessonTemplateCancellationEmail(User user, List<Entry> entries) {
+        log.debug("Sending info email to '{}' about lessons '{}' cancellation ", user.getFirstName(), entries);
+        try {
+            sendEmailFromTemplateLessonTemplateCancellation(
+                user,
+                entries,
+                "mail/lessonTemplateCancellationEmail",
+                "email.lessonTemplateCancellation.title");
+        } catch (Exception ignored) {
+            log.warn("Exception while sending email ", ignored);
+        }
     }
 }
