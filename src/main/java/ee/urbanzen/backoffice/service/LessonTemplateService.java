@@ -3,19 +3,17 @@ package ee.urbanzen.backoffice.service;
 import ee.urbanzen.backoffice.domain.Lesson;
 import ee.urbanzen.backoffice.domain.LessonTemplate;
 import ee.urbanzen.backoffice.repository.LessonTemplateRepository;
+import ee.urbanzen.backoffice.web.rest.errors.BadRequestAlertException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
- * Service class for managing bookings.
+ * Service class for managing lesson templates.
  */
 
 @Service
@@ -26,13 +24,12 @@ public class LessonTemplateService {
 
     private final LessonTemplateRepository lessonTemplateRepository;
 
+    public final LessonService lessonService;
 
-    public LessonTemplateService(LessonTemplateRepository lessonTemplateRepository) {
+    public LessonTemplateService(LessonTemplateRepository lessonTemplateRepository,
+                                 LessonService lessonService) {
         this.lessonTemplateRepository = lessonTemplateRepository;
-    }
-
-    public LessonTemplate save(LessonTemplate lessonTemplate) {
-        return lessonTemplateRepository.save(lessonTemplate);
+        this.lessonService = lessonService;
     }
 
     public List<LessonTemplate> findAllByDatesWithoutLessons(LocalDate timetableStartDateTimeLocalDate,
@@ -49,126 +46,90 @@ public class LessonTemplateService {
         return lessonTemplateRepository.findById(id);
     }
 
+    public LessonTemplate save(LessonTemplate lessonTemplate) {
+        return lessonTemplateRepository.saveAndFlush(lessonTemplate);
+    }
+
+    public void update(LessonTemplate updatedLessonTemplate) {
+        save(updatedLessonTemplate);
+//        lessonService.updateLessonsOfLessonTemplate(updatedLessonTemplate);
+        lessonService.updateLessonsOfLessonTemplateByDates(updatedLessonTemplate.getRepeatStartDate(), updatedLessonTemplate.getRepeatUntilDate(),
+            updatedLessonTemplate);
+    }
+
+    public LessonTemplate updateLessonTemplate(LessonTemplate updatedLessonTemplate) {
+
+        if (updatedLessonTemplate.getId() == null) {
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        }
+
+        LessonTemplate oldLessonTemplate = lessonTemplateRepository
+            .findById(updatedLessonTemplate.getId())
+            .orElseThrow(() -> new BadRequestAlertException("LessonTemplate not found", ENTITY_NAME, "lessonTemplatenotfound"));
+
+        LocalDate updatedLessonTemplateStartDate = updatedLessonTemplate.getRepeatStartDate();
+        LocalDate oldLessonTemplateStartDate = oldLessonTemplate.getRepeatStartDate();
+        LocalDate updatedLessonTemplateUntilDate = updatedLessonTemplate.getRepeatUntilDate();
+        LocalDate oldLessonTemplateUntilDate = oldLessonTemplate.getRepeatUntilDate();
+
+        List<LessonTemplate> updatedLessonTemplates = new ArrayList<>();
+        updatedLessonTemplates.add(updatedLessonTemplate);
+
+        // general case 1
+        if (updatedLessonTemplateStartDate.isEqual(oldLessonTemplateStartDate) && (updatedLessonTemplateUntilDate.isEqual(
+            oldLessonTemplateUntilDate))) {
+            update(updatedLessonTemplate);
+
+        }
+        // adding lessons 3a || 3b
+        if (updatedLessonTemplateUntilDate.isBefore(oldLessonTemplateStartDate) ||
+            updatedLessonTemplateStartDate.isAfter(oldLessonTemplateUntilDate)) {
+            lessonService.generateLessonsFromTemplatesByDates(updatedLessonTemplateStartDate, updatedLessonTemplateUntilDate,
+                updatedLessonTemplates);
+            lessonService.deleteLessonsByDates(oldLessonTemplateStartDate, oldLessonTemplateUntilDate, oldLessonTemplate);
+            return updatedLessonTemplate;
+        }
+        // adding lessons 2a
+        if (updatedLessonTemplateStartDate.isBefore(oldLessonTemplateStartDate)) {
+            List<Lesson> addedLessons = lessonService.generateLessonsFromTemplatesByDates(updatedLessonTemplateStartDate, oldLessonTemplateStartDate,
+                updatedLessonTemplates);
+            System.out.println("addedLessons: " + addedLessons.size());
+        }
+        // adding lessons 2b
+        if (updatedLessonTemplateUntilDate.isAfter(oldLessonTemplateUntilDate)) {
+            lessonService.generateLessonsFromTemplatesByDates(oldLessonTemplateUntilDate, updatedLessonTemplateUntilDate,
+                updatedLessonTemplates);
+        }
+        // delete (2a)
+        if (updatedLessonTemplateUntilDate.isBefore(oldLessonTemplateUntilDate)) {
+            lessonService.deleteLessonsByDates(updatedLessonTemplateUntilDate, oldLessonTemplateUntilDate, updatedLessonTemplate);
+        }
+        // delete (2b)
+        if (oldLessonTemplateStartDate.isBefore(updatedLessonTemplateStartDate)) {
+            lessonService.deleteLessonsByDates(oldLessonTemplateStartDate, updatedLessonTemplateStartDate, updatedLessonTemplate);
+        }
+        // update 2a
+        if (updatedLessonTemplateStartDate.isBefore(oldLessonTemplateStartDate) &&
+            updatedLessonTemplateUntilDate.isBefore(oldLessonTemplateUntilDate)) {
+            lessonService.updateLessonsOfLessonTemplateByDates(oldLessonTemplateStartDate, updatedLessonTemplateUntilDate,
+                updatedLessonTemplate);
+        }
+        // update 2b
+        if (updatedLessonTemplateStartDate.isAfter(oldLessonTemplateStartDate) &&
+            updatedLessonTemplateUntilDate.isAfter(oldLessonTemplateUntilDate)) {
+            lessonService.updateLessonsOfLessonTemplateByDates(updatedLessonTemplateStartDate, oldLessonTemplateUntilDate,
+                updatedLessonTemplate);
+        }
+        return updatedLessonTemplate;
+           }
+
     public void deleteById(Long id) {
+
+        LessonTemplate lessonTemplate = lessonTemplateRepository
+            .findById(id)
+            .orElseThrow(() -> new BadRequestAlertException("LessonTemplate not found", ENTITY_NAME, "lessonTemplatenotfound"));
+
+        lessonService.deleteLessonsByLessonTemplate(lessonTemplate);
         lessonTemplateRepository.deleteById(id);
     }
-
-    /**
-     * load all templates that match criteria from database
-     * for every template generate lessons
-     * save lessons to database
-     */
-    public static List<Lesson> generateLessonsFromTemplatesByDates(LocalDate timetableStartDateTimeLocalDate,
-                                                                   LocalDate timetableEndDateTimeLocalDate,
-                                                                   List<LessonTemplate> lessonTemplatesByDatesWithoutLessons) {
-
-        List<Lesson> lessons = new ArrayList<>();
-
-        List<LocalDate> dates = getDatesBetween(timetableStartDateTimeLocalDate, timetableEndDateTimeLocalDate);
-
-        for (LocalDate date : dates) {
-
-            for (LessonTemplate lessonTemplate : lessonTemplatesByDatesWithoutLessons) {
-
-                boolean templateIsActive = lessonTemplate.isActiveOnGivenDate(date);
-                if (templateIsActive) {
-
-                    if (date.getDayOfWeek().getValue() == lessonTemplate.getDayOfWeek().getValue()) {
-
-                        Instant startDate = date.atTime(lessonTemplate.getStartHour(),
-                            lessonTemplate.getStartMinute()).toInstant(ZoneOffset.UTC);
-                        Instant endDate = date.atTime(lessonTemplate.getEndHour(),
-                            lessonTemplate.getEndMinute()).toInstant(ZoneOffset.UTC);
-
-                        Lesson lesson = new Lesson()
-                            .startDate(startDate)
-                            .endDate(endDate)
-                            .name(lessonTemplate.getName())
-                            .description(lessonTemplate.getDescription())
-                            .street(lessonTemplate.getStreet())
-                            .city(lessonTemplate.getCity())
-                            .availableSpaces(lessonTemplate.getAvailableSpaces())
-                            .teacher(lessonTemplate.getTeacher())
-                            .lessonTemplate(lessonTemplate);
-                        lessons.add(lesson);
-                    }
-                }
-            }
-        }
-        return lessons;
-    }
-
-    public static List<LocalDate> getDatesBetween(
-        LocalDate timetableStartDateTimeLocalDate, LocalDate timetableEndDateTimeLocalDate) {
-
-        return timetableStartDateTimeLocalDate.datesUntil(timetableEndDateTimeLocalDate)
-            .collect(Collectors.toList());
-    }
-
-    public static List<Lesson> generateLessonsFromTemplatesForDay(LocalDate startDateTimeLocalDate,
-                                                                  List<LessonTemplate> lessonTemplatesByDatesWithoutLessons) {
-
-        List<Lesson> lessons = new ArrayList<>();
-
-        for (LessonTemplate lessonTemplate : lessonTemplatesByDatesWithoutLessons) {
-
-            if (startDateTimeLocalDate.getDayOfWeek().getValue() == lessonTemplate.getDayOfWeek().getValue() &&
-                startDateTimeLocalDate.isAfter(lessonTemplate.getRepeatStartDate()) &&
-                startDateTimeLocalDate.isBefore(lessonTemplate.getRepeatUntilDate())) {
-
-                Instant startDate = startDateTimeLocalDate.atTime(lessonTemplate.getStartHour(),
-                    lessonTemplate.getStartMinute()).toInstant(ZoneOffset.UTC);
-                Instant endDate = startDateTimeLocalDate.atTime(lessonTemplate.getEndHour(),
-                    lessonTemplate.getEndMinute()).toInstant(ZoneOffset.UTC);
-
-                Lesson lesson = new Lesson()
-                    .startDate(startDate)
-                    .endDate(endDate)
-                    .name(lessonTemplate.getName())
-                    .description(lessonTemplate.getDescription())
-                    .street(lessonTemplate.getStreet())
-                    .city(lessonTemplate.getCity())
-                    .availableSpaces(lessonTemplate.getAvailableSpaces())
-                    .teacher(lessonTemplate.getTeacher())
-                    .lessonTemplate(lessonTemplate);
-                lessons.add(lesson);
-            }
-        }
-        return lessons;
-    }
-
-    public static List<Lesson> generateLessonsFromTemplates(LocalDate startDateTimeLocalDate,
-                                                            LocalDate untilDateTimeLocalDate,
-                                                            List<LessonTemplate> lessonTemplatesByWeekOfDay) {
-
-        List<Lesson> lessons = new ArrayList<>();
-        for (LessonTemplate lessonTemplate : lessonTemplatesByWeekOfDay) {
-
-            // MONDAY = 1
-            int numberOfDayOfWeek = lessonTemplate.getDayOfWeek().ordinal();
-            // MONDAY = 2
-            int numberOfStartDateTime = startDateTimeLocalDate.getDayOfWeek().ordinal();
-            int days = numberOfDayOfWeek - numberOfStartDateTime;
-
-            LocalDate lessonStartDateTimeLocalDate = startDateTimeLocalDate.plusDays(days);
-
-            Instant startDate = lessonStartDateTimeLocalDate.atTime(lessonTemplate.getStartHour(),
-                lessonTemplate.getStartMinute()).toInstant(ZoneOffset.UTC);
-            Instant endDate = lessonStartDateTimeLocalDate.atTime(lessonTemplate.getEndHour(),
-                lessonTemplate.getEndMinute()).toInstant(ZoneOffset.UTC);
-
-            Lesson lesson = new Lesson()
-                .startDate(startDate)
-                .endDate(endDate)
-                .name(lessonTemplate.getName())
-                .description(lessonTemplate.getDescription())
-                .street(lessonTemplate.getStreet())
-                .city(lessonTemplate.getCity())
-                .availableSpaces(lessonTemplate.getAvailableSpaces())
-                .teacher(lessonTemplate.getTeacher());
-            lessons.add(lesson);
-        }
-        return lessons;
-    }
-
 }

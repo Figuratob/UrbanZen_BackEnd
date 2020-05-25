@@ -104,7 +104,6 @@ public class BookingService {
         return bookingRepository.findBookingsByLessonIdAndUserId(lessonId, userId);
     }
 
-
     public Booking findBookingByLessonIdUserIdAndWithoutCancelDate(Long lessonId, Long userId) {
         return bookingRepository.findBookingByLessonIdUserIdAndWithoutCancelDate(lessonId, userId);
     }

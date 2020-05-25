@@ -45,7 +45,6 @@ public class BookingResource {
     private String applicationName;
 
     private final UserService userService;
-
     private final BookingService bookingService;
     private final LessonRepository lessonRepository;
 
@@ -101,11 +100,8 @@ public class BookingResource {
             .orElseThrow(() -> new BadRequestAlertException("User not found", ENTITY_NAME, "usernotfound"));
 
         Long userId = user.getId();
-//        Booking booking = (bookingService.findBookingByLessonIdAndUserId(lessonId, userId));
 
         Booking booking = (bookingService.findBookingByLessonIdUserIdAndWithoutCancelDate(lessonId, userId));
-
-//        if ((booking != null) && (booking.getCancelDate() == null)) {
 
          if (booking != null) {
             throw new BadRequestAlertException("Booking for this lesson is already exists", ENTITY_NAME, "bookingforthesamelesson");
@@ -241,6 +237,7 @@ public class BookingResource {
     public ResponseEntity<Void> deleteBooking(@PathVariable Long id) {
         log.debug("REST request to delete Booking : {}", id);
         bookingService.deleteById(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName,
+            true, ENTITY_NAME, id.toString())).build();
     }
 }

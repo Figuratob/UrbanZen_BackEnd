@@ -21,4 +21,6 @@ public interface LessonRepository extends JpaRepository<Lesson, Long> {
     List<Lesson> findAllByDates(@Param("firstDayOfWeek") Instant firstDayOfWeek,
                                 @Param("lastDayOfWeek") Instant lastDayOfWeek);
 
+    @Query("delete from Lesson lesson where lesson.lessonTemplate.id = :lessonTemplateId")
+    void deleteAllByLessonTemplateId(@Param("lessonTemplateId")Long lessonTemplateId);
 }

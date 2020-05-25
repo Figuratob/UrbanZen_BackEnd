@@ -3,6 +3,7 @@ package ee.urbanzen.backoffice.web.rest;
 import ee.urbanzen.backoffice.domain.Booking;
 import ee.urbanzen.backoffice.domain.Lesson;
 import ee.urbanzen.backoffice.service.LessonService;
+import ee.urbanzen.backoffice.service.MailService;
 import ee.urbanzen.backoffice.service.dto.TimetableDTO;
 import ee.urbanzen.backoffice.web.rest.errors.BadRequestAlertException;
 
@@ -39,8 +40,12 @@ public class LessonResource {
 
     private final LessonService lessonService;
 
-    public LessonResource(LessonService lessonService) {
+    private final MailService mailService;
+
+    public LessonResource(LessonService lessonService,
+                          MailService mailService) {
         this.lessonService = lessonService;
+        this.mailService = mailService;
     }
 
     /**
@@ -99,7 +104,7 @@ public class LessonResource {
         @RequestParam(value = "firstDayOfWeek") LocalDate firstDayOfWeek,
         @RequestParam(value = "lastDayOfWeek") LocalDate lastDayOfWeek) {
         log.debug("REST request to get all Lessons By Dates");
-        return lessonService.getLessonsByDates(firstDayOfWeek, lastDayOfWeek);
+        return lessonService.findLessonsByDates(firstDayOfWeek, lastDayOfWeek);
     }
 
     /**
@@ -113,23 +118,9 @@ public class LessonResource {
         @RequestParam(value = "lastDayOfWeek") LocalDate lastDayOfWeek) {
         log.debug("REST request to get Timetable by dates");
 
-        //          current week:
-//        LocalDate date = LocalDate.now();
-//        LocalDate firstDayOfWeek = date.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-//        LocalDate lastDayOfWeek = date.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
-
-//          fixed data:
-//        LocalDate firstDayOfWeek = LocalDate.parse("2019-11-04");
-//        LocalDate lastDayOfWeek = LocalDate.parse("2019-11-11");
-
-//          or:
-//        LocalDate firstDayOfWeek = LocalDate.parse("2019-11-07");
-//        LocalDate lastDayOfWeek = LocalDate.parse("2019-11-08");
-
-
         List<TimetableDTO> timetables = new ArrayList<>();
-        List<LocalDate> days = LessonService.getDatesBetween(firstDayOfWeek, lastDayOfWeek);
-        List<Lesson> lessons = lessonService.getLessonsByDates(firstDayOfWeek, lastDayOfWeek);
+        List<LocalDate> days = lessonService.getDatesBetweenIncludingLast(firstDayOfWeek, lastDayOfWeek);
+        List<Lesson> lessons = lessonService.findLessonsByDates(firstDayOfWeek, lastDayOfWeek);
 
         for (LocalDate day : days) {
             TimetableDTO timetableDTO = new TimetableDTO();
@@ -183,7 +174,18 @@ public class LessonResource {
     @DeleteMapping("/lessons/{id}")
     public ResponseEntity<Void> deleteLesson(@PathVariable Long id) {
         log.debug("REST request to delete Lesson : {}", id);
-        lessonService.deleteById(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+
+        Lesson lesson = lessonService
+            .findById(id)
+            .orElseThrow(()-> new BadRequestAlertException("Lesson not found", ENTITY_NAME, "lessonnotfound"));
+
+        if (lesson.getBookings() != null) {
+            for (Booking booking : lesson.getBookings()) {
+                mailService.sendLessonCancellationEmail((booking.getUser()), lesson);
+            }
+        }
+        lessonService.deleteLesson(lesson);
+        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName,
+            true, ENTITY_NAME, id.toString())).build();
     }
 }

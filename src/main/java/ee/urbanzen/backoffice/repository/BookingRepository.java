@@ -1,5 +1,4 @@
 package ee.urbanzen.backoffice.repository;
-
 import ee.urbanzen.backoffice.domain.Booking;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
@@ -46,4 +45,6 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
         "booking.cancelDate is null)")
     Booking findBookingByLessonIdUserIdAndWithoutCancelDate(@Param("lessonId")Long lessonId,
                                                             @Param("userId")Long userId);
+    @Query("delete from Booking booking where booking.lesson.id = :lessonId")
+    void deleteAllByLessonId(@Param("lessonId")Long lessonId);
 }

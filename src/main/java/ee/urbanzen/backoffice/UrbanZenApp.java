@@ -1,6 +1,6 @@
 package ee.urbanzen.backoffice;
 
-import  ee.urbanzen.backoffice.config.ApplicationProperties;
+import ee.urbanzen.backoffice.config.ApplicationProperties;
 import ee.urbanzen.backoffice.config.DefaultProfileUtil;
 
 import io.github.jhipster.config.JHipsterConstants;

@@ -47,7 +47,10 @@ export class LessonTemplateDeletePopupComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.activatedRoute.data.subscribe(({ lessonTemplate }) => {
       setTimeout(() => {
-        this.ngbModalRef = this.modalService.open(LessonTemplateDeleteDialogComponent as Component, { size: 'lg', backdrop: 'static' });
+        this.ngbModalRef = this.modalService.open(LessonTemplateDeleteDialogComponent as Component, {
+          size: 'lg',
+          backdrop: 'static'
+        });
         this.ngbModalRef.componentInstance.lessonTemplate = lessonTemplate;
         this.ngbModalRef.result.then(
           result => {

@@ -19,8 +19,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * REST controller for managing {@link ee.urbanzen.backoffice.domain.LessonTemplate}.
@@ -40,7 +39,8 @@ public class LessonTemplateResource {
 
     private final LessonTemplateService lessonTemplateService;
 
-    public LessonTemplateResource(LessonService lessonService, LessonTemplateService lessonTemplateService) {
+    public LessonTemplateResource(LessonService lessonService,
+                                  LessonTemplateService lessonTemplateService) {
         this.lessonService = lessonService;
         this.lessonTemplateService = lessonTemplateService;
     }
@@ -80,67 +80,41 @@ public class LessonTemplateResource {
         LocalDate timetableStartDateTimeLocalDate = LocalDate.parse(startDate);
         LocalDate timetableEndDateTimeLocalDate = LocalDate.parse(endDate);
 
-        List<LessonTemplate>lessonTemplatesByDatesWithoutLessons = lessonTemplateService
+        List<LessonTemplate> lessonTemplatesByDatesWithoutLessons = lessonTemplateService
             .findAllByDatesWithoutLessons(timetableStartDateTimeLocalDate, timetableEndDateTimeLocalDate);
 
-        List<Lesson>generatedLessons = lessonTemplateService.generateLessonsFromTemplatesByDates(timetableStartDateTimeLocalDate,
-            timetableEndDateTimeLocalDate,lessonTemplatesByDatesWithoutLessons);
-
-        lessonService.saveAll(generatedLessons);
-        lessonService.flush();
+        List<Lesson> generatedLessons = lessonService.generateLessonsFromTemplatesByDates(timetableStartDateTimeLocalDate,
+            timetableEndDateTimeLocalDate, lessonTemplatesByDatesWithoutLessons);
 
         return ResponseEntity.ok()
             .body("OK");
     }
 
     /**
-     * {@code PUT  /lesson-templates} : Updates an existing lessonTemplate.
+     * {@code PUT  /lesson-templates} : Updates an existing updatedLessonTemplate.
      *
-     * @param lessonTemplate the lessonTemplate to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated lessonTemplate,
-     * or with status {@code 400 (Bad Request)} if the lessonTemplate is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the lessonTemplate couldn't be updated.
+     * @param updatedLessonTemplate the updatedLessonTemplate to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated updatedLessonTemplate,
+     * or with status {@code 400 (Bad Request)} if the updatedLessonTemplate is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the updatedLessonTemplate couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/lesson-templates")
-    public ResponseEntity<LessonTemplate> updateLessonTemplate(@Valid @RequestBody LessonTemplate lessonTemplate)
+    public ResponseEntity<LessonTemplate> updateLessonTemplate(@Valid @RequestBody LessonTemplate updatedLessonTemplate)
         throws URISyntaxException {
-        log.debug("REST request to update LessonTemplate : {}", lessonTemplate);
-        if (lessonTemplate.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
-        }
-        LessonTemplate result = lessonTemplateService.save(lessonTemplate);
+        log.debug("REST request to update LessonTemplate : {}", updatedLessonTemplate);
+
+        LessonTemplate result = lessonTemplateService.updateLessonTemplate(updatedLessonTemplate);
+
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME,
-                lessonTemplate.getId().toString()))
+                updatedLessonTemplate.getId().toString()))
             .body(result);
     }
 
-//    /**
-//     * {@code PUT  /timetable} : Updates an existing timetable.
-//     *
-//     * @param timetable the timetable to update.
-//     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated timetable,
-//     * or with status {@code 400 (Bad Request)} if the timetable is not valid,
-//     * or with status {@code 500 (Internal Server Error)} if the timetable couldn't be updated.
-//     * @throws URISyntaxException if the Location URI syntax is incorrect.
-//     */
-//    @PutMapping("/timetable")
-//    public ResponseEntity<Timetable> updateTimetable(@Valid @RequestBody Timetable timetable) throws URISyntaxException {
-//        log.debug("REST request to update Timetable : {}", timetable);
-//        if (timetable.getId() == null) {
-//            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
-//        }
-//        Timetable result = timetableRepository.save(timetable);
-//        return ResponseEntity.ok()
-//            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, timetable.getId().toString()))
-//            .body(result);
-//    }
-//
     /**
      * {@code GET  /lesson-templates} : get all the lessonTemplates.
      *
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of lessonTemplates in body.
      */
     @GetMapping("/lesson-templates")

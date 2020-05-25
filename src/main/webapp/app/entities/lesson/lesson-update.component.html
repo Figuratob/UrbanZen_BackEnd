@@ -1,42 +1,53 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-lesson-heading" jhiTranslate="urbanZenApp.lesson.home.createOrEditLabel">Create or edit a Lesson</h2>
+            <h2 id="jhi-lesson-heading" jhiTranslate="urbanZenApp.lesson.home.createOrEditLabel">Create or edit a
+                Lesson</h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!editForm.get('id').value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"
-                        readonly />
+                           readonly/>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.startDate" for="field_startDate">Start Date</label>
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.startDate" for="field_startDate">Start
+                        Date</label>
                     <div class="d-flex">
-                        <input id="field_startDate" type="datetime-local" class="form-control" name="startDate" formControlName="startDate" placeholder="YYYY-MM-DD HH:mm"/>
+                        <input id="field_startDate" type="datetime-local" class="form-control" name="startDate"
+                               formControlName="startDate" placeholder="YYYY-MM-DD HH:mm"/>
                     </div>
-                    <div *ngIf="editForm.get('startDate').invalid && (editForm.get('startDate').dirty || editForm.get('startDate').touched)">
+                    <div
+                        *ngIf="editForm.get('startDate').invalid && (editForm.get('startDate').dirty || editForm.get('startDate').touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('startDate').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
+                               *ngIf="editForm.get('startDate').errors.required"
+                               jhiTranslate="entity.validation.required">
+                            This field is required.
                         </small>
                         <small class="form-text text-danger"
-                            [hidden]="!editForm.get('startDate').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                               [hidden]="!editForm.get('startDate').errors?.ZonedDateTimelocal"
+                               jhiTranslate="entity.validation.ZonedDateTimelocal">
                             This field should be a date and time.
                         </small>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.endDate" for="field_endDate">End Date</label>
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.endDate" for="field_endDate">End
+                        Date</label>
                     <div class="d-flex">
-                        <input id="field_endDate" type="datetime-local" class="form-control" name="endDate" formControlName="endDate" placeholder="YYYY-MM-DD HH:mm"/>
+                        <input id="field_endDate" type="datetime-local" class="form-control" name="endDate"
+                               formControlName="endDate" placeholder="YYYY-MM-DD HH:mm"/>
                     </div>
-                    <div *ngIf="editForm.get('endDate').invalid && (editForm.get('endDate').dirty || editForm.get('endDate').touched)">
+                    <div
+                        *ngIf="editForm.get('endDate').invalid && (editForm.get('endDate').dirty || editForm.get('endDate').touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('endDate').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
+                               *ngIf="editForm.get('endDate').errors.required"
+                               jhiTranslate="entity.validation.required">
+                            This field is required.
                         </small>
                         <small class="form-text text-danger"
-                            [hidden]="!editForm.get('endDate').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                               [hidden]="!editForm.get('endDate').errors?.ZonedDateTimelocal"
+                               jhiTranslate="entity.validation.ZonedDateTimelocal">
                             This field should be a date and time.
                         </small>
                     </div>
@@ -44,47 +55,57 @@
 
                 <div class="form-group">
 
-                    <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.nameEst" for="field_name">NameEst</label>
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.nameEst"
+                           for="field_name">NameEst</label>
                     <input type="text" class="form-control" name="name" id="field_name"
                            formControlName="name"/>
-                    <div *ngIf="editForm.get('name').invalid && (editForm.get('name').dirty || editForm.get('name').touched)">
+                    <div
+                        *ngIf="editForm.get('name').invalid && (editForm.get('name').dirty || editForm.get('name').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('name').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
+                            This field is required.
                         </small>
                     </div>
                     <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.nameEng" for="field_nameEng">NameEng</label>
                     <input type="text" class="form-control" name="nameEng" id="field_nameEng"
                            formControlName="nameEng"/>
-                    <div *ngIf="editForm.get('nameEng').invalid && (editForm.get('nameEng').dirty || editForm.get('nameEng').touched)">
+                    <div
+                        *ngIf="editForm.get('nameEng').invalid && (editForm.get('nameEng').dirty || editForm.get('nameEng').touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('nameEng').errors.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('nameEng').errors.required"
+                               jhiTranslate="entity.validation.required">
                             This field is required.
                         </small>
                     </div>
                     <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.nameRus" for="field_nameRus">NameRus</label>
                     <input type="text" class="form-control" name="nameRus" id="field_nameRus"
                            formControlName="nameRus"/>
-                    <div *ngIf="editForm.get('nameRus').invalid && (editForm.get('nameRus').dirty || editForm.get('nameRus').touched)">
+                    <div
+                        *ngIf="editForm.get('nameRus').invalid && (editForm.get('nameRus').dirty || editForm.get('nameRus').touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('nameRus').errors.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('nameRus').errors.required"
+                               jhiTranslate="entity.validation.required">
                             This field is required.
                         </small>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.descriptionEst" for="field_description">DescriptionEst</label>
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.descriptionEst"
+                           for="field_description">DescriptionEst</label>
                     <input type="text" class="form-control" name="description" id="field_description"
                            formControlName="description"/>
-                    <div *ngIf="editForm.get('description').invalid && (editForm.get('description').dirty || editForm.get('description').touched)">
+                    <div
+                        *ngIf="editForm.get('description').invalid && (editForm.get('description').dirty || editForm.get('description').touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('description').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
+                               *ngIf="editForm.get('description').errors.required"
+                               jhiTranslate="entity.validation.required">
+                            This field is required.
                         </small>
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('description').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 1000 }">
-                        This field cannot be longer than 1000 characters.
+                               *ngIf="editForm.get('description').errors.maxlength"
+                               jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 1000 }">
+                            This field cannot be longer than 1000 characters.
                         </small>
                     </div>
 
@@ -95,11 +116,13 @@
                     <div *ngIf="editForm.get('descriptionEng').invalid && (editForm.get('descriptionEng').dirty ||
                     editForm.get('descriptionEng').touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('descriptionEng').errors.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('descriptionEng').errors.required"
+                               jhiTranslate="entity.validation.required">
                             This field is required.
                         </small>
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('descriptionEng').errors.maxlength" jhiTranslate="entity.validation.maxlength"
+                               *ngIf="editForm.get('descriptionEng').errors.maxlength"
+                               jhiTranslate="entity.validation.maxlength"
                                [translateValues]="{ max: 1000 }">
                             This field cannot be longer than 1000 characters.
                         </small>
@@ -112,11 +135,13 @@
                     <div *ngIf="editForm.get('descriptionRus').invalid && (editForm.get('descriptionRus').dirty ||
                     editForm.get('descriptionRus').touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('descriptionRus').errors.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('descriptionRus').errors.required"
+                               jhiTranslate="entity.validation.required">
                             This field is required.
                         </small>
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('descriptionRus').errors.maxlength" jhiTranslate="entity.validation.maxlength"
+                               *ngIf="editForm.get('descriptionRus').errors.maxlength"
+                               jhiTranslate="entity.validation.maxlength"
                                [translateValues]="{ max: 1000 }">
                             This field cannot be longer than 1000 characters.
                         </small>
@@ -142,40 +167,44 @@
                            formControlName="streetRus"/>
                 </div>
 
-            <div class="form-group">
-                <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.cityEst" for="field_city">
-                    CityEst</label>
-                <input type="text" class="form-control" name="city" id="field_city"
-                       formControlName="city"/>
-            </div>
-            <div class="form-group">
-                <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.cityEng" for="field_cityEng">
-                    CityEng</label>
-                <input type="text" class="form-control" name="cityEng" id="field_cityEng"
-                       formControlName="cityEng"/>
-            </div>
-            <div class="form-group">
-                <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.cityRus" for="field_cityRus">
-                    CityRus</label>
-                <input type="text" class="form-control" name="cityRus" id="field_cityRus"
-                       formControlName="cityRus"/>
-            </div>
-                K
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.availableSpaces" for="field_availableSpaces">Available Spaces</label>
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.cityEst" for="field_city">
+                        CityEst</label>
+                    <input type="text" class="form-control" name="city" id="field_city"
+                           formControlName="city"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.cityEng" for="field_cityEng">
+                        CityEng</label>
+                    <input type="text" class="form-control" name="cityEng" id="field_cityEng"
+                           formControlName="cityEng"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.cityRus" for="field_cityRus">
+                        CityRus</label>
+                    <input type="text" class="form-control" name="cityRus" id="field_cityRus"
+                           formControlName="cityRus"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.availableSpaces"
+                           for="field_availableSpaces">Available Spaces</label>
                     <input type="number" class="form-control" name="availableSpaces" id="field_availableSpaces"
                            formControlName="availableSpaces"/>
-                    <div *ngIf="editForm.get('availableSpaces').invalid && (editForm.get('availableSpaces').dirty || editForm.get('availableSpaces').touched)">
+                    <div
+                        *ngIf="editForm.get('availableSpaces').invalid && (editForm.get('availableSpaces').dirty || editForm.get('availableSpaces').touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('availableSpaces').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
+                               *ngIf="editForm.get('availableSpaces').errors.required"
+                               jhiTranslate="entity.validation.required">
+                            This field is required.
                         </small>
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('availableSpaces').errors.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
+                               *ngIf="editForm.get('availableSpaces').errors.min" jhiTranslate="entity.validation.min"
+                               [translateValues]="{ min: 0 }">
                             This field should be at least 0.
                         </small>
                         <small class="form-text text-danger"
-                            [hidden]="!editForm.get('availableSpaces')?.errors?.number" jhiTranslate="entity.validation.number">
+                               [hidden]="!editForm.get('availableSpaces')?.errors?.number"
+                               jhiTranslate="entity.validation.number">
                             This field should be a number.
                         </small>
                     </div>
@@ -185,28 +214,36 @@
                     <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.teacher" for="field_teacher">Teacher</label>
                     <select class="form-control" id="field_teacher" name="teacher" formControlName="teacher">
                         <option *ngIf="!editForm.get('teacher').value" [ngValue]="null" selected></option>
-                        <option [ngValue]="teacherOption.id === editForm.get('teacher').value?.id ? editForm.get('teacher').value : teacherOption" *ngFor="let teacherOption of teachers; trackBy: trackTeacherById">{{teacherOption.id}}</option>
+                        <option
+                            [ngValue]="teacherOption.id === editForm.get('teacher').value?.id ? editForm.get('teacher').value : teacherOption"
+                            *ngFor="let teacherOption of teachers; trackBy: trackTeacherById">{{teacherOption.id}}</option>
                     </select>
                 </div>
-                <div *ngIf="editForm.get('teacher').invalid && (editForm.get('teacher').dirty || editForm.get('teacher').touched)">
+                <div
+                    *ngIf="editForm.get('teacher').invalid && (editForm.get('teacher').dirty || editForm.get('teacher').touched)">
                     <small class="form-text text-danger"
                            *ngIf="editForm.get('teacher').errors.required" jhiTranslate="entity.validation.required">
                         This field is required.
                     </small>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.lessonTemplate" for="field_lessonTemplate">Lesson Template</label>
-                    <select class="form-control" id="field_lessonTemplate" name="lessonTemplate" formControlName="lessonTemplate">
+                    <label class="form-control-label" jhiTranslate="urbanZenApp.lesson.lessonTemplate"
+                           for="field_lessonTemplate">Lesson Template</label>
+                    <select class="form-control" id="field_lessonTemplate" name="lessonTemplate"
+                            formControlName="lessonTemplate">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="lessonTemplateOption.id === editForm.get('lessonTemplate').value?.id ? editForm.get('lessonTemplate').value : lessonTemplateOption" *ngFor="let lessonTemplateOption of lessontemplates; trackBy: trackLessonTemplateById">{{lessonTemplateOption.id}}</option>
+                        <option
+                            [ngValue]="lessonTemplateOption.id === editForm.get('lessonTemplate').value?.id ? editForm.get('lessonTemplate').value : lessonTemplateOption"
+                            *ngFor="let lessonTemplateOption of lessontemplates; trackBy: trackLessonTemplateById">{{lessonTemplateOption.id}}</option>
                     </select>
                 </div>
             </div>
             <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
                     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving"
+                        class="btn btn-primary">
                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>
