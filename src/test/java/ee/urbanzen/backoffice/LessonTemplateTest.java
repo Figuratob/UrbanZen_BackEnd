@@ -5,10 +5,10 @@ import ee.urbanzen.backoffice.domain.LessonTemplate;
 import ee.urbanzen.backoffice.domain.Teacher;
 import ee.urbanzen.backoffice.repository.LessonTemplateRepository;
 import ee.urbanzen.backoffice.repository.TeacherRepository;
-import ee.urbanzen.backoffice.service.LessonTemplateService;
+import ee.urbanzen.backoffice.service.LessonService;
 import ee.urbanzen.backoffice.web.rest.LessonTemplateResource;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(classes = UrbanZenApp.class)
 @Transactional
-public class LetterTemplateTest {
+public class LessonTemplateTest {
 
     @Autowired
     private LessonTemplateRepository lessonTemplateRepository;
@@ -34,6 +34,9 @@ public class LetterTemplateTest {
 
     @Autowired
     LessonTemplateResource lessonTemplateResource;
+
+    @Autowired
+    private LessonService lessonService;
 
 
     LocalDate timetableStartDate = LocalDate.of(2019,10,07);
@@ -45,8 +48,6 @@ public class LetterTemplateTest {
     LocalDate timetableStartDateIsBeforeDateOfLesson = LocalDate.of(2019,10,06);
     LocalDate timetableStartDateIsAfterDateOfLesson = LocalDate.of(2019,10,8);
 
-
-
     @Before
     public void setupTest() {
         getTestData();
@@ -57,7 +58,11 @@ public class LetterTemplateTest {
         byte[] photo1 = new byte[]{};
         Teacher teacher1 = new Teacher()
             .firstName("Anastassia")
+            .firstNameEng("")
+            .firstNameRus("")
             .lastName("Kundalini")
+            .lastNameEng("")
+            .lastNameRus("")
             .email("kundalini2019@gmail.com")
             .phone("+37253446498")
             .photo(photo1)
@@ -67,7 +72,11 @@ public class LetterTemplateTest {
         byte[] photo2 = new byte[]{};
         Teacher teacher2 = new Teacher()
             .firstName("Yelena")
+            .firstNameRus("")
+            .firstNameEng("")
             .lastName("Kundalini")
+            .lastNameRus("")
+            .lastNameEng("")
             .email("kundalini2019@gmail.com")
             .phone("+37253446327")
             .photo(photo2)
@@ -81,9 +90,17 @@ public class LetterTemplateTest {
             .startDate((LocalDateTime.of(LocalDate.of(2019, 10, 7), LocalTime.of(18,30))).toInstant(ZoneOffset.UTC))
             .endDate((LocalDateTime.of(LocalDate.of(2019, 10, 7), LocalTime.of(20,00))).toInstant(ZoneOffset.UTC))
             .name("Kundalini Jooga")
+            .nameEng("asg")
+            .nameRus("asg")
             .description("ajvh")
+            .descriptionEng("asg")
+            .descriptionRus("age")
             .street("")
+            .streetEng("aswe")
+            .streetRus("aef")
             .city("")
+            .cityEng("as")
+            .cityRus("ag")
             .availableSpaces(10)
             .teacher(teacher1);
 
@@ -94,9 +111,17 @@ public class LetterTemplateTest {
             .endHour(20)
             .endMinute(0)
             .name("Kundalini Jooga")
+            .nameEng("")
+            .nameRus("")
             .description("ajvh")
+            .descriptionEng("")
+            .descriptionRus("")
             .street("")
+            .streetEng("")
+            .streetRus("")
             .city("")
+            .cityEng("")
+            .cityRus("")
             .availableSpaces(10)
             .repeatStartDate(LocalDate.of(2019, 10, 3))
             .repeatUntilDate(LocalDate.of(2019, 12, 31))
@@ -107,9 +132,17 @@ public class LetterTemplateTest {
             .startDate((LocalDateTime.of(LocalDate.of(2019, 10, 8), LocalTime.of(9,30))).toInstant(ZoneOffset.UTC))
             .endDate((LocalDateTime.of(LocalDate.of(2019, 10, 8), LocalTime.of(12,00))).toInstant(ZoneOffset.UTC))
             .name("Kundalini Jooga")
+            .nameEng("")
+            .nameRus("")
             .description("ajvh")
+            .descriptionEng("")
+            .descriptionRus("")
             .street("")
+            .streetEng("")
+            .streetRus("")
             .city("")
+            .cityEng("")
+            .cityRus(" ")
             .availableSpaces(10)
             .teacher(teacher1);
 
@@ -121,9 +154,17 @@ public class LetterTemplateTest {
             .endHour(12)
             .endMinute(0)
             .name("Kundalini Jooga")
+            .nameEng("")
+            .nameRus("")
             .description("ajvh")
+            .descriptionEng("Afe")
+            .descriptionRus("fae")
             .street("")
+            .streetEng("")
+            .streetRus("")
             .city("")
+            .cityEng("")
+            .cityRus("")
             .availableSpaces(10)
             .repeatStartDate(LocalDate.of(2019, 10, 3))
             .repeatUntilDate(LocalDate.of(2019, 12, 31))
@@ -137,9 +178,17 @@ public class LetterTemplateTest {
             .endHour(19)
             .endMinute(30)
             .name("Kundalini Jooga")
+            .nameEng("sdfa")
+            .nameRus("afe")
             .description("ajvh")
+            .descriptionEng("ae")
+            .descriptionRus("fe")
             .street("")
+            .streetEng("fe")
+            .streetRus("daf")
             .city("")
+            .cityEng("")
+            .cityRus("")
             .availableSpaces(10)
             .repeatStartDate(LocalDate.of(2019, 10, 3))
             .repeatUntilDate(LocalDate.of(2019, 12, 31))
@@ -152,9 +201,17 @@ public class LetterTemplateTest {
             .endHour(20)
             .endMinute(0)
             .name("Kundalini Jooga")
+            .nameEng("fe")
+            .nameRus("fea")
             .description("ajvh")
+            .descriptionEng("ae")
+            .descriptionRus("sfge")
             .street("")
+            .streetEng("")
+            .streetRus("gr")
             .city("")
+            .cityEng("")
+            .cityRus("rga")
             .availableSpaces(10)
             .repeatStartDate(LocalDate.of(2019, 10, 3))
             .repeatUntilDate(null)
@@ -167,9 +224,17 @@ public class LetterTemplateTest {
             .endHour(11)
             .endMinute(00)
             .name("SRE")
+            .nameEng("sg")
+            .nameRus("sager")
             .description("zzzzz")
+            .descriptionEng("aeg")
+            .descriptionRus("shge")
             .street("")
+            .streetEng("sag")
+            .streetRus("aeg")
             .city("")
+            .cityEng("sag")
+            .cityRus("ag")
             .availableSpaces(10)
             .repeatStartDate(LocalDate.of(2019,10,3))
             .repeatUntilDate(LocalDate.of(2019,12,31))
@@ -182,9 +247,17 @@ public class LetterTemplateTest {
             .endHour(19)
             .endMinute(30)
             .name("Kundalini Jooga")
+            .nameEng("age")
+            .nameRus("aegf")
             .description("zzzzz")
+            .descriptionEng("aeg")
+            .descriptionRus("sag")
             .street("")
+            .streetEng("asef")
+            .streetRus("age")
             .city("")
+            .cityEng("ag")
+            .cityRus("age")
             .availableSpaces(10)
             .repeatStartDate(LocalDate.of(2019,10,3))
             .repeatUntilDate(LocalDate.of(2019,12,31))
@@ -197,9 +270,17 @@ public class LetterTemplateTest {
             .endHour(20)
             .endMinute(00)
             .name("Kundalini Jooga")
+            .nameEng("age")
+            .nameRus("age")
             .description("zzzzz")
+            .descriptionEng("age")
+            .descriptionRus("age")
             .street("")
+            .streetEng("aeg")
+            .streetRus("age")
             .city("")
+            .cityEng("aeg")
+            .cityRus("agr")
             .availableSpaces(10)
             .repeatStartDate(LocalDate.of(2019,10,3))
             .repeatUntilDate(LocalDate.of(2019,12,31))
@@ -212,9 +293,17 @@ public class LetterTemplateTest {
             .endHour(10)
             .endMinute(30)
             .name("Zen Meditation")
+            .nameEng("Age")
+            .nameRus("age")
             .description("zzzzz")
+            .descriptionEng("age")
+            .descriptionRus("age")
             .street("")
+            .streetEng("age")
+            .streetRus("sg")
             .city("")
+            .cityEng("")
+            .cityRus("")
             .availableSpaces(10)
             .repeatStartDate(LocalDate.of(2019,10,3))
             .repeatUntilDate(LocalDate.of(2019,12,31))
@@ -224,6 +313,10 @@ public class LetterTemplateTest {
         lessonTemplateRepository.saveAndFlush(lessonTemplate2);
         lessonTemplateRepository.saveAndFlush(lessonTemplate3);
         lessonTemplateRepository.saveAndFlush(lessonTemplate4);
+        lessonTemplateRepository.saveAndFlush(lessonTemplate5);
+        lessonTemplateRepository.saveAndFlush(lessonTemplate6);
+        lessonTemplateRepository.saveAndFlush(lessonTemplate7);
+        lessonTemplateRepository.saveAndFlush(lessonTemplate8);
 
         List<LessonTemplate> lessonTemplateList = new ArrayList<>();
         lessonTemplateList.add(lessonTemplate1);
@@ -255,8 +348,7 @@ public class LetterTemplateTest {
         System.out.println(timetableStartDate);
         System.out.println(timetableStartDate.getDayOfWeek());
 
-
-        List<Lesson> newLessons = LessonTemplateService.generateLessonsFromTemplates(timetableStartDate, timetableEndDate, getTestData());
+        List<Lesson> newLessons = lessonService.generateLessonsFromTemplates(timetableStartDate, timetableEndDate, getTestData());
         assertNotNull(newLessons);
         System.out.println(newLessons.size());
 
@@ -292,7 +384,6 @@ public class LetterTemplateTest {
         System.out.println(newLesson2.getStartDate());
         System.out.println(LocalDateTime.ofInstant(newLesson2.getStartDate(), ZoneOffset.UTC).getDayOfWeek());
         assertThat(LocalDateTime.ofInstant(newLesson2.getStartDate(), ZoneOffset.UTC).getDayOfWeek().getValue()).isEqualTo(Calendar.TUESDAY-1);
-
 
         LessonTemplate lessonTemplate3 = getTestData().get(2);
         Lesson newLesson3 = newLessons.get(2);
@@ -358,7 +449,6 @@ public class LetterTemplateTest {
         System.out.println(LocalDateTime.ofInstant(newLesson6.getStartDate(), ZoneOffset.UTC).getDayOfWeek());
         assertThat(LocalDateTime.ofInstant(newLesson6.getStartDate(), ZoneOffset.UTC).getDayOfWeek().getValue()).isEqualTo(Calendar.THURSDAY-1);
 
-
         LessonTemplate lessonTemplate7 = getTestData().get(6);
         Lesson newLesson7 = newLessons.get(6);
 
@@ -400,7 +490,7 @@ public class LetterTemplateTest {
         System.out.println(timetableStartDate);
         System.out.println(timetableStartDate.getDayOfWeek());
 
-        List<Lesson> newLessons = LessonTemplateService.generateLessonsFromTemplatesByDates(timetableStartDate, timetableEndDate, getTestDataWithoutLessons());
+        List<Lesson> newLessons = lessonService.generateLessonsFromTemplatesByDates(timetableStartDate, timetableEndDate, getTestDataWithoutLessons());
         assertNotNull(newLessons);
         assertFalse(newLessons.isEmpty());
         System.out.println(newLessons.size());
@@ -470,7 +560,6 @@ public class LetterTemplateTest {
         System.out.println(LocalDateTime.ofInstant(newLesson4.getStartDate(), ZoneOffset.UTC).getDayOfWeek());
         assertThat(LocalDateTime.ofInstant(newLesson4.getStartDate(), ZoneOffset.UTC).getDayOfWeek().getValue()).isEqualTo(Calendar.THURSDAY-1);
 
-
         LessonTemplate lessonTemplate5 = getTestDataWithoutLessons().get(4);
         Lesson newLesson5 = newLessons.get(4);
 
@@ -486,7 +575,6 @@ public class LetterTemplateTest {
         System.out.println(newLesson5.getStartDate());
         System.out.println(LocalDateTime.ofInstant(newLesson5.getStartDate(), ZoneOffset.UTC).getDayOfWeek());
         assertThat(LocalDateTime.ofInstant(newLesson5.getStartDate(), ZoneOffset.UTC).getDayOfWeek().getValue()).isEqualTo(Calendar.FRIDAY-1);
-
 
         LessonTemplate lessonTemplate6 = getTestDataWithoutLessons().get(5);
         Lesson newLesson6 = newLessons.get(5);
@@ -508,7 +596,7 @@ public class LetterTemplateTest {
 
     @Test
     void test1GenerateLessonsFromTemplatesByDates() {
-        List<Lesson> newLessons = LessonTemplateService.generateLessonsFromTemplatesByDates(timetableStartDate, timetableEndDate, getTestDataWithoutLessons());
+        List<Lesson> newLessons = lessonService.generateLessonsFromTemplatesByDates(timetableStartDate, timetableEndDate, getTestDataWithoutLessons());
         assertNotNull(newLessons);
         System.out.println(newLessons.size());
         System.out.println(newLessons.get(3));
@@ -517,7 +605,7 @@ public class LetterTemplateTest {
 
     @Test
     void test2GenerateLessonsFromTemplatesByDatesForTwoWeeks() {
-        List<Lesson> newLessons = LessonTemplateService.generateLessonsFromTemplatesByDates(timetableStartDate, timetableEndDateTimetableForTwoWeeks, getTestDataWithoutLessons());
+        List<Lesson> newLessons = lessonService.generateLessonsFromTemplatesByDates(timetableStartDate, timetableEndDateTimetableForTwoWeeks, getTestDataWithoutLessons());
         assertNotNull(newLessons);
         System.out.println(newLessons.size());
         assertThat(newLessons.size()).isEqualTo(12);
@@ -526,7 +614,7 @@ public class LetterTemplateTest {
     @Test
     void test1GenerateLessonsFromTemplatesForDay() {
 
-        List<Lesson> newLessons = LessonTemplateService.generateLessonsFromTemplatesForDay(timetableStartDateIsOnDateOfLesson, getTestData());
+        List<Lesson> newLessons = lessonService.generateLessonsFromTemplatesForDay(timetableStartDateIsOnDateOfLesson, getTestData());
         assertNotNull(newLessons);
         assertFalse(newLessons.isEmpty());
         System.out.println(newLessons.size());
@@ -534,20 +622,10 @@ public class LetterTemplateTest {
     }
 
     @Test
-    void test2GenerateLessonsFromTemplatesForDay() {
-
-        List<Lesson> newLessons = LessonTemplateService.generateLessonsFromTemplatesForDay(timetableStartDateIsBeforeDateOfLesson, getTestData());
-        assertNotNull(newLessons);
-        assertFalse(newLessons.isEmpty());
-    }
-
-    @Test
     void test3GenerateLessonsFromTemplatesForDay() {
 
-        List<Lesson> newLessons = LessonTemplateService.generateLessonsFromTemplatesForDay(timetableStartDateIsAfterDateOfLesson, getTestData());
+        List<Lesson> newLessons = lessonService.generateLessonsFromTemplatesForDay(timetableStartDateIsAfterDateOfLesson, getTestData());
         assertNotNull(newLessons);
         assertFalse(newLessons.isEmpty());
     }
-
-
 }

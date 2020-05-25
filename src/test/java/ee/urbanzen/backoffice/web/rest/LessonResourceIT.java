@@ -5,6 +5,10 @@ import ee.urbanzen.backoffice.domain.Lesson;
 import ee.urbanzen.backoffice.domain.Teacher;
 import ee.urbanzen.backoffice.repository.BookingRepository;
 import ee.urbanzen.backoffice.repository.LessonRepository;
+import ee.urbanzen.backoffice.service.LessonService;
+import ee.urbanzen.backoffice.service.LessonTemplateService;
+import ee.urbanzen.backoffice.service.MailService;
+import ee.urbanzen.backoffice.service.UserService;
 import ee.urbanzen.backoffice.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -65,6 +69,15 @@ public class LessonResourceIT {
     private LessonRepository lessonRepository;
 
     @Autowired
+    private LessonService lessonService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private MailService mailService;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -86,7 +99,12 @@ public class LessonResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final LessonResource lessonResource = new LessonResource(lessonRepository);
+//        UserService userService =userService;
+        LessonService lessonService = null;
+//        MailService mailService = mailService;
+        LessonTemplateService lessonTemplateService = null;
+        final LessonResource lessonResource = new LessonResource(lessonService,
+            mailService);
         this.restLessonMockMvc = MockMvcBuilders.standaloneSetup(lessonResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

@@ -5,6 +5,8 @@ import ee.urbanzen.backoffice.domain.LessonTemplate;
 import ee.urbanzen.backoffice.domain.Teacher;
 import ee.urbanzen.backoffice.repository.LessonRepository;
 import ee.urbanzen.backoffice.repository.LessonTemplateRepository;
+import ee.urbanzen.backoffice.service.LessonService;
+import ee.urbanzen.backoffice.service.LessonTemplateService;
 import ee.urbanzen.backoffice.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -88,6 +90,12 @@ public class LessonTemplateResourceIT {
     private LessonRepository lessonRepository;
 
     @Autowired
+    private LessonTemplateService lessonTemplateService;
+
+    @Autowired
+    private LessonService lessonService;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -109,7 +117,7 @@ public class LessonTemplateResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final LessonTemplateResource lessonTemplateResource = new LessonTemplateResource(lessonTemplateRepository, lessonRepository);
+        final LessonTemplateResource lessonTemplateResource = new LessonTemplateResource(lessonService, lessonTemplateService);
         this.restLessonTemplateMockMvc = MockMvcBuilders.standaloneSetup(lessonTemplateResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
