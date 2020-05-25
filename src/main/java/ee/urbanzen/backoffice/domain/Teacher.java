@@ -1,4 +1,5 @@
 package ee.urbanzen.backoffice.domain;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -73,10 +74,12 @@ public class Teacher implements Serializable {
     private String aboutRus;
 
     @OneToMany(mappedBy = "teacher")
+    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Lesson> lessons = new HashSet<>();
 
     @OneToMany(mappedBy = "teacher")
+    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<LessonTemplate> lessonTemplates = new HashSet<>();
 
@@ -97,7 +100,14 @@ public class Teacher implements Serializable {
         this.firstName = firstName;
         return this;
     }
-
+    public Teacher firstNameEng(String firstNameEng) {
+        this.firstNameEng = firstNameEng;
+        return this;
+    }
+    public Teacher firstNameRus(String firstNameRus) {
+        this.firstNameRus = firstNameRus;
+        return this;
+    }
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -106,11 +116,18 @@ public class Teacher implements Serializable {
         return lastName;
     }
 
+    public Teacher lastNameEng(String lastNameEng) {
+        this.lastNameEng = lastNameEng;
+        return this;
+    }
+    public Teacher lastNameRus(String lastNameRus) {
+        this.lastNameRus = lastNameRus;
+        return this;
+    }
     public Teacher lastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }

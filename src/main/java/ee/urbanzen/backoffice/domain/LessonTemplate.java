@@ -56,9 +56,6 @@ public class LessonTemplate implements Serializable {
     @Column(name = "end_minute", nullable = false)
     private Integer endMinute;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
     @NotNull
     @Column(name = "name", nullable = false)
     private String name;
@@ -76,29 +73,37 @@ public class LessonTemplate implements Serializable {
     @Column(name = "description", length = 1000, nullable = false)
     private String description;
 
+    @NotNull
     @Size(max = 1000)
     @Column(name = "description_eng", length = 1000, nullable = false)
     private String descriptionEng;
 
+    @NotNull
     @Size(max = 1000)
     @Column(name = "description_rus", length = 1000, nullable = false)
     private String descriptionRus;
 
+    @NotNull
     @Column(name = "street")
     private String street;
 
+    @NotNull
     @Column(name = "street_eng")
     private String streetEng;
 
+    @NotNull
     @Column(name = "street_rus")
     private String streetRus;
 
+    @NotNull
     @Column(name = "city")
     private String city;
 
+    @NotNull
     @Column(name = "city_eng")
     private String cityEng;
 
+    @NotNull
     @Column(name = "city_rus")
     private String cityRus;
 
@@ -114,14 +119,15 @@ public class LessonTemplate implements Serializable {
     @Column(name = "repeat_until_date")
     private LocalDate repeatUntilDate;
 
-    @OneToMany(mappedBy = "lessonTemplate", cascade = CascadeType.ALL)
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Lesson> lessons = new HashSet<>();
-
     @ManyToOne(optional = false)
     @NotNull
     @JsonIgnoreProperties("lessonTemplates")
     private Teacher teacher;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "lessonTemplate")
+    private Set<Lesson> lessons = new HashSet<>();
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 
     public boolean isActiveOnGivenDate (LocalDate date) {
 
@@ -130,8 +136,110 @@ public class LessonTemplate implements Serializable {
         }
         return true;
     }
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+    public LessonTemplate dayOfWeek(DayOfWeek dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
+        return this;
+    }
+    public LessonTemplate startHour(Integer startHour) {
+        this.startHour = startHour;
+        return this;
+    }
+    public LessonTemplate startMinute(Integer startMinute) {
+        this.startMinute = startMinute;
+        return this;
+    }
+    public LessonTemplate endHour(Integer endHour) {
+        this.endHour = endHour;
+        return this;
+    }
+    public LessonTemplate endMinute(Integer endMinute) {
+        this.endMinute = endMinute;
+        return this;
+    }
+    public LessonTemplate name(String name) {
+        this.name = name;
+        return this;
+    }
+    public LessonTemplate nameEng(String nameEng) {
+        this.nameEng = nameEng;
+        return this;
+    }
+    public LessonTemplate nameRus(String nameRus) {
+        this.nameRus = nameRus;
+        return this;
+    }
+    public LessonTemplate description(String description) {
+        this.description = description;
+        return this;
+    }
+    public LessonTemplate descriptionEng (String descriptionEng) {
+        this.descriptionEng = descriptionEng;
+        return this;
+    }
+    public LessonTemplate descriptionRus (String descriptionRus) {
+        this.descriptionRus = descriptionRus;
+        return this;
+    }
+    public LessonTemplate street(String street) {
+        this.street = street;
+        return this;
+    }
+    public LessonTemplate streetEng(String streetEng) {
+        this.streetEng = streetEng;
+        return this;
+    }
+    public LessonTemplate streetRus(String streetRus) {
+        this.streetRus = streetRus;
+        return this;
+    }
+    public LessonTemplate city(String city) {
+        this.city = city;
+        return this;
+    }
+    public LessonTemplate cityEng(String cityEng) {
+        this.cityEng = cityEng;
+        return this;
+    }
+    public LessonTemplate cityRus(String cityRus) {
+        this.cityRus = cityRus;
+        return this;
+    }
+    public LessonTemplate availableSpaces(Integer availableSpaces) {
+        this.availableSpaces = availableSpaces;
+        return this;
+    }
+    public LessonTemplate repeatStartDate(LocalDate repeatStartDate) {
+        this.repeatStartDate = repeatStartDate;
+        return this;
+    }
+    public LessonTemplate repeatUntilDate(LocalDate repeatUntilDate) {
+        this.repeatUntilDate = repeatUntilDate;
+        return this;
+    }
+    public LessonTemplate lessons(Set<Lesson> lessons) {
+        this.lessons = lessons;
+        return this;
+    }
+    public LessonTemplate addLesson(Lesson lesson) {
+        this.lessons.add(lesson);
+        lesson.setLessonTemplate(this);
+        return this;
+    }
+    public LessonTemplate removeLesson(Lesson lesson) {
+        this.lessons.remove(lesson);
+        lesson.setLessonTemplate(null);
+        return this;
+    }
+    public LessonTemplate teacher(Teacher teacher) {
+        this.teacher = teacher;
+        return this;
+    }
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+
     public Long getId() {
         return id;
     }
@@ -144,22 +252,12 @@ public class LessonTemplate implements Serializable {
         return dayOfWeek;
     }
 
-    public LessonTemplate dayOfWeek(DayOfWeek dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
-        return this;
-    }
-
     public void setDayOfWeek(DayOfWeek dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
     }
 
     public Integer getStartHour() {
         return startHour;
-    }
-
-    public LessonTemplate startHour(Integer startHour) {
-        this.startHour = startHour;
-        return this;
     }
 
     public void setStartHour(Integer startHour) {
@@ -170,22 +268,12 @@ public class LessonTemplate implements Serializable {
         return startMinute;
     }
 
-    public LessonTemplate startMinute(Integer startMinute) {
-        this.startMinute = startMinute;
-        return this;
-    }
-
     public void setStartMinute(Integer startMinute) {
         this.startMinute = startMinute;
     }
 
     public Integer getEndHour() {
         return endHour;
-    }
-
-    public LessonTemplate endHour(Integer endHour) {
-        this.endHour = endHour;
-        return this;
     }
 
     public void setEndHour(Integer endHour) {
@@ -196,22 +284,12 @@ public class LessonTemplate implements Serializable {
         return endMinute;
     }
 
-    public LessonTemplate endMinute(Integer endMinute) {
-        this.endMinute = endMinute;
-        return this;
-    }
-
     public void setEndMinute(Integer endMinute) {
         this.endMinute = endMinute;
     }
 
     public String getName() {
         return name;
-    }
-
-    public LessonTemplate name(String name) {
-        this.name = name;
-        return this;
     }
 
     public void setName(String name) {
@@ -222,11 +300,6 @@ public class LessonTemplate implements Serializable {
         return description;
     }
 
-    public LessonTemplate description(String description) {
-        this.description = description;
-        return this;
-    }
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -235,22 +308,12 @@ public class LessonTemplate implements Serializable {
         return street;
     }
 
-    public LessonTemplate street(String street) {
-        this.street = street;
-        return this;
-    }
-
     public void setStreet(String street) {
         this.street = street;
     }
 
     public String getCity() {
         return city;
-    }
-
-    public LessonTemplate city(String city) {
-        this.city = city;
-        return this;
     }
 
     public void setCity(String city) {
@@ -277,11 +340,6 @@ public class LessonTemplate implements Serializable {
         return availableSpaces;
     }
 
-    public LessonTemplate availableSpaces(Integer availableSpaces) {
-        this.availableSpaces = availableSpaces;
-        return this;
-    }
-
     public void setAvailableSpaces(Integer availableSpaces) {
         this.availableSpaces = availableSpaces;
     }
@@ -290,22 +348,12 @@ public class LessonTemplate implements Serializable {
         return repeatStartDate;
     }
 
-    public LessonTemplate repeatStartDate(LocalDate repeatStartDate) {
-        this.repeatStartDate = repeatStartDate;
-        return this;
-    }
-
     public void setRepeatStartDate(LocalDate repeatStartDate) {
         this.repeatStartDate = repeatStartDate;
     }
 
     public LocalDate getRepeatUntilDate() {
         return repeatUntilDate;
-    }
-
-    public LessonTemplate repeatUntilDate(LocalDate repeatUntilDate) {
-        this.repeatUntilDate = repeatUntilDate;
-        return this;
     }
 
     public void setRepeatUntilDate(LocalDate repeatUntilDate) {
@@ -360,26 +408,7 @@ public class LessonTemplate implements Serializable {
         this.nameRus = nameRus;
     }
 
-    public Set<Lesson> getLessons() {
-        return lessons;
-    }
-
-    public LessonTemplate lessons(Set<Lesson> lessons) {
-        this.lessons = lessons;
-        return this;
-    }
-
-    public LessonTemplate addLesson(Lesson lesson) {
-        this.lessons.add(lesson);
-        lesson.setLessonTemplate(this);
-        return this;
-    }
-
-    public LessonTemplate removeLesson(Lesson lesson) {
-        this.lessons.remove(lesson);
-        lesson.setLessonTemplate(null);
-        return this;
-    }
+    public Set<Lesson> getLessons() { return lessons; }
 
     public void setLessons(Set<Lesson> lessons) {
         this.lessons = lessons;
@@ -389,15 +418,9 @@ public class LessonTemplate implements Serializable {
         return teacher;
     }
 
-    public LessonTemplate teacher(Teacher teacher) {
-        this.teacher = teacher;
-        return this;
-    }
-
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
